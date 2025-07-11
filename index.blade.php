@@ -1,1 +1,4 @@
-index develop 12
+<?php
+header("Location: index");
+exit;
+?>
