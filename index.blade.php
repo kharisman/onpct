@@ -1,4 +1,54 @@
-<?php
-header("Location: index");
-exit;
-?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PalComTech Online Learning</title>
+    <style>
+        /* Menu atas */
+        /*  SLider */
+        /*  CTA Atas */
+
+
+        /*  Testimoni */
+        /*  Keunggulan */
+        /*  Blog */
+
+
+
+        /*  MItra */
+        /*  Media */
+
+        /*  FAQ */
+        /*  Footer */
+        /*  MEtode Pembayaran dan whatapps button */
+    </style>
+</head>
+
+<body>
+
+
+    {{-- Menu atas --}}
+
+    {{--  SLider --}}
+    {{--  CTA Atas --}}
+
+
+    {{--  Testimoni --}}
+    {{--  Keunggulan --}}
+    {{--  Blog --}}
+
+
+
+    {{--  MItra --}}
+    {{--  Media --}}
+
+    {{--  FAQ --}}
+    {{--  Footer --}}
+    {{--  MEtode Pembayaran dan whatapps button --}}
+
+</body>
+
+</html>
