@@ -155,12 +155,12 @@
         <!-- Loop gambar -->
         @php
           $slides = [
-            'foto/b1.webp',
-            'foto/b1.webp',
-            'foto/b1.webp',
-            'foto/b1.webp',
-            'foto/b1.webp',
-            'foto/b1.webp',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
+            'https://myskill.id/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmain.3d8b87dd.png&w=3840&q=75',
           ];
         @endphp
 
