@@ -26,8 +26,26 @@
     .navbar {
       background-color: #d6dadf;
       white-space: nowrap;
-      padding-right: 30px;
+      width: auto;
     }
+
+    .navbar-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between;
+    width: auto; */
+}
+.navbar-brand {
+    padding: 0;
+    margin: 0;
+}
+
+    .logo-img {
+    height: 35px; /* Sesuaikan tinggi logo */
+    width: auto;
+    max-width: 90%;
+    transition: all 0.3s ease;
+}
 
     /* Awal: warna solid */
     .navbar-solid {
@@ -232,11 +250,57 @@ footer a:hover {
   color: #057c7e;
 }
 
+/* animasi sponsor */
+
+.logo-track {
+  animation: scroll 20s linear infinite;
+  width: max-content;
+}
+
+.logo-group {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Ubah ke -50% karena kita menggandakan item */
+  }
+}
+
+/* animasi partner */
+
+.partner-track {
+  animation: scroll 20s linear infinite;
+  width: max-content;
+}
+
+.partner-group {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Ubah ke -50% karena kita menggandakan item */
+  }
+}
+
+
 @media (max-width: 768px) {
   footer .col-md-4 {
     margin-bottom: 2rem;
   }
 }
+
 
     /* Responsif ukuran 770 */
 
@@ -395,11 +459,13 @@ footer a:hover {
   <div class="container sm:px-1 px-2 justify-content-between">
 
     <!-- Hamburger Toggle Button -->
-    <button class="navbar-toggler order-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <button class="navbar-toggler me-lg-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-      <p class="navbar-brand fw-italic myskill" style="color:#34699A;">MySkill</p>
+      <a class="navbar-brand" href="#">
+    <img src="{{ asset('foto/logo.png') }}" alt="Logo" class="logo-img">
+</a>
 
     <!-- Tombol Masuk & Daftar di Sebelah Hamburger -->
     <div class="d-flex align-items-left order-lg-2 ms-auto me-2">
@@ -413,7 +479,7 @@ footer a:hover {
         <li class="nav-item mx-2"><a class="nav-link home" href="#">Home</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="/e-learning">E-learning</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Bootcamp & Program</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Review CV</a></li>
+        {{-- <li class="nav-item mx-2"><a class="nav-link" href="#">Review CV</a></li> --}}
         <li class="nav-item mx-2"><a class="nav-link" href="#">Corporate Service</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Info Loker</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Blog</a></li>
@@ -472,28 +538,32 @@ footer a:hover {
     <!-- Loop Card -->
     @php
       $card = [
-        ['img' => 'foto/cta1.webp', 'title' => 'E-Learning', 'description' => 'Belajar Online'],
-        ['img' => 'foto/cta1.webp', 'title' => 'Bootcamp', 'description' => 'Program Intensif'],
-        ['img' => 'foto/cta1.webp', 'title' => 'Review CV', 'description' => 'Perbaiki CV Anda'],
-        ['img' => 'foto/cta1.webp', 'title' => 'Corporate Service', 'description' => 'Pelatihan Perusahaan'],
-        ['img' => 'foto/cta1.webp', 'title' => 'Info Loker', 'description' => 'Cari Lowongan Kerja']
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-1.png', 'title' => '100% PRAKTEK 100% INTERNET', 'description' => 'Belajar Belajar Full Praktek Gak Banyak Teori'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-2.png', 'title' => 'GARANSI LANGSUNG BISA', 'description' => 'kita Jamin Lulusan Palcomtech Langsung Bisa'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-4.png', 'title' => 'PERINGKAT 1 TERBAIK NASIONAL', 'description' => 'Telah Terpercaya Dan Telah Diakui Tingkat Nasional'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-3.png', 'title' => 'MENDAPATKAN SERTIFIKAT RESMI', 'description' => 'Setiap Lulusan Mendapat Sertifikat Resmi TIngkat Nasional'],
       ];
     @endphp
 
-    <div class="container">
-      <div class="d-flex flex-row flex-nowrap overflow-x-auto pb-3 align-items-center justify-content-between px-3">
-        @foreach ($card as $cta1)
-          <div class="card shadow-sm" style="min-width: 13rem; flex: 0 0 auto;">
-            <img src="{{ asset($cta1['img']) }}" class="img-fluid mx-auto d-block mt-3" style="width: 100px;" alt="{{ $cta1['title'] }}">
-            <div class="card-body text-center">
-              <h6 class="card-title">{{ $cta1['title'] }}</h6>
-              <p class="card-text">{{ $cta1['description'] }}</p>
-            </div>
+    <div class="container px-0">
+  <div class="cards-wrapper d-flex justify-content-center">
+    <div class="cards-scroller d-flex flex-row flex-nowrap overflow-x-auto py-3" style="gap: 1rem; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-color:transparent transparent;">
+      @foreach ($card as $cta1)
+        <div class="card shadow-sm flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
+          <img src="{{ asset($cta1['img']) }}" class="mx-auto d-block mt-3 img-fluid" style="height: 80px; object-fit: contain;" alt="{{ $cta1['title'] }}">
+          <div class="card-body text-center px-2 py-2">
+            <h6 class="card-title mb-1" style="font-size: 0.9rem; white-space: normal;">
+              {{ $cta1['title'] }}
+            </h6>
+            <p class="card-text small text-muted mb-0" style="font-size: 0.75rem; white-space: normal;">
+              {{ $cta1['description'] }}
+            </p>
           </div>
-        @endforeach
-      </div>
+        </div>
+      @endforeach
     </div>
-
+  </div>
+</div>
     <!-- Section cTA 2-->
     <div class="container text-center">
       <h1 class="mb-4 mt-3 pt-4" style="font-size:24px; font-weight:bold; font-height:36px;">Terbukti Berdampak dan Membuka Batasan</h2>
@@ -501,28 +571,27 @@ footer a:hover {
 
     @php
       $card = [
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
-        ['img' => 'foto/cta2.webp'],
+        ['img' => 'https://kursus.palcomtech.ac.id/wp-content/uploads/2024/07/testimonial-siswa-4.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 1.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 2.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 3.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 4.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 5.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 6.png'],
       ];
     @endphp
 
     <div class="container container-cta2">
-      <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3">
-        @foreach ($card as $cta1)
-        <div class="card shadow-sm" style="min-width: 12rem; flex: 0 0 auto; width: 100px;">
-            <img src="{{ asset($cta1['img']) }}" class="card-img-top">
-              <div class="card-body text-center">
-              <a class="btn btn-sm btn-daftar w-100" href="#">Daftar</a>
-          </div>
-        </div>
-        @endforeach
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3" style="scrollbar-color:transparent transparent;">
+    @foreach ($card as $cta1)
+    <div class="card d-flex flex-column align-items-center" style="min-width: 12rem; flex: 0 0 auto; border:none">
+      <div class="p-3 w-100 d-flex justify-content-center">
+        <img src="{{ url($cta1['img']) }}" class="img-fluid" style="max-height: 300px; object-fit: contain;">
       </div>
     </div>
+    @endforeach
+  </div>
+</div>
 
         <!-- Program E-learning start -->
 
@@ -533,8 +602,8 @@ footer a:hover {
 <?php
 $programs = [
     [
-        'title' => "Program E-Learning Premium",
-        'image' => "foto/gambarlaptop.webp",
+        'title' => "AI BASIC",
+        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/ai basic.jpg",
         'alt' => "E-Learning Palcomtech",
         'features' => [
             "Belajar fleksibel via Video Materi, Bahan Bacaan, Project dan Studi Kasus",
@@ -545,8 +614,8 @@ $programs = [
         'buttonLink' => "#"
     ],
     [
-        'title' => "Program Data Science",
-        'image' => "foto/gambarlaptop.webp",
+        'title' => "SMART TEKNOLOGI IOT + AI",
+        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/iot + ai.jpg",
         'alt' => "Data Science Program",
         'features' => [
             "Belajar Machine Learning dan AI dari dasar",
@@ -557,8 +626,8 @@ $programs = [
         'buttonLink' => "#data-science"
     ],
     [
-        'title' => "Program Web Development",
-        'image' => "foto/gambarlaptop.webp",
+        'title' => "CODING FOR KIDS",
+        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/coding for kids.png",
         'alt' => "Web Development Program",
         'features' => [
             "Full-stack development dengan teknologi terbaru",
@@ -592,8 +661,8 @@ $programs = [
                             <h3 class="card-title fw-bold mb-3" style="font-size: clamp(1.2rem, 2vw, 1.5rem);"><?= $program['title'] ?></h3>
                             <div class="mb-3">
                                 <?php foreach ($program['features'] as $feature): ?>
-                                <div class="d-flex align-items-start mb-2">
-                                    <span class="me-2">✅</span>
+                                <div class="d-flex align-items-start mb-2 fitur">
+                                    <span class="me-2" >✅</span>
                                     <p class="mb-0" style="font-size: clamp(0.9rem, 1.5vw, 1rem);"><?= $feature ?></p>
                                 </div>
                                 <?php endforeach; ?>
@@ -623,30 +692,36 @@ $programs = [
 
     @php
       $card2 = [
-        ['img' => 'foto/cta2.JPG','description' => 'Main & Belajar FB Ads di Kantor META Indonesis'],
-        ['img' => 'foto/cta2.JPG','description' => 'Ketemu sama Sam Altman, CEO OpenAI - ChatGPT'],
-        ['img' => 'foto/cta2.JPG','description' => 'FREE Workshop Tambahan untuk Para Member'],
-        ['img' => 'foto/cta2.JPG','description' => 'Main Games dan Bikin Video TikTok Bareng'],
-        ['img' => 'foto/cta2.JPG','description' => 'Kumpul dan Olahraga Bareng #BukanAtlet Club']
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita1.png','description' => 'Launching Industrial Lab Smart Campus Palcomtech'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita2.png','description' => 'ITB PalComTech Melakukan MoU dengan Dinas Koperasi dan UKM'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita3.png','description' => 'Workshop PalComTech Game Development Palembang 2023'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita4.jpg','description' => 'PalComTech Berjaya! Tim Jubecycle Raih Juara II di LABIRIN SRIWIJAYA BOOTCAMP 2025!'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita5.jpg','description' => 'PalComTech Sabet  3 kategori Juara Sekaligus Pada Event Apresiasi Kinerja LLDIKTI Wilayah II']
       ];
     @endphp
 
     <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 align-items-stretch px-3">
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 align-items-stretch px-3" style="scrollbar-color:transparent transparent;">
     @foreach ($card2 as $cta2)
-    <div class="card shadow-sm p-0" style="width: 17rem; flex: 0 0 auto; height: 100%;">
-      <div class="p-2 text-center d-flex flex-column">
-        <div class="flex-grow-0">
+    <div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
+      <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+        <!-- Bagian Gambar -->
+        <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
           <img src="{{ asset($cta2['img']) }}" class="img-fluid mx-auto" 
-               style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
+               style="max-width: 100%; max-height: 100%; border-radius:10px; object-fit: contain;">
         </div>
-        <div class="flex-grow-1 d-flex align-items-center">
-          <p class="card-text small fw-bold mb-0 mt-2 w-100" 
-             style="font-size:13px; line-height: 1.2; 
-                    display: -webkit-box; 
-                    -webkit-line-clamp: 3; 
+        
+        <!-- Bagian Teks -->
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center" 
+             style="min-height: 80px; padding: 0 8px;">
+          <p class="card-text small fw-bold mb-0 w-100" 
+             style="font-size:13px; line-height: 1.4;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
-                    overflow: hidden;">
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: 0;">
             {{ $cta2['description'] }}
           </p>
         </div>
@@ -666,52 +741,27 @@ $programs = [
 
     @php
       $CardInstruktur = [
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'Social Media Manager, Halodoc'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui'],
-        ['img' => 'foto/instruktur.JPG','nama' => 'data nama instruktur','keahlian' => 'belum diketahui']
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 23.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 24.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 26.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 25.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 27.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 28.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 29.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 11.png'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 12.png']
       ];
     @endphp
 
    <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3">
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;">
     @foreach ($CardInstruktur as $instruktur)
-    <div class="card shadow-sm border-0" style="width: 200px; flex: 0 0 auto;"> <!-- Fixed width -->
+    <div class="card border-0" style="width: 200px; flex: 0 0 auto;"> <!-- Fixed width -->
       <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
         <!-- Gambar -->
-        <div class="mb-3" style="height: 150px; overflow: hidden; border-radius: 15px;">
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
           <img src="{{ asset($instruktur['img']) }}" 
-               class="w-100 h-100 object-fit-cover">
-        </div>
-        
-        <!-- Konten Teks -->
-        <div style="flex: 1; min-height: 0; display: flex; flex-direction: column;">
-          <!-- Nama -->
-          <h6 class="fw-bold mb-1 text-truncate" style="font-size: 15px;">
-            {{ $instruktur['nama'] }}
-          </h6>
-          
-          <!-- Keahlian (dibatasi 2 baris) -->
-          <p class="text-muted small mb-3 flex-grow-0" 
-             style="font-size: 13px; 
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    line-height: 1.4;">
-            {{ $instruktur['keahlian'] }}
-          </p>
-          
-          <!-- Tombol -->
-          <a class="btn btn-sm btn-outline-primary w-100 mt-auto" 
-             style="font-size: 13px; border-radius: 10px; padding: 0.25rem;">
-            Lihat Materi
-          </a>
+               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
         </div>
       </div>
     </div>
@@ -720,6 +770,86 @@ $programs = [
 </div>
 
     <!-- Instruktur End -->
+
+    {{-- Prestasi --}}
+
+    <div class="container text-center">
+      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Prestasi Palcomtech</h3>
+    </div>
+
+     @php
+      $CardInstruktur = [
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 1.jpg'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 2.jpg'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 3.jpg'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 4.jpg'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 5.jpg'],
+        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 6.jpg'],
+      ];
+    @endphp
+
+   <div class="container">
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;">
+    @foreach ($CardInstruktur as $instruktur)
+    <div class="card border-0" style="width: 200px; flex: 0 0 auto;"> <!-- Fixed width -->
+      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
+        <!-- Gambar -->
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+          <img src="{{ asset($instruktur['img']) }}" 
+               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+
+{{-- sponsor --}}
+
+    <div class="container text-center">
+      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Sponsor</h3>
+    </div>
+
+  <div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0;">
+  <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
+    <div class="logo-track" style="display: flex;">
+      <div class="logo-group">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor1.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor2.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor3.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor4.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor5.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor6.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor7.png" alt="" style="height: 5rem; object-fit: contain;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor8.png" alt="" style="height: 5rem; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{-- partner --}}
+
+  <div class="container text-center">
+  <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Partner</h3>
+</div>
+
+<div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
+  <div class="partner-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
+    <div class="partner-track" style="display: flex; width: max-content;">
+      <div class="partner-group" style="display: flex; gap: 4rem; padding: 2rem;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner1.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner2.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner3.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner4.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner5.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner6.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner7.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner8.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+      </div>
+    </div>
+  </div>
+</div>
 
     {{-- FAQ Start --}}
 
@@ -731,25 +861,17 @@ $programs = [
     // Array FAQ
     $faqs = [
       [
-        "question" => "Apa itu MySkill?",
-        "answer" => "MySkill adalah platform persiapan karir dan peningkatan skill dengan lebih dari 1 juta pengguna. MySkill didukung oleh leading venture capital di Asia Tenggara, East Ventures."
+        "question" => "apa itu online kursus di palcomtech ?",
+        "answer" => "Online Kursus di PalComTech adalah program pembelajaran berbasis digital yang disediakan oleh PalComTech, sebuah lembaga pendidikan komputer dan teknologi yang cukup dikenal di Indonesia, khususnya di wilayah Sumatera Selatan. Program ini memungkinkan siswa belajar dari mana saja menggunakan perangkat seperti laptop, tablet, atau smartphone, tanpa harus datang ke kampus secara langsung."
       ],
       [
-        "question" => "Apa saja fitur di MySkill?",
-        "answer" => "MySkill menyediakan kursus online, career bootcamp, webinar, layanan review CV dan simulasi interview kerja."
+        "question" => "apa saja fasilitas yg didapat?",
+        "answer" => "Akses ke Materi Pembelajaran Digital, .Kelas Virtual (Live Zoom / Google Meet, Komunitas Belajar, Sertifikat Setelah Lulus."
       ],
       [
-        "question" => "Apa saja fitur di MySkill?",
-        "answer" => "MySkill menyediakan kursus online, career bootcamp, webinar, layanan review CV dan simulasi interview kerja."
+        "question" => "kemana saya bisa mendapatkan solusi dari kendala saat saya belajar?",
+        "answer" => "Sertifikat Setelah Lulus, Customer Service PalComTec, FAQs / Pusat Bantuan di Platform Online."
       ],
-      [
-        "question" => "Apa saja fitur di MySkill?",
-        "answer" => "MySkill menyediakan kursus online, career bootcamp, webinar, layanan review CV dan simulasi interview kerja."
-      ],
-      [
-        "question" => "Apakah MySkill Berbayar?",
-        "answer" => "Ada layanan gratis dan premium (berbayar). Pengguna bisa memilih sesuai kebutuhan mereka."
-      ]
     ];
 
     // Loop FAQ
@@ -787,37 +909,38 @@ $programs = [
       
       <div class="col-md-4 mb-4 ps-lg-4">
         <!-- MySkill Info -->
-        <h5 class="fw-bold mb-2">MySkill</h5>
-        <p class="small">Rintis Karir Impian bersama MySkill</p>
+        <h5 class="fw-bold mb-2"><img src="{{ asset('foto/logo.png') }}" alt="" srcset="" style="width:100px;"></h5>
+        <p class="small">Rintis Karir Impian bersama Palcomtech</p>
 
         <!-- Company Info -->
         <div class="mt-4">
-          <h6 class="fw-bold mb-2">PT. LINIMUDA INSPIRASI NEGERI</h6>
-          <p class="mb-1 small">Griya Dros, JI KH Abdullah Syafei No 1 (Tebet Utara Dalam 34)</p>
-          <p class="mb-1 small">Kel. Tebet Timur, Kec. Tebet, Kota Adm. Jakarta Selatan</p>
-          <p class="mb-1 small">Prov. DKI Jakarta, 12820</p>
-          <p class="small">+6285724090750</p>
+          <h6 class="fw-bold mb-2">Online Palcomtech</h6>
+          <p class="mb-1 small">Jl. Jend. Sudirman No.3007</p>
+          <p class="mb-1 small">Kel. 20 Ilir D. III, Kec. Ilir Tim. I,  Kota Palembang. Sumatera Selatan</p>
+          <p class="mb-1 small">Prov. Sumatera Selatan, 30121</p>
+          <p class="small">082177980624</p>
         </div>
       </div>
 
       <div class="col-md-8 ps-lg-3">
         <div class="row">
-          <div class="col-4">
-            <h6 class="fw-bold mb-2 small" style="padding-top:35%;">MYSKILL.ID</h6>
+          {{-- <div class="col-4">
+            <h6 class="fw-bold mb-2 small" style="padding-top:35%;"></h6>
             <ul class="list-unstyled small">
+              <h6 class="fw-bold mb-2 small " style="padding-top:35%;">Online Palcomtec</h6>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Tentang</a></li>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Karir</a></li>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Kerjasama</a></li>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Blog</a></li>
             </ul>
-          </div>
+          </div> --}}
           
           <div class="col-4">
             <h6 class="fw-bold mb-2 small " style="padding-top:35%;">PRODUK</h6>
             <ul class="list-unstyled small">
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">E-learning</a></li>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Bootcamp & Program</a></li>
-              <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Review CV</a></li>
+              {{-- <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Review CV</a></li> --}}
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Corporate Service</a></li>
             </ul>
           </div>
@@ -843,34 +966,25 @@ $programs = [
   </div>
 </div>
 
-      <div class="container my-4">
-  <p class="fw-bold mb-3 ps-lg-3" style="font-size:13px; padding-left:4px;">Metode Pembayaran</p>
-  <div class="d-flex flex-row flex-nowrap overflow-auto gap-3 p-2 rounded">
-    <img src="https://th.bing.com/th/id/OIP.hg6Vvx7_DxWXXuo5_k8i1AHaHZ?w=163&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="OVO" class="img-fluid" style="height: 40px;">
-    <img src="https://th.bing.com/th/id/OIP.WQvSeetcSPWj-U4EqDmSBgHaEK?w=322&h=181&c=7&r=0&o=7&pid=1.7&rm=3" alt="Gopay" class="img-fluid" style="height: 40px;">
-    <img src="data:image/webp;base64,UklGRmwFAABXRUJQVlA4IGAFAAAQJACdASoFAbQAPp1OoE0lpCMiJDWIOLATiWNu4XShGpH65/ifOkqr9W3fCePMI5K/339k6g/5d9gD9bukL5gPNQ/vn7Ve83+9ei9/les49CDpd/3FYb42mWzpgGjA6U/J+T8n5Pyfk/J+T8n5Pyfk/J+T8n5Pyfk/J+T8n5PxMBAfflM55OgBGAOqoWBn5PyfA92fSovyf9qKHuYxShZ2P6hV69PeXJZaH8ydobt71Ba8sHYCH87veCZ1JhGHIv+6KauSlB5zj2a7to1aztTwOPiecTAbElLoJXBBWtOiiM2RswwcssvviJTRpGM2NjWi9e0kzlgKwEm3PeIVLfcMVgjyo0DYE8n5QNhYdBPyfk/J+T8n5Pyfk/J+T8n5Pyfk/J+T8n5Pw4AA/v9noAAAFeTjZx32cdKssxguk/pkuKMlABZgFXZmPJSFmPrIucBbqbQh30psmgzeIhB1AvsvnVBGo8y1vxO3UzvTpUKij1lPhFP4enDj2BmG5C3glBop4YjDiWav2s5z7tUELMAwuef/q8AK5WmhV7hFC3l9kBGYbsrt6VJ7xOsbvs/nTGX73zZso9dQJzUyvYgGFMPVIuwmT3kjDxdYXX6Q/a4dZQCoejY4IjxXrEuiZ2qqXFGS/nvj/jkTtVoE1FA1Rzrf+2w56mAhOLrb8fViYydMKn6QAYPdKduaDIkFYZQelxslD8MmJ3iYOh8AuFTQjxap52LaWOnCurKWgloDygwQFkXX5D5SsbKxXRUJ//pPxtCx78bfaEDkjeAmee4fFuMZxkkB4j21ooMxxDpehmTu+0ozuLLidC2hsmzMm74xp/TjNoaNVaDKB93EDATrF/Zuk9vWFgNg8wPfpTcjdKEggw3O7V3NWtIKjOhPVSCE9yFpCAKYLIwpL7gWMmgnNva3I6UPpWjbc0GtQG+xuZ6lGbbj+Jh1E5s4900mNf9kF84MtTNvnY8MowHBFhz0FDJgS+aWEyp8lQ5046YuyHSIJ5WNRqjpfBpDqUOdfJ3Esvzodpeyw3Y+v6Sy+jaymGVZ9ULyzB8ZLWeL08iEkmmdRceVhrdA77PmazEShMfGFnz81HcDc8KCURR0TFLDp4QPASRvkWWYJ6vTYWR5WjbYPWMSrJIfzTdSkkWuiskFAqFPyBCmdGvkOVfQTYV18VQU5jk4RvSDAmB9E5+75KvoxcpuNPTuhJIAOY4JP+BMscqzZmQFB5RI4iunTjxcYtsTSiLSDP0tejqTwMaXpt4NcTLMnEm/49RD1UCYQYHc3apnv9EQ0pDz4VjCxya8df8bTWruQmCjjmiejiujDqGsshIMxSWT8+yKoF8rxMvlTSuJkA9GFl4ttaAnYXrZxaQTfJ/OCeHYMIyBHXk9aOZkbhWnoBK9emt65Kirymn6L45TcTuahc/x1U0ZdVk/TVefMDaR7T76hPXcJ+Nc5SzRF1CnV52BKeHLsAfiIq+IB4Iti56vnwd2CsvwAmx4jHGWLiySXJzUdcBGOQz1oI8ux5lRmF2cxWa1OmuxuL8JAFybb3mttoyZ6ep1l6/O7xelhfrSyvu/r6+64BetSr+0SaXOrOO8tYAd5cm5gnY78R8nKS8FuDC4Xrpkh8OTZeeyItCaxobFJPlsZFm9v+EvVwa5lbjfH8TlhNDkZk8Ob4FX2WEf4HZicuM3mfBvaWlL3cGT34Cx1DNucXxgEOwBXZoWHrrPkZcfsEWP4Kx0cQsF/6KqUld3bvPX7FkP1njHpKg4Fw01ilQB4+FkkdvZZdaLBetjgWgOJcUWC6z51oqGCHmHqo2xtxRSNdw5khMRWbkAMwl8BgAAAAAAAAAAAA==" alt="Dana" class="img-fluid" style="height: 40px;">
-    <img src="https://th.bing.com/th/id/OIP.z9vHG9zxjmluzpHAJ68U1gHaHa?w=175&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="ShopeePay" class="img-fluid" style="height: 40px;">
-    <img src="data:image/webp;base64,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" alt="BCA" class="img-fluid" style="height: 40px;">
-    <img src="data:image/webp;base64,UklGRqYDAABXRUJQVlA4IJoDAABQFgCdASqfALQAPp1Mo02lo6MiIbgIkLATiWdu4XPr5DkPar+zG5PUBtj/MB0DvOA6jzeVvJGo9uPzWl6I3+AnIHkG+qPYK/VDrGBYA2HoKpdVPihZsPQVS6qfFCzYebOF+pEXNyGpb6vjlCqm8aGvZb874IV2AOwz/u5RkWAsGnML6yfcOU6XqlT9bcLwiFaxB3Zq30PhOcJxpF9c/tHdy+GZTVT5IoVS6qfFCzYegql1U+KFmw9BVLeAAP7/MMAAAoA1Hba9lrjiXPDg7Kn7nV+uPxO/MS+PvbLCqaQmgY2ucBFxQZY0o9+U8J/ziOyArjN/NyrTBgjGrZ47CG/hPuH4HbZAbWREdx7KFy9o8ZP4HlQcSJYbcv9MvnLn/baCNrbuv2ciShnid794779jrH567jtpgt1ALO6oIQwweCHc6ae3NSnNddFHsX0DmGuHnQvJZpCxKdZj7Zsn+I3bz6jLer2wVzaExqcYdUNrZfuazT4TRa43FHhgvrn4uDHvf1LYxuHR5lX6uaDBWRnnX6wB/p4Jxv+nbPD/ou5NZejF4W3KMNtG9BfRIicIEwev8se8t7d1o7Qnz/rS1+0rR35PkBHPZKQ50ek+hOuHl+kHia0sks6CdjsEeXauyhKkUwBXqF871k1E3jA1UwBvGCtwdqyzY6zteISfPKPU5NSSc9D/PaM/dsv1vXIhq9PvEAMumb92KA6Nugl2YN99fDHP4ZK9T735UHiVz0ONgUVABZLyPpkGP/Rc9qSOBLGuV7f+05PGyK9B/ITx/9H+Cb/OfwFKwbZ/iFmfqu20GN0h1Q/WmJN5xP4FrW+cChl6BIr8QvtJAM2shXYbS93p3ez5QDJlVaf3YF8e5oAN90/z8oMjRZVkL+PjWTGijr3v3ZR+LPhtNdmdRAUaE2R87FV/ltnoMasJKJ0O63yTmRg1FPwWcjOep6v8rwdmEuiLcZ+vMtC/Er88fMjQAdg7siR3D96sgdT5n5zwnF7sVNbG4+mHujKAKuh+A6wDuikkJd/f8iVbzR66RkO0wecjDcpXUADFLEpyDHgRgr1e3re++oQDSM6dImxHaRpInFiZ5DOL2HIhHHnd+1qMhhy5dGhIniw39Gsqx2//GdmOW60nNpCnPboEqeN2LucP8dSqpr5O6hROt6Wc9y/8iG16GOprgJ2b4QeO/vy8bJaN6IT6cq9Ye9snlSgsxwdci7EOyhDM7AAAAAAA" alt="Mandiri" class="img-fluid" style="height: 40px;">
+    <div class="container my-4">
+      <p class="fw-bold mb-3 ps-lg-3" style="font-size:13px; padding-left:4px;">
+          Metode Pembayaran
+      </p>
+      <div class="d-flex flex-row flex-nowrap overflow-auto gap-3 p-2 rounded">
+      <img src="https://th.bing.com/th/id/OIP.hg6Vvx7_DxWXXuo5_k8i1AHaHZ?w=163&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="OVO" class="img-fluid" style="height: 40px;">
+      <img src="https://th.bing.com/th/id/OIP.WQvSeetcSPWj-U4EqDmSBgHaEK?w=322&h=181&c=7&r=0&o=7&pid=1.7&rm=3" alt="Gopay" class="img-fluid" style="height: 40px;">
+      <img src="data:image/webp;base64, UklGRmwFAABXRUJQVlA4IGAFAAAQJACdASoFAbQAPp1OoE0lpCMiJDWIOLATiWNu4XShGpH65/ifOkqr9W3fCePMI5K/ 339k6g/5d9gD9bukL5gPNQ/vn7Ve83+9ei9/les49CDpd/3FYb42mWzpgGjA6U/J+T8n5Pyfk/J+T8n5Pyfk/J+T8n5Pyfk/J  +T8n5PxMBAfflM55OgBGAOqoWBn5PyfA92fSovyf9qKHuYxShZ2P6hV69PeXJZaH8ydobt71Ba8sHYCH87veCZ1JhGHIv +6KauSlB5zj2a7to1aztTwOPiecTAbElLoJXBBWtOiiM2RswwcssvviJTRpGM2NjWi9e0kzlgKwEm3PeIVLfcMVgjyo0DYE8n  5QNhYdBPyfk/J+T8n5Pyfk/J+T8n5Pyfk/J+T8n5Pw4AA/v9noAAAFeTjZx32cdKssxguk/ pkuKMlABZgFXZmPJSFmPrIucBbqbQh30psmgzeIhB1AvsvnVBGo8y1vxO3UzvTpUKij1lPhFP4enDj2BmG5C3glBop4YjDiWa  v2s5z7tUELMAwuef/q8AK5WmhV7hFC3l9kBGYbsrt6VJ7xOsbvs/nTGX73zZso9dQJzUyvYgGFMPVIuwmT3kjDxdYXX6Q/  a4dZQCoejY4IjxXrEuiZ2qqXFGS/nvj/jkTtVoE1FA1Rzrf +2w56mAhOLrb8fViYydMKn6QAYPdKduaDIkFYZQelxslD8MmJ3iYOh8AuFTQjxap52LaWOnCurKWgloDygwQFkXX5D5SsbKxX  RUJ//pPxtCx78bfaEDkjeAmee4fFuMZxkkB4j21ooMxxDpehmTu+0ozuLLidC2hsmzMm74xp/TjNoaNVaDKB93EDATrF/ Zuk9vWFgNg8wPfpTcjdKEggw3O7V3NWtIKjOhPVSCE9yFpCAKYLIwpL7gWMmgnNva3I6UPpWjbc0GtQG+xuZ6lGbbj +Jh1E5s4900mNf9kF84MtTNvnY8MowHBFhz0FDJgS+aWEyp8lQ5046YuyHSIJ5WNRqjpfBpDqUOdfJ3Esvzodpeyw3Y+v6Sy +jaymGVZ9ULyzB8ZLWeL08iEkmmdRceVhrdA77PmazEShMfGFnz81HcDc8KCURR0TFLDp4QPASRvkWWYJ6vTYWR5WjbYPWMSr  JIfzTdSkkWuiskFAqFPyBCmdGvkOVfQTYV18VQU5jk4RvSDAmB9E5+75KvoxcpuNPTuhJIAOY4JP  +BMscqzZmQFB5RI4iunTjxcYtsTSiLSDP0tejqTwMaXpt4NcTLMnEm/ 49RD1UCYQYHc3apnv9EQ0pDz4VjCxya8df8bTWruQmCjjmiejiujDqGsshIMxSWT8  +yKoF8rxMvlTSuJkA9GFl4ttaAnYXrZxaQTfJ/OCeHYMIyBHXk9aOZkbhWnoBK9emt65Kirymn6L45TcTuahc/x1U0ZdVk/ TVefMDaR7T76hPXcJ+Nc5SzRF1CnV52BKeHLsAfiIq +IB4Iti56vnwd2CsvwAmx4jHGWLiySXJzUdcBGOQz1oI8ux5lRmF2cxWa1OmuxuL8JAFybb3mttoyZ6ep1l6/  O7xelhfrSyvu/r6+64BetSr+0SaXOrOO8tYAd5cm5gnY78R8nKS8FuDC4Xrpkh8OTZeeyItCaxobFJPlsZFm9v  +EvVwa5lbjfH8TlhNDkZk8Ob4FX2WEf4HZicuM3mfBvaWlL3cGT34Cx1DNucXxgEOwBXZoWHrrPkZcfsEWP4Kx0cQsF/  6KqUld3bvPX7FkP1njHpKg4Fw01ilQB4  +FkkdvZZdaLBetjgWgOJcUWC6z51oqGCHmHqo2xtxRSNdw5khMRWbkAMwl8BgAAAAAAAAAAAA==" alt="Dana"   class="img-fluid" style="height: 40px;">
+      <img src="https://th.bing.com/th/id/OIP.z9vHG9zxjmluzpHAJ68U1gHaHa?w=175&h=180&c=7&r=0&o=7&pid=1. 7&rm=3" alt="ShopeePay" class="img-fluid" style="height: 40px;">
+      <img src="data:image/webp;base64, UklGRvgHAABXRUJQVlA4IOwHAABwKQCdASqyALQAPp1OokylpCMiI9S4wLATiWNu4XKL6tiyq  ++d816wO4tzkRgOz3JL6gP0F7AHOO8wHnG/2b1L/2z0oOo59Brpcv7XgmH9d7aP9NytUs/uCv7/2nkj/  oPAH1AeTvdgQAfmfCLpRP2b/VewB+c/Pr/6/Kb+ef6H2Dv5n5zvsS/aH2Q/ 2ZV4xPGJ4xPGJ4xPGJ4xPGJ4xPGJ4xPGIk2pc60rfGSAH1MFylegsAEk7rQErrSQlxP0UH3v1  +XYpMKyn59seD6j1TJs4PQAC6lgyeuVQ1i0coKdxX5i5uJRHJY  +v6hlHesLw1hvbaiSY5roHtpfhHFYvypiULHnAdcTQGeii9xsVs0qEycKGUzHeqjBXsu1m4lz +INYrbSqRefZda55cZyAur4kMLaB+7TZnjBTah5TL+ZfzL+ZfzL+ZfzL+ZfzL+ZfzL+ZfwQAAP7/ ZNAAA4dy3YjWoHKBDtPDUh/Go0X0aaYwWTSUHp89wqxPU7TBhLIAMer28SdkNWyNbtyLliSVuXVJ7v6u+Hx5APwJd7klVRMp/  Ohxq7m+zLDOMr/qccwmOMSgcFEbV6f/cZQz4lWWiz +86RTQmSc7aVRrCZEZmZ33GdiFV0vtkesXkk39TWYZIDkZs8JFKkUfUoemSbdpeYmSNMpPGvDk5oFri1+u/  wuN4gWHk8TfzxrRo/f71bqT+/3pDaV0KKR/iueIR3DiHq6TB/PaNMvyM2ExQQXAelENNo9cWfU5Iihqlob0/  Hmb9RyfVexinYjZvcd4IgZrard0800stRBGwA9gPGXGQbQ52cGCe40u94iCM3J5CbzZPu/  mCxOzJO7MqUZlmS2OBz2tsldTYKM/vQZ0ckTDJDWlKeNG9wgLkHnrc+TzgWDWmhjR+wjXn/Rbd  +CcN5xeZDX2Rh1h0OgMxByduiX  +lQnFNmLX6R330uMebrJGDtQfNHjxovbOVPyOZ9WCzak5iueyFklXRkH69vB4ismmQ70AzJ55aGHCyWWvwrAvgHPWlPNQC09U JMj28Gl2EhJGsqp9KHV4JD7ED1mStaodixbYTHoof3QdUKeI3iBVmLuf+hqyj2vyhemdf6HJdxviPESf1Cq9QPDhr49xyr// IeAuQPgaJ//EzSFJeqYzuF4T+G4/C02yoUUKbWr3L6v/LLRcM75O6j775uzZ/7GJIL+lQDOxbQ+aDq1z+z/  LEq333ldLarD153F37X6M8474mCYnw9PMd0PFyphPjoU  +nORbZOnRyTSNS8S4XtuyDBgruXfPP5gKJIOzkiG3fQRxvYFVXVWK8zyU53NDEz5AMZiQ8iVZHW7SdyBNcEWoMqGWOeeeuPL2 WR7lHH+C8IDkLlvPe8bgXaFUjTnJA3vWNi4u/IdetMBC/wNA7vOrUMJG5NecrvTzFInT/  38qP2vPGS9gZNMURLFzZfeKHnnTBhElAZzIBiM/atluBl5F/8T8bicRsDGp6i7evGYEKHAFJ/rR7kZRAHG4ON/  rCRNMuV9AET/2PD7/t9Nbpi4m19TJbrk5eka1HBFNUJ02+l/1XOTD/  amBy5sAjukDugjkV6jWlK6DSyMXJUk3CJHZbXsIpxPS0JiF3cQ/ UUVdzOtBRnFz5mgHAzUgFGt098YJIoZ9d5GxUINC0K4xdoNz6MqeYyodfcRM7XgOAFl8JeyxR7g/ yKIgeSLzaK85h4H63weO4JwsPzvfykOPrScN +Hz7jIhNV5iPZ5tpYc13QgCGkp95E6Mf3itoqqFxx5u9teUw1gIv8zJn883mmZ4Sud0Vv13YH/+vA+qZcO0QLEv8Lrb  +n49XSbodbaEHlpaIqdcSAvhGEa0kbuIrDs/JrI5giczPZWcFzzKgX5XfhFi5NYYuOK +N5uUhrOwzsGAG2LKHUkKIO7qys8BCwlw/ MoZo217IM1Qc0rbyOT30Uty4VWFFSPkcuhyUwkzOh4FwuemH7fFFfZrf9ZYYgXXQmgYlOa3huWX/ BLqxtzXlnfz2XdPkHkPTE8t7wFw  +8uCqLIsntDr6ICqWPlRSiDwXuvkkVnFfS4N0FCUmceCfg6YJwRiXSt7EQkDXqydkmJhs19uctmAq1WcimPcUx2GC2Njrq6XW vlliu/+HZqDlMf7eR9P7m53SvY/Lyim8kpvF2R02YhVtWsJYCvHtwu43jFXQAHDTX2qb0A6+6HZdPhlz1WA2xFc+05K/ MzwfWE+muhXxNbuxypvmSqZmij8dPgevtoSlfCoMNOurKCa4hbujkBIGc/9sOjXQsuoJ66pDr7MPNFU2 +U6eILuLtiekCiGTW627dpRgLA5BIOrxKCWiY4QCemLFijL+yulwgfFwo84phYCYR60w +VnML7siYPNxI0GGpIC9T7a2D7FRCgHf4DhFsiC3yNUM1VIfXJ4tPkI3lVFIxzt24Xn+7/d6BGNEnIPP1Oz+K8XaT  +LWXHvUK1Gv21EWq+shyFQ9F08MDBSwUMserNpIpU4ZUW676Z7/kxUHaI8pM3TNnJywwmcoIBG6nU8e/7/  2dU4imwLykRzJ7TjGcntUaxjVehVkAyZ5mE4Amp5i435jLW5n+2KzwKnx7RME4WH0Wj7Ao8nyB/ gx20C0yRpTMgsUzbsebDzYnxINbfaH+EbUbuYEjX4H9ar9HLCSp1nttTMwdOCXoigP2f68aX0/FjAI/  pcItafr1lAAAFKfI4AAAAAAAAA=" alt="BCA" class="img-fluid" style="height: 40px;">
+      <img src="data:image/webp;base64, UklGRqYDAABXRUJQVlA4IJoDAABQFgCdASqfALQAPp1Mo02lo6MiIbgIkLATiWdu4XPr5DkPar+zG5PUBtj/ MB0DvOA6jzeVvJGo9uPzWl6I3+AnIHkG+qPYK/VDrGBYA2HoKpdVPihZsPQVS6qfFCzYebOF +pEXNyGpb6vjlCqm8aGvZb874IV2AOwz/u5RkWAsGnML6yfcOU6XqlT9bcLwiFaxB3Zq30PhOcJxpF9c/tHdy  +GZTVT5IoVS6qfFCzYegql1U+KFmw9BVLeAAP7/MMAAAoA1Hba9lrjiXPDg7Kn7nV+uPxO/MS+PvbLCqaQmgY2ucBFxQZY0o9 +U8J/ziOyArjN/NyrTBgjGrZ47CG/hPuH4HbZAbWREdx7KFy9o8ZP4HlQcSJYbcv9MvnLn/  baCNrbuv2ciShnid794779jrH567jtpgt1ALO6oIQwweCHc6ae3NSnNddFHsX0DmGuHnQvJZpCxKdZj7Zsn +I3bz6jLer2wVzaExqcYdUNrZfuazT4TRa43FHhgvrn4uDHvf1LYxuHR5lX6uaDBWRnnX6wB/p4Jxv+nbPD/ ou5NZejF4W3KMNtG9BfRIicIEwev8se8t7d1o7Qnz/rS1+0rR35PkBHPZKQ50ek+hOuHl  +kHia0sks6CdjsEeXauyhKkUwBXqF871k1E3jA1UwBvGCtwdqyzY6zteISfPKPU5NSSc9D/PaM/ dsv1vXIhq9PvEAMumb92KA6Nugl2YN99fDHP4ZK9T735UHiVz0ONgUVABZLyPpkGP/Rc9qSOBLGuV7f+05PGyK9B/ITx/9H  +Cb/OfwFKwbZ/iFmfqu20GN0h1Q/WmJN5xP4FrW+cChl6BIr8QvtJAM2shXYbS93p3ez5QDJlVaf3YF8e5oAN90/  z8oMjRZVkL+PjWTGijr3v3ZR+LPhtNdmdRAUaE2R87FV/ltnoMasJKJ0O63yTmRg1FPwWcjOep6v8rwdmEuiLcZ+vMtC/ Er88fMjQAdg7siR3D96sgdT5n5zwnF7sVNbG4+mHujKAKuh+A6wDuikkJd/  f8iVbzR66RkO0wecjDcpXUADFLEpyDHgRgr1e3re++oQDSM6dImxHaRpInFiZ5DOL2HIhHHnd+1qMhhy5dGhIniw39Gsqx2// GdmOW60nNpCnPboEqeN2LucP8dSqpr5O6hROt6Wc9y/8iG16GOprgJ2b4QeO/  vy8bJaN6IT6cq9Ye9snlSgsxwdci7EOyhDM7AAAAAAA" alt="Mandiri" class="img-fluid" style="height: 40px; ">
     <!-- Tambahkan lagi sesuai kebutuhan -->
   </div>
-</div>
-
     </div>
   </div>
 </footer>
 
     {{-- Footer ENd --}}
 
-    {{-- Metode pembayaran Start --}}
-
-    
-
-    {{-- Metode pembayaran End --}}
-
-    
-
-    <!-- CTA Bawah End-->
   </section>
 
   <!-- WhatsApp Floating Button -->
@@ -907,6 +1021,84 @@ $programs = [
       navbar.classList.add("navbar-solid");
     }
   });
+</script>
+
+{{-- script untuk partner --}}
+
+{{-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const partnerGroup = document.querySelector('.partner-group');
+  const partnerTrack = document.querySelector('.partner-track');
+  
+  // Clone partner items for seamless looping
+  const items = partnerGroup.querySelectorAll('img');
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    partnerGroup.appendChild(clone);
+  });
+  
+  // Pause animation on hover
+  partnerTrack.addEventListener('mouseenter', () => {
+    partnerTrack.style.animationPlayState = 'paused';
+  });
+  
+  partnerTrack.addEventListener('mouseleave', () => {
+    partnerTrack.style.animationPlayState = 'running';
+  });
+  
+  // Reset animation position when it completes
+  partnerTrack.addEventListener('animationiteration', () => {
+    // Smooth reset without visible jump
+    setTimeout(() => {
+      partnerTrack.style.transition = 'none';
+      partnerTrack.style.transform = 'translateX(0)';
+      setTimeout(() => {
+        partnerTrack.style.transition = 'transform 0.3s linear';
+      }, 10);
+    }, 0);
+  });
+});
+</script> --}}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const partnerGroup = document.querySelector('.partner-group');
+  const partnerTrack = document.querySelector('.partner-track');
+  
+  // Clone semua item logo untuk seamless looping
+  const items = partnerGroup.innerHTML;
+  partnerGroup.innerHTML += items;
+  
+  // Pause animation on hover
+  partnerTrack.addEventListener('mouseenter', () => {
+    partnerTrack.style.animationPlayState = 'paused';
+  });
+  
+  partnerTrack.addEventListener('mouseleave', () => {
+    partnerTrack.style.animationPlayState = 'running';
+  });
+});
+</script>
+
+{{-- script untuk sponsor --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const partnerGroup = document.querySelector('.logo-group');
+  const partnerTrack = document.querySelector('.logo-track');
+  
+  // Clone semua item logo untuk seamless looping
+  const items = partnerGroup.innerHTML;
+  partnerGroup.innerHTML += items;
+  
+  // Pause animation on hover
+  partnerTrack.addEventListener('mouseenter', () => {
+    partnerTrack.style.animationPlayState = 'paused';
+  });
+  
+  partnerTrack.addEventListener('mouseleave', () => {
+    partnerTrack.style.animationPlayState = 'running';
+  });
+});
 </script>
 
 </body>
