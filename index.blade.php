@@ -295,11 +295,11 @@ footer a:hover {
 }
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   footer .col-md-4 {
     margin-bottom: 2rem;
   }
-}
+} */
 
 
     /* Responsif ukuran 770 */
@@ -368,7 +368,7 @@ footer a:hover {
 
         /* Responsif ukuran hp besar */
 
-    @media (min-width: 577px) and (max-width: 768px) {
+    /* @media (min-width: 577px) and (max-width: 768px) {
       .navbar-nav {
         padding-right: 0;
       }
@@ -408,7 +408,7 @@ footer a:hover {
       .swiper-slide{
         padding-top: 10%;
       }
-        }
+        } */
 
     /* Untuk tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -464,7 +464,7 @@ footer a:hover {
       <span class="navbar-toggler-icon"></span>
     </button>
       <a class="navbar-brand" href="#">
-    <img src="{{ asset('foto/logo.png') }}" alt="Logo" class="logo-img">
+    <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/18-07-2025/logo_palcom-removebg-preview.png') }}" alt="Logo" class="logo-img">
 </a>
 
     <!-- Tombol Masuk & Daftar di Sebelah Hamburger -->
@@ -909,7 +909,7 @@ $programs = [
       
       <div class="col-md-4 mb-4 ps-lg-4">
         <!-- MySkill Info -->
-        <h5 class="fw-bold mb-2"><img src="{{ asset('foto/logo.png') }}" alt="" srcset="" style="width:100px;"></h5>
+        <h5 class="fw-bold mb-2"><img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/18-07-2025/logo_palcom-removebg-preview.png') }}" alt="" srcset="" style="width:100px;"></h5>
         <p class="small">Rintis Karir Impian bersama Palcomtech</p>
 
         <!-- Company Info -->
