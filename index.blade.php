@@ -14,6 +14,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
 
+  {{-- cdn ajax Jquery --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
 
     /* Menu Atas start */
@@ -76,7 +78,9 @@
     }
 
     .btn-daftar:hover {
-      background-color: #057c7e;
+      /* background-color: #057c7e; */
+      background-color: #e6fafa;
+      border: 1px solid #06989A;
     }
 
     .btn-masuk {
@@ -168,6 +172,8 @@
       width: auto;
       flex-shrink: 0;
       width: 1000px;
+      margin-left: 4%;
+      /* gap: 2px; */
     }
 
     .container.carousel {
@@ -294,19 +300,12 @@ footer a:hover {
   }
 }
 
-
-/* @media (max-width: 768px) {
-  footer .col-md-4 {
-    margin-bottom: 2rem;
-  }
-} */
-
-
     /* Responsif ukuran 770 */
 
     @media (max-width: 770px) {
       .swiper-slide {
         width: 100%;
+        margin: auto;
       }
       .foto-swiper {
         width: 100%;
@@ -366,50 +365,6 @@ footer a:hover {
       }
     }
 
-        /* Responsif ukuran hp besar */
-
-    /* @media (min-width: 577px) and (max-width: 768px) {
-      .navbar-nav {
-        padding-right: 0;
-      }
-
-      .
-      .myskill {
-        padding-left: 0;
-      }
-      .btn-daftar, .btn-masuk {
-        width: 100%;
-      }
-      
-      .navbar-nav a{
-        padding-top: 0.5rem;
-        font-size: 850rem;
-        font-weight: bold;
-      }
-      
-      .container {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
-      }
-
-      .section-slider {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
-      }
-
-      .d-flex.flex-row.flex-nowrap.gap-3.overflow-auto.pb-3 {
-        margin-left: -4px;
-        margin-right: -4px;
-      }
-
-      .card.shadow-sm {
-        margin-right: 8px;
-      }
-      .swiper-slide{
-        padding-top: 10%;
-      }
-        } */
-
     /* Untuk tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   /* Navbar container */
@@ -451,6 +406,7 @@ footer a:hover {
     margin: 0 0.3rem;
   }
 }
+
   </style>
 </head>
 <body>
@@ -459,13 +415,13 @@ footer a:hover {
   <div class="container sm:px-1 px-2 justify-content-between">
 
     <!-- Hamburger Toggle Button -->
-    <button class="navbar-toggler me-lg-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      <button class="navbar-toggler me-lg-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <a class="navbar-brand" href="#">
-    <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/18-07-2025/logo_palcom-removebg-preview.png') }}" alt="Logo" class="logo-img">
-</a>
+            <span class="navbar-toggler-icon"></span>
+      </button>
+        <a class="navbar-brand" href="#">
+            <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/18-07-2025/logo_palcom-removebg-preview.png') }}" alt="Logo" class="logo-img">
+        </a>
 
     <!-- Tombol Masuk & Daftar di Sebelah Hamburger -->
     <div class="d-flex align-items-left order-lg-2 ms-auto me-2">
@@ -488,43 +444,13 @@ footer a:hover {
   </div>
 </nav>
 
-  <!-- Carousel -->
-
+  <!-- Carousel ( Gambar dari API )-->
   <section class="section-slider">
     <div class="container carousel">
       <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <a href="/slide1">
-              <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/16-07-2025/banner1.jpeg') }}" class="foto-swiper" alt="slide 1">
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="/slide2">
-              <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/16-07-2025/banner2.jpeg') }}" class="foto-swiper" alt="slide 2">
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="/slide3">
-              <img src="{{ url('foto/banner3.jpeg') }}" class="foto-swiper" alt="slide 3">
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="/slide4">
-              <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/16-07-2025/banner4.jpeg') }}" class="foto-swiper" alt="slide 4">
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="/slide5">
-              <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/16-07-2025/banner5.jpeg') }}" class="foto-swiper">
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="/slide6">
-              <img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/16-07-2025/IMG_7492.PNG') }}" class="foto-swiper" alt="slide 6">
-            </a>
-          </div>
-        </div>
+        <div class="swiper-wrapper" id="slider-container">
+        <!-- Slider items will be injected here -->
+      </div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
@@ -600,86 +526,52 @@ footer a:hover {
     </div>
 
 <?php
-$programs = [
-    [
-        'title' => "AI BASIC",
-        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/ai basic.jpg",
-        'alt' => "E-Learning Palcomtech",
-        'features' => [
-            "Belajar fleksibel via Video Materi, Bahan Bacaan, Project dan Studi Kasus",
-            "Praktikal & Actionable. Bertahap dari level Dasar hingga Lanjut",
-            "Grup Komunitas Diskusi Lifetime. Kelas Gratis Tiap Bulannya"
-        ],
-        'buttonText' => "Lihat Ratusan Materi",
-        'buttonLink' => "#"
-    ],
-    [
-        'title' => "SMART TEKNOLOGI IOT + AI",
-        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/iot + ai.jpg",
-        'alt' => "Data Science Program",
-        'features' => [
-            "Belajar Machine Learning dan AI dari dasar",
-            "Proyek nyata dengan dataset dunia nyata",
-            "Dukungan mentor berpengalaman"
-        ],
-        'buttonText' => "Lihat Kurikulum",
-        'buttonLink' => "#data-science"
-    ],
-    [
-        'title' => "CODING FOR KIDS",
-        'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/coding for kids.png",
-        'alt' => "Web Development Program",
-        'features' => [
-            "Full-stack development dengan teknologi terbaru",
-            "Pembuatan portfolio proyek selama belajar",
-            "Persiapan karir di industri tech"
-        ],
-        'buttonText' => "Mulai Belajar Sekarang",
-        'buttonLink' => "#web-dev"
-    ]
-];
+// $programs = [
+//     [
+//         'title' => "AI BASIC",
+//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/ai basic.jpg",
+//         'alt' => "E-Learning Palcomtech",
+//         'features' => [
+//             "Belajar fleksibel via Video Materi, Bahan Bacaan, Project dan Studi Kasus",
+//             "Praktikal & Actionable. Bertahap dari level Dasar hingga Lanjut",
+//             "Grup Komunitas Diskusi Lifetime. Kelas Gratis Tiap Bulannya"
+//         ],
+//         'buttonText' => "Lihat Ratusan Materi",
+//         'buttonLink' => "#"
+//     ],
+//     [
+//         'title' => "SMART TEKNOLOGI IOT + AI",
+//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/iot + ai.jpg",
+//         'alt' => "Data Science Program",
+//         'features' => [
+//             "Belajar Machine Learning dan AI dari dasar",
+//             "Proyek nyata dengan dataset dunia nyata",
+//             "Dukungan mentor berpengalaman"
+//         ],
+//         'buttonText' => "Lihat Kurikulum",
+//         'buttonLink' => "#data-science"
+//     ],
+//     [
+//         'title' => "CODING FOR KIDS",
+//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/coding for kids.png",
+//         'alt' => "Web Development Program",
+//         'features' => [
+//             "Full-stack development dengan teknologi terbaru",
+//             "Pembuatan portfolio proyek selama belajar",
+//             "Persiapan karir di industri tech"
+//         ],
+//         'buttonText' => "Mulai Belajar Sekarang",
+//         'buttonLink' => "#web-dev"
+//     ]
+// ];
 ?>
 
+
+
 <div class="container py-2">
-    <?php foreach ($programs as $index => $program): ?>
-    <div class="row justify-content-center mb-4">
-        <div class="col-12 col-lg-10">
-            <div class="card border-0 ">
-                <div class="row g-0">
-                    <!-- untuk mobile -->
-                    <div class="col-12 d-md-none">
-                        <img src="<?= $program['image'] ?>" class="img-fluid w-100" alt="<?= $program['alt'] ?>" style="max-height: 200px; object-fit: contain;">
-                    </div>
-                    
-                    <!-- untuk desktop -->
-                    <div class="col-md-5 <?= $index % 2 == 0 ? '' : 'order-md-2' ?> d-none d-md-flex align-items-center">
-                        <img src="<?= $program['image'] ?>" class="img-fluid w-100" alt="<?= $program['alt'] ?>" style="max-height: 300px; object-fit: contain;">
-                    </div>
-                    
-                    <div class="col-md-7 <?= $index % 2 == 0 ? '' : 'order-md-1' ?>">
-                        <div class="card-body p-3 p-md-4">
-                            <h3 class="card-title fw-bold mb-3" style="font-size: clamp(1.2rem, 2vw, 1.5rem);"><?= $program['title'] ?></h3>
-                            <div class="mb-3">
-                                <?php foreach ($program['features'] as $feature): ?>
-                                <div class="d-flex align-items-start mb-2 fitur">
-                                    <span class="me-2" >✅</span>
-                                    <p class="mb-0" style="font-size: clamp(0.9rem, 1.5vw, 1rem);"><?= $feature ?></p>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="d-flex justify-content-start mt-4">
-                                <a class="btn btn-daftar btn-program" href="<?= $program['buttonLink'] ?>" style="min-width: 180px; font-size:13px">
-                                    <?= $program['buttonText'] ?>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php endforeach; ?>
+  <div id="programContainer"></div>
 </div>
+
 
     <!-- Program E-learning end -->
 
@@ -924,23 +816,12 @@ $programs = [
 
       <div class="col-md-8 ps-lg-3">
         <div class="row">
-          {{-- <div class="col-4">
-            <h6 class="fw-bold mb-2 small" style="padding-top:35%;"></h6>
-            <ul class="list-unstyled small">
-              <h6 class="fw-bold mb-2 small " style="padding-top:35%;">Online Palcomtec</h6>
-              <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Tentang</a></li>
-              <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Karir</a></li>
-              <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Kerjasama</a></li>
-              <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Blog</a></li>
-            </ul>
-          </div> --}}
           
           <div class="col-4">
             <h6 class="fw-bold mb-2 small " style="padding-top:35%;">PRODUK</h6>
             <ul class="list-unstyled small">
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">E-learning</a></li>
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Bootcamp & Program</a></li>
-              {{-- <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Review CV</a></li> --}}
               <li class="mb-1"><a href="#" class="text-decoration-none text-dark">Corporate Service</a></li>
             </ul>
           </div>
@@ -977,7 +858,6 @@ $programs = [
       <img src="https://th.bing.com/th/id/OIP.z9vHG9zxjmluzpHAJ68U1gHaHa?w=175&h=180&c=7&r=0&o=7&pid=1. 7&rm=3" alt="ShopeePay" class="img-fluid" style="height: 40px;">
       <img src="data:image/webp;base64, UklGRvgHAABXRUJQVlA4IOwHAABwKQCdASqyALQAPp1OokylpCMiI9S4wLATiWNu4XKL6tiyq  ++d816wO4tzkRgOz3JL6gP0F7AHOO8wHnG/2b1L/2z0oOo59Brpcv7XgmH9d7aP9NytUs/uCv7/2nkj/  oPAH1AeTvdgQAfmfCLpRP2b/VewB+c/Pr/6/Kb+ef6H2Dv5n5zvsS/aH2Q/ 2ZV4xPGJ4xPGJ4xPGJ4xPGJ4xPGJ4xPGIk2pc60rfGSAH1MFylegsAEk7rQErrSQlxP0UH3v1  +XYpMKyn59seD6j1TJs4PQAC6lgyeuVQ1i0coKdxX5i5uJRHJY  +v6hlHesLw1hvbaiSY5roHtpfhHFYvypiULHnAdcTQGeii9xsVs0qEycKGUzHeqjBXsu1m4lz +INYrbSqRefZda55cZyAur4kMLaB+7TZnjBTah5TL+ZfzL+ZfzL+ZfzL+ZfzL+ZfzL+ZfwQAAP7/ ZNAAA4dy3YjWoHKBDtPDUh/Go0X0aaYwWTSUHp89wqxPU7TBhLIAMer28SdkNWyNbtyLliSVuXVJ7v6u+Hx5APwJd7klVRMp/  Ohxq7m+zLDOMr/qccwmOMSgcFEbV6f/cZQz4lWWiz +86RTQmSc7aVRrCZEZmZ33GdiFV0vtkesXkk39TWYZIDkZs8JFKkUfUoemSbdpeYmSNMpPGvDk5oFri1+u/  wuN4gWHk8TfzxrRo/f71bqT+/3pDaV0KKR/iueIR3DiHq6TB/PaNMvyM2ExQQXAelENNo9cWfU5Iihqlob0/  Hmb9RyfVexinYjZvcd4IgZrard0800stRBGwA9gPGXGQbQ52cGCe40u94iCM3J5CbzZPu/  mCxOzJO7MqUZlmS2OBz2tsldTYKM/vQZ0ckTDJDWlKeNG9wgLkHnrc+TzgWDWmhjR+wjXn/Rbd  +CcN5xeZDX2Rh1h0OgMxByduiX  +lQnFNmLX6R330uMebrJGDtQfNHjxovbOVPyOZ9WCzak5iueyFklXRkH69vB4ismmQ70AzJ55aGHCyWWvwrAvgHPWlPNQC09U JMj28Gl2EhJGsqp9KHV4JD7ED1mStaodixbYTHoof3QdUKeI3iBVmLuf+hqyj2vyhemdf6HJdxviPESf1Cq9QPDhr49xyr// IeAuQPgaJ//EzSFJeqYzuF4T+G4/C02yoUUKbWr3L6v/LLRcM75O6j775uzZ/7GJIL+lQDOxbQ+aDq1z+z/  LEq333ldLarD153F37X6M8474mCYnw9PMd0PFyphPjoU  +nORbZOnRyTSNS8S4XtuyDBgruXfPP5gKJIOzkiG3fQRxvYFVXVWK8zyU53NDEz5AMZiQ8iVZHW7SdyBNcEWoMqGWOeeeuPL2 WR7lHH+C8IDkLlvPe8bgXaFUjTnJA3vWNi4u/IdetMBC/wNA7vOrUMJG5NecrvTzFInT/  38qP2vPGS9gZNMURLFzZfeKHnnTBhElAZzIBiM/atluBl5F/8T8bicRsDGp6i7evGYEKHAFJ/rR7kZRAHG4ON/  rCRNMuV9AET/2PD7/t9Nbpi4m19TJbrk5eka1HBFNUJ02+l/1XOTD/  amBy5sAjukDugjkV6jWlK6DSyMXJUk3CJHZbXsIpxPS0JiF3cQ/ UUVdzOtBRnFz5mgHAzUgFGt098YJIoZ9d5GxUINC0K4xdoNz6MqeYyodfcRM7XgOAFl8JeyxR7g/ yKIgeSLzaK85h4H63weO4JwsPzvfykOPrScN +Hz7jIhNV5iPZ5tpYc13QgCGkp95E6Mf3itoqqFxx5u9teUw1gIv8zJn883mmZ4Sud0Vv13YH/+vA+qZcO0QLEv8Lrb  +n49XSbodbaEHlpaIqdcSAvhGEa0kbuIrDs/JrI5giczPZWcFzzKgX5XfhFi5NYYuOK +N5uUhrOwzsGAG2LKHUkKIO7qys8BCwlw/ MoZo217IM1Qc0rbyOT30Uty4VWFFSPkcuhyUwkzOh4FwuemH7fFFfZrf9ZYYgXXQmgYlOa3huWX/ BLqxtzXlnfz2XdPkHkPTE8t7wFw  +8uCqLIsntDr6ICqWPlRSiDwXuvkkVnFfS4N0FCUmceCfg6YJwRiXSt7EQkDXqydkmJhs19uctmAq1WcimPcUx2GC2Njrq6XW vlliu/+HZqDlMf7eR9P7m53SvY/Lyim8kpvF2R02YhVtWsJYCvHtwu43jFXQAHDTX2qb0A6+6HZdPhlz1WA2xFc+05K/ MzwfWE+muhXxNbuxypvmSqZmij8dPgevtoSlfCoMNOurKCa4hbujkBIGc/9sOjXQsuoJ66pDr7MPNFU2 +U6eILuLtiekCiGTW627dpRgLA5BIOrxKCWiY4QCemLFijL+yulwgfFwo84phYCYR60w +VnML7siYPNxI0GGpIC9T7a2D7FRCgHf4DhFsiC3yNUM1VIfXJ4tPkI3lVFIxzt24Xn+7/d6BGNEnIPP1Oz+K8XaT  +LWXHvUK1Gv21EWq+shyFQ9F08MDBSwUMserNpIpU4ZUW676Z7/kxUHaI8pM3TNnJywwmcoIBG6nU8e/7/  2dU4imwLykRzJ7TjGcntUaxjVehVkAyZ5mE4Amp5i435jLW5n+2KzwKnx7RME4WH0Wj7Ao8nyB/ gx20C0yRpTMgsUzbsebDzYnxINbfaH+EbUbuYEjX4H9ar9HLCSp1nttTMwdOCXoigP2f68aX0/FjAI/  pcItafr1lAAAFKfI4AAAAAAAAA=" alt="BCA" class="img-fluid" style="height: 40px;">
       <img src="data:image/webp;base64, UklGRqYDAABXRUJQVlA4IJoDAABQFgCdASqfALQAPp1Mo02lo6MiIbgIkLATiWdu4XPr5DkPar+zG5PUBtj/ MB0DvOA6jzeVvJGo9uPzWl6I3+AnIHkG+qPYK/VDrGBYA2HoKpdVPihZsPQVS6qfFCzYebOF +pEXNyGpb6vjlCqm8aGvZb874IV2AOwz/u5RkWAsGnML6yfcOU6XqlT9bcLwiFaxB3Zq30PhOcJxpF9c/tHdy  +GZTVT5IoVS6qfFCzYegql1U+KFmw9BVLeAAP7/MMAAAoA1Hba9lrjiXPDg7Kn7nV+uPxO/MS+PvbLCqaQmgY2ucBFxQZY0o9 +U8J/ziOyArjN/NyrTBgjGrZ47CG/hPuH4HbZAbWREdx7KFy9o8ZP4HlQcSJYbcv9MvnLn/  baCNrbuv2ciShnid794779jrH567jtpgt1ALO6oIQwweCHc6ae3NSnNddFHsX0DmGuHnQvJZpCxKdZj7Zsn +I3bz6jLer2wVzaExqcYdUNrZfuazT4TRa43FHhgvrn4uDHvf1LYxuHR5lX6uaDBWRnnX6wB/p4Jxv+nbPD/ ou5NZejF4W3KMNtG9BfRIicIEwev8se8t7d1o7Qnz/rS1+0rR35PkBHPZKQ50ek+hOuHl  +kHia0sks6CdjsEeXauyhKkUwBXqF871k1E3jA1UwBvGCtwdqyzY6zteISfPKPU5NSSc9D/PaM/ dsv1vXIhq9PvEAMumb92KA6Nugl2YN99fDHP4ZK9T735UHiVz0ONgUVABZLyPpkGP/Rc9qSOBLGuV7f+05PGyK9B/ITx/9H  +Cb/OfwFKwbZ/iFmfqu20GN0h1Q/WmJN5xP4FrW+cChl6BIr8QvtJAM2shXYbS93p3ez5QDJlVaf3YF8e5oAN90/  z8oMjRZVkL+PjWTGijr3v3ZR+LPhtNdmdRAUaE2R87FV/ltnoMasJKJ0O63yTmRg1FPwWcjOep6v8rwdmEuiLcZ+vMtC/ Er88fMjQAdg7siR3D96sgdT5n5zwnF7sVNbG4+mHujKAKuh+A6wDuikkJd/  f8iVbzR66RkO0wecjDcpXUADFLEpyDHgRgr1e3re++oQDSM6dImxHaRpInFiZ5DOL2HIhHHnd+1qMhhy5dGhIniw39Gsqx2// GdmOW60nNpCnPboEqeN2LucP8dSqpr5O6hROt6Wc9y/8iG16GOprgJ2b4QeO/  vy8bJaN6IT6cq9Ye9snlSgsxwdci7EOyhDM7AAAAAAA" alt="Mandiri" class="img-fluid" style="height: 40px; ">
-    <!-- Tambahkan lagi sesuai kebutuhan -->
   </div>
     </div>
   </div>
@@ -988,7 +868,7 @@ $programs = [
   </section>
 
   <!-- WhatsApp Floating Button -->
-  <a href="#" class="btn btn-success position-fixed bottom-0 end-0 m-4 rounded-pill shadow d-flex align-items-center">
+  <a href="" class="btn btn-success position-fixed bottom-0 end-0 m-4 rounded-pill shadow d-flex align-items-center">
     <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" class="me-2" />
     WhatsApp
   </a>
@@ -1007,7 +887,7 @@ $programs = [
       }
     });
   </script>
-
+  
   {{-- script untuk transparant navbar --}}
   <script>
   window.addEventListener("scroll", function () {
@@ -1024,41 +904,6 @@ $programs = [
 </script>
 
 {{-- script untuk partner --}}
-
-{{-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const partnerGroup = document.querySelector('.partner-group');
-  const partnerTrack = document.querySelector('.partner-track');
-  
-  // Clone partner items for seamless looping
-  const items = partnerGroup.querySelectorAll('img');
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    partnerGroup.appendChild(clone);
-  });
-  
-  // Pause animation on hover
-  partnerTrack.addEventListener('mouseenter', () => {
-    partnerTrack.style.animationPlayState = 'paused';
-  });
-  
-  partnerTrack.addEventListener('mouseleave', () => {
-    partnerTrack.style.animationPlayState = 'running';
-  });
-  
-  // Reset animation position when it completes
-  partnerTrack.addEventListener('animationiteration', () => {
-    // Smooth reset without visible jump
-    setTimeout(() => {
-      partnerTrack.style.transition = 'none';
-      partnerTrack.style.transform = 'translateX(0)';
-      setTimeout(() => {
-        partnerTrack.style.transition = 'transform 0.3s linear';
-      }, 10);
-    }, 0);
-  });
-});
-</script> --}}
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -1100,6 +945,107 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+
+{{-- script untuk api slidder --}}
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/slider", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item, index) {
+        const slide = `
+          <div class="swiper-slide">
+            <a href="${item.url}">
+              <img src="${item.image}" class="foto-swiper" alt="slide ${index + 1}">
+            </a>
+          </div>
+        `;
+        $('#slider-container').append(slide);
+      });
+
+      // Inisialisasi Swiper setelah data dimuat
+      new Swiper(".mySwiper", {
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
+    }
+  });
+});
+</script>
+
+{{-- script untuk api program --}}
+<script>
+$(document).ready(function () {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/course", function (response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function (item, index) {
+        const isEven = index % 2 === 0;
+
+        // Tangani jika 'features' adalah string dipisahkan koma
+        let feature = [];
+        if (Array.isArray(item.feature)) {
+          feature = item.feature;
+        } else if (typeof item.feature === "string") {
+          feature = item.feature.split(',').map(f => f.trim());
+        }
+
+        const featuresHTML = feature.map(feature => `
+          <div class="d-flex align-items-start mb-2 fitur">
+            <span class="me-2">✅</span>
+            <p class="mb-0" style="font-size: clamp(0.9rem, 1.5vw, 1rem);">${feature}</p>
+          </div>
+        `).join('');
+
+        const programHTML = `
+          <div class="row justify-content-center mb-4">
+            <div class="col-12 col-lg-10">
+              <div class="card border-0">
+                <div class="row g-0">
+
+                  <!-- Mobile Image -->
+                  <div class="col-12 d-md-none">
+                    <img src="${item.image}" class="img-fluid w-100" alt="${item.alt || ''}" style="max-height: 200px; object-fit: contain;">
+                  </div>
+
+                  <!-- Desktop Image -->
+                  <div class="col-md-5 ${isEven ? '' : 'order-md-2'} d-none d-md-flex align-items-center">
+                    <img src="${item.image}" class="img-fluid w-100" alt="${item.alt || ''}" style="max-height: 300px; object-fit: contain;">
+                  </div>
+
+                  <!-- Content -->
+                  <div class="col-md-7 ${isEven ? '' : 'order-md-1'}">
+                    <div class="card-body p-3 p-md-4">
+                      <h3 class="card-title fw-bold mb-3" style="font-size: clamp(1.2rem, 2vw, 1.5rem);">${item.title}</h3>
+                      <div class="mb-3">
+                        ${featuresHTML}
+                      </div>
+                      <div class="d-flex justify-content-start mt-4">
+                        <a class="btn btn-daftar btn-program" href="${item.url}" style="min-width: 180px; font-size:13px">
+                          ${item.buttonText}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        $('#programContainer').append(programHTML);
+      });
+    }
+  });
+});
+</script>
+
 
 </body>
 </html>
