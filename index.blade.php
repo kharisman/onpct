@@ -172,7 +172,7 @@
       width: auto;
       flex-shrink: 0;
       width: 1000px;
-      margin-left: 4%;
+      /* margin-left: 4%; */
       /* gap: 2px; */
     }
 
@@ -449,219 +449,73 @@ footer a:hover {
     <div class="container carousel">
       <div class="swiper mySwiper">
         <div class="swiper-wrapper" id="slider-container">
-        <!-- Slider items will be injected here -->
-      </div>
-        <div class="swiper-pagination"></div>
+          <!-- Slider items will be injected here -->
+          </div>
+          <div class="swiper-pagination">
+        </div>
       </div>
     </div>
+
 
     <!-- Section CTA 1-->
 
-    <div class="container text-center">
-      <h1 class="fw-bold mb-4" style="font-size:24px; color:#212b36;">Rintis Karir Bersama Palcomtech</h1>
-    </div>
+        <div class="container text-center">
+          <h1 class="fw-bold mb-4" style="font-size:24px; color:#212b36;">Rintis Karir Bersama Palcomtech</h1>
+        </div>
 
-    <!-- Loop Card -->
-    @php
-      $card = [
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-1.png', 'title' => '100% PRAKTEK 100% INTERNET', 'description' => 'Belajar Belajar Full Praktek Gak Banyak Teori'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-2.png', 'title' => 'GARANSI LANGSUNG BISA', 'description' => 'kita Jamin Lulusan Palcomtech Langsung Bisa'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-4.png', 'title' => 'PERINGKAT 1 TERBAIK NASIONAL', 'description' => 'Telah Terpercaya Dan Telah Diakui Tingkat Nasional'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/icon-3.png', 'title' => 'MENDAPATKAN SERTIFIKAT RESMI', 'description' => 'Setiap Lulusan Mendapat Sertifikat Resmi TIngkat Nasional'],
-      ];
-    @endphp
-
-    <div class="container px-0">
-  <div class="cards-wrapper d-flex justify-content-center">
-    <div class="cards-scroller d-flex flex-row flex-nowrap overflow-x-auto py-3" style="gap: 1rem; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-color:transparent transparent;">
-      @foreach ($card as $cta1)
-        <div class="card shadow-sm flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
-          <img src="{{ asset($cta1['img']) }}" class="mx-auto d-block mt-3 img-fluid" style="height: 80px; object-fit: contain;" alt="{{ $cta1['title'] }}">
-          <div class="card-body text-center px-2 py-2">
-            <h6 class="card-title mb-1" style="font-size: 0.9rem; white-space: normal;">
-              {{ $cta1['title'] }}
-            </h6>
-            <p class="card-text small text-muted mb-0" style="font-size: 0.75rem; white-space: normal;">
-              {{ $cta1['description'] }}
-            </p>
+        <div class="container px-0">
+          <div class="cards-wrapper d-flex justify-content-center">
+            <div class="cards-scroller d-flex flex-row flex-nowrap overflow-x-auto py-3" style="gap: 1rem; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-color:transparent transparent;" id="cta-container">
+              {{-- data cta dari API --}}
+            </div>
           </div>
         </div>
-      @endforeach
-    </div>
-  </div>
-</div>
-    <!-- Section cTA 2-->
-    <div class="container text-center">
-      <h1 class="mb-4 mt-3 pt-4" style="font-size:24px; font-weight:bold; font-height:36px;">Terbukti Berdampak dan Membuka Batasan</h2>
-    </div>
-
-    @php
-      $card = [
-        ['img' => 'https://kursus.palcomtech.ac.id/wp-content/uploads/2024/07/testimonial-siswa-4.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 1.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 2.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 3.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 4.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 5.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/testimoni 6.png'],
-      ];
-    @endphp
-
-    <div class="container container-cta2">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3" style="scrollbar-color:transparent transparent;">
-    @foreach ($card as $cta1)
-    <div class="card d-flex flex-column align-items-center" style="min-width: 12rem; flex: 0 0 auto; border:none">
-      <div class="p-3 w-100 d-flex justify-content-center">
-        <img src="{{ url($cta1['img']) }}" class="img-fluid" style="max-height: 300px; object-fit: contain;">
-      </div>
-    </div>
-    @endforeach
-  </div>
-</div>
-
-        <!-- Program E-learning start -->
-
-     <div class="container text-center">
-      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Berikut Program Palcomtech</h3>
-    </div>
-
-<?php
-// $programs = [
-//     [
-//         'title' => "AI BASIC",
-//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/ai basic.jpg",
-//         'alt' => "E-Learning Palcomtech",
-//         'features' => [
-//             "Belajar fleksibel via Video Materi, Bahan Bacaan, Project dan Studi Kasus",
-//             "Praktikal & Actionable. Bertahap dari level Dasar hingga Lanjut",
-//             "Grup Komunitas Diskusi Lifetime. Kelas Gratis Tiap Bulannya"
-//         ],
-//         'buttonText' => "Lihat Ratusan Materi",
-//         'buttonLink' => "#"
-//     ],
-//     [
-//         'title' => "SMART TEKNOLOGI IOT + AI",
-//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/iot + ai.jpg",
-//         'alt' => "Data Science Program",
-//         'features' => [
-//             "Belajar Machine Learning dan AI dari dasar",
-//             "Proyek nyata dengan dataset dunia nyata",
-//             "Dukungan mentor berpengalaman"
-//         ],
-//         'buttonText' => "Lihat Kurikulum",
-//         'buttonLink' => "#data-science"
-//     ],
-//     [
-//         'title' => "CODING FOR KIDS",
-//         'image' => "https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/coding for kids.png",
-//         'alt' => "Web Development Program",
-//         'features' => [
-//             "Full-stack development dengan teknologi terbaru",
-//             "Pembuatan portfolio proyek selama belajar",
-//             "Persiapan karir di industri tech"
-//         ],
-//         'buttonText' => "Mulai Belajar Sekarang",
-//         'buttonLink' => "#web-dev"
-//     ]
-// ];
-?>
 
 
+        <!-- Section cTA 2 / testimoni-->
+          <div class="container text-center">
+            <h1 class="mb-4 mt-3 pt-4" style="font-size:24px; font-weight:bold; font-height:36px;">Terbukti Berdampak dan Membuka Batasan</h2>
+          </div>
 
-<div class="container py-2">
-  <div id="programContainer"></div>
-</div>
+          <div class="container container-cta2">
+            <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3" style="scrollbar-color:transparent transparent;" id="testimoni-container">
+              {{-- data dari API --}}
+            </div>
+          </div>
 
+              <!-- Program E-learning start -->
+          <div class="container text-center">
+              <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Berikut Program Palcomtech</h3>
+          </div>
+              {{-- tampilan program dari API --}}
+          <div class="container py-2">
+              <div id="programContainer"></div>
+          </div>
 
-    <!-- Program E-learning end -->
+              <!-- CTA Bawah Start-->
 
+          <div class="container text-center">
+            <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Berita kegiatan</h3>
+          </div>
 
-    <!-- CTA Bawah Start-->
-
-    <div class="container text-center">
-      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Rasanya Bergabung Di Palcomtech</h3>
-    </div>
-
-    @php
-      $card2 = [
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita1.png','description' => 'Launching Industrial Lab Smart Campus Palcomtech'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita2.png','description' => 'ITB PalComTech Melakukan MoU dengan Dinas Koperasi dan UKM'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita3.png','description' => 'Workshop PalComTech Game Development Palembang 2023'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita4.jpg','description' => 'PalComTech Berjaya! Tim Jubecycle Raih Juara II di LABIRIN SRIWIJAYA BOOTCAMP 2025!'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/berita5.jpg','description' => 'PalComTech Sabet  3 kategori Juara Sekaligus Pada Event Apresiasi Kinerja LLDIKTI Wilayah II']
-      ];
-    @endphp
-
-    <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 align-items-stretch px-3" style="scrollbar-color:transparent transparent;">
-    @foreach ($card2 as $cta2)
-    <div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
-      <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
-        <!-- Bagian Gambar -->
-        <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-          <img src="{{ asset($cta2['img']) }}" class="img-fluid mx-auto" 
-               style="max-width: 100%; max-height: 100%; border-radius:10px; object-fit: contain;">
-        </div>
-        
-        <!-- Bagian Teks -->
-        <div class="flex-grow-1 d-flex align-items-center justify-content-center" 
-             style="min-height: 80px; padding: 0 8px;">
-          <p class="card-text small fw-bold mb-0 w-100" 
-             style="font-size:13px; line-height: 1.4;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    margin: 0;">
-            {{ $cta2['description'] }}
-          </p>
-        </div>
-      </div>
-    </div>
-    @endforeach
+    {{-- berita --}}
+    <div class="container" >
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 align-items-stretch px-3" style="scrollbar-color:transparent transparent;" id="container-berita">
+    
   </div>
 </div>
 
-    <!-- CTA Bawah End-->
-
-    <!-- Instruktur Start-->
+    <!-- tampilan Instruktur-->
 
     <div class="container text-center">
       <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Belajar Bareng Instruktur Yang berpengalaman</h3>
     </div>
 
-    @php
-      $CardInstruktur = [
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 23.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 24.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 26.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 25.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 27.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 28.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 29.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 11.png'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/instruk 12.png']
-      ];
-    @endphp
-
    <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;">
-    @foreach ($CardInstruktur as $instruktur)
-    <div class="card border-0" style="width: 200px; flex: 0 0 auto;"> <!-- Fixed width -->
-      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
-        <!-- Gambar -->
-        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
-          <img src="{{ asset($instruktur['img']) }}" 
-               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
-        </div>
-      </div>
-    </div>
-    @endforeach
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="instruktur-container">
+    {{-- data instrutur dari API --}}
   </div>
 </div>
-
-    <!-- Instruktur End -->
 
     {{-- Prestasi --}}
 
@@ -669,30 +523,9 @@ footer a:hover {
       <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Prestasi Palcomtech</h3>
     </div>
 
-     @php
-      $CardInstruktur = [
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 1.jpg'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 2.jpg'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 3.jpg'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 4.jpg'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 5.jpg'],
-        ['img' => 'https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/prestasi 6.jpg'],
-      ];
-    @endphp
-
    <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;">
-    @foreach ($CardInstruktur as $instruktur)
-    <div class="card border-0" style="width: 200px; flex: 0 0 auto;"> <!-- Fixed width -->
-      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
-        <!-- Gambar -->
-        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
-          <img src="{{ asset($instruktur['img']) }}" 
-               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
-        </div>
-      </div>
-    </div>
-    @endforeach
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="prestasi-container">
+    {{-- data prestasi dari API --}}
   </div>
 </div>
 
@@ -705,15 +538,8 @@ footer a:hover {
   <div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0;">
   <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
     <div class="logo-track" style="display: flex;">
-      <div class="logo-group">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor1.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor2.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor3.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor4.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor5.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor6.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor7.png" alt="" style="height: 5rem; object-fit: contain;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/sponsor8.png" alt="" style="height: 5rem; object-fit: contain;">
+      <div class="logo-group" id="sponsor-container">
+        {{-- data dari sponsor dari API --}}
       </div>
     </div>
   </div>
@@ -729,15 +555,8 @@ footer a:hover {
 <div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
   <div class="partner-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
     <div class="partner-track" style="display: flex; width: max-content;">
-      <div class="partner-group" style="display: flex; gap: 4rem; padding: 2rem;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner1.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner2.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner3.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner4.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner5.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner6.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner7.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
-        <img src="https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/partner8.png" alt="" style="height: 5rem; object-fit: contain; transition: transform 0.3s ease;">
+      <div class="partner-group" style="display: flex; gap: 4rem; padding: 2rem;" id="partner-container">
+        {{-- data partner dari API --}}
       </div>
     </div>
   </div>
@@ -749,48 +568,11 @@ footer a:hover {
   <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Yang Sering Ditanyakan</h3>
 
   <div class="accordion ms-4" id="faqAccordion">
-    <?php
-    // Array FAQ
-    $faqs = [
-      [
-        "question" => "apa itu online kursus di palcomtech ?",
-        "answer" => "Online Kursus di PalComTech adalah program pembelajaran berbasis digital yang disediakan oleh PalComTech, sebuah lembaga pendidikan komputer dan teknologi yang cukup dikenal di Indonesia, khususnya di wilayah Sumatera Selatan. Program ini memungkinkan siswa belajar dari mana saja menggunakan perangkat seperti laptop, tablet, atau smartphone, tanpa harus datang ke kampus secara langsung."
-      ],
-      [
-        "question" => "apa saja fasilitas yg didapat?",
-        "answer" => "Akses ke Materi Pembelajaran Digital, .Kelas Virtual (Live Zoom / Google Meet, Komunitas Belajar, Sertifikat Setelah Lulus."
-      ],
-      [
-        "question" => "kemana saya bisa mendapatkan solusi dari kendala saat saya belajar?",
-        "answer" => "Sertifikat Setelah Lulus, Customer Service PalComTec, FAQs / Pusat Bantuan di Platform Online."
-      ],
-    ];
-
-    // Loop FAQ
-    foreach ($faqs as $index => $faq):
-      $headingId = "heading$index";
-      $collapseId = "collapse$index";
-    ?>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="<?= $headingId ?>">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
-            <?= $faq['question'] ?>
-          </button>
-        </h2>
-        <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>"
-          data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            <?= $faq['answer'] ?>
-          </div>
-        </div>
+      <div class="accordion-item" id="faq-container">
+        {{-- data FAQ dari API --}}
       </div>
-    <?php endforeach; ?>
   </div>
 </div>
-    
-    {{-- FAQ End --}}
-
     <div class="footerLine" style="height: 1px; background:#ccc; width:100%; margin:100px 0;"></div>
 
 
@@ -799,8 +581,8 @@ footer a:hover {
   <div class="container">
     <div class="row ms-lg-3 ms-md-2">
       
-      <div class="col-md-4 mb-4 ps-lg-4">
-        <!-- MySkill Info -->
+      <div class="col-md-4 mb-4 ps-lg-4" id="footer-info">
+        <!-- Palcomtech Info -->
         <h5 class="fw-bold mb-2"><img src="{{ url('https://online.palcomtech.ac.id/public/uploads/main/files/18-07-2025/logo_palcom-removebg-preview.png') }}" alt="" srcset="" style="width:100px;"></h5>
         <p class="small">Rintis Karir Impian bersama Palcomtech</p>
 
@@ -876,14 +658,20 @@ footer a:hover {
   <!-- Scripts swiper.js-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
   <script>
     const swiper = new Swiper(".mySwiper", {
       slidesPerView: "auto",
       spaceBetween: 10,
       freeMode: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
       pagination: {
         el: ".swiper-pagination",
-        clickable: true
+        clickable: false,
+        loop: true,
       }
     });
   </script>
@@ -948,6 +736,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 {{-- script untuk api slidder --}}
+
 <script>
 $(document).ready(function() {
   $.getJSON("https://online.palcomtech.ac.id/api/custom/slider", function(response) {
@@ -962,17 +751,32 @@ $(document).ready(function() {
         `;
         $('#slider-container').append(slide);
       });
+    }
+  });
+});
+</script>
 
-      // Inisialisasi Swiper setelah data dimuat
-      new Swiper(".mySwiper", {
-        loop: true,
-        pagination: {
-          el: ".swiper-pagination",
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
+{{-- script untuk API CTA atas --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/cta1", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const cta = `
+          <div class="card shadow-sm flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
+          <img src="${item.img}" class="mx-auto d-block mt-3 img-fluid" style="height: 80px; object-fit: contain;">
+          <div class="card-body text-center px-2 py-2">
+            <h6 class="card-title mb-1" style="font-size: 0.9rem; white-space: normal;">
+              ${item.title}
+            </h6>
+            <p class="card-text small text-muted mb-0" style="font-size: 0.75rem; white-space: normal;">
+              ${item.description}
+            </p>
+          </div>
+        </div>
+        `;
+        $('#cta-container').append(cta);
       });
     }
   });
@@ -980,6 +784,7 @@ $(document).ready(function() {
 </script>
 
 {{-- script untuk api program --}}
+
 <script>
 $(document).ready(function () {
   $.getJSON("https://online.palcomtech.ac.id/api/custom/course", function (response) {
@@ -1045,6 +850,206 @@ $(document).ready(function () {
   });
 });
 </script>
+
+{{-- script API untuk berita --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/berita", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const berita = `
+          <div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
+            <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+              <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                <a href="${item.url}"">
+                  <img src="${item.image}" class="img-fluid mx-auto" 
+                       style="max-width: 100%; max-height: 100%; border-radius:10px; object-fit: contain;"
+                       >
+                </a>
+              </div>
+              <div class="flex-grow-1 d-flex align-items-center justify-content-center" 
+                   style="min-height: 80px; padding: 0 8px;">
+                <p class="card-text small fw-bold mb-0 w-100" 
+                   style="font-size:13px; line-height: 1.4;
+                          display: -webkit-box;
+                          -webkit-line-clamp: 3;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          margin: 0;">
+                  ${item.title}
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+        // Append ke elemen dengan ID container-berita
+        $('#container-berita').append(berita);
+      });
+    } else {
+      $('#container-berita').html('<p class="text-muted">Tidak ada berita tersedia.</p>');
+    }
+  }).fail(function() {
+    $('#container-berita').html('<p class="text-danger">Gagal memuat berita.</p>');
+  });
+});
+</script>
+
+{{-- script untuk API testimoni --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni ", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const testimoni = `
+          <div class="card d-flex flex-column align-items-center" style="min-width: 12rem; flex: 0 0 auto; border:none">
+      <div class="p-3 w-100 d-flex justify-content-center">
+        <img src="${item.image}" class="img-fluid" style="max-height: 300px; object-fit: contain;">
+      </div>
+    </div>
+        `;
+        $('#testimoni-container').append(testimoni);
+      });
+    }
+  });
+});
+</script>
+
+
+{{-- script untuk API instruktur --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/instruktur ", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const instruktur = `
+          <div class="card border-0" style="width: 200px; flex: 0 0 auto;">
+      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
+        <!-- Gambar -->
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+          <img src="${item.img}" 
+               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+        `;
+        $('#instruktur-container').append(instruktur);
+      });
+    }
+  });
+});
+</script>
+
+{{-- script untuk API prestasi --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/prestasi ", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const prestasi = `
+          <div class="card border-0" style="width: 250px; flex: 0 0 auto;">
+      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
+        <!-- Gambar -->
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+          <img src="${item.img}" 
+               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+        `;
+        $('#prestasi-container').append(prestasi);
+      });
+    }
+  });
+});
+</script>
+
+{{-- script untuk API sponsor --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/sponsor ", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const sponsor = `
+          <img src="${item.img}" alt="" style="height: 5rem; object-fit: contain;">
+        `;
+        $('#sponsor-container').append(sponsor);
+      });
+    }
+  });
+});
+</script>
+
+{{-- script untuk API partner --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/partner ", function(response) {
+    if (response.data && response.data.length > 0) {
+      response.data.forEach(function(item) {
+        const partner = `
+          <img src="${item.img}" alt="" style="height: 5rem; object-fit: contain;">
+        `;
+        $('#partner-container').append(partner);
+      });
+    }
+  });
+});
+</script>
+
+{{-- script untuk API FAQ --}}
+
+<script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/faq ", function(response) {
+    if (response.data && response.data.length > 0) {
+  response.data.forEach(function(item, index) {
+    const headingId = 'heading' + index;
+    const collapseId = 'collapse' + index;
+    const faq = `
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="${headingId}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+            ${item.question}
+          </button>
+        </h2>
+        <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}"
+          data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            ${item.answer}
+          </div>
+        </div>
+      </div>
+    `;
+    $('#faq-container').append(faq);
+  });
+}
+  });
+});
+</script>
+
+
+{{-- <script> --}}
+
+
+{{-- <script>
+$(document).ready(function() {
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/logo", function(response) {
+    if (response.data && response.data.length > 0) {
+      // Ambil elemen pertama saja (tanpa loop)
+      const item = response.data[0];
+      const logo = `<h5 class="fw-bold mb-2"><img src="${item.image}" alt="" srcset="" style="width:100px;"></h5>`;
+      $('#footer-info').html(logo); // Gunakan .html() bukan .append() untuk mengganti isi
+    }
+  });
+});
+</script> --}}
 
 
 </body>
