@@ -518,11 +518,11 @@ footer a:hover {
     <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
       <ul class="navbar-nav"style="" >
         <li class="nav-item mx-2"><a class="nav-link home" href="#">Home</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="/e-learning">Courses</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Classes</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Quiz</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Instructors</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="https://online.palcomtech.ac.id/courses">Courses</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="https://online.palcomtech.ac.id/classes">Classes</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="https://online.palcomtech.ac.id/quizzes">Quiz</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="https://online.palcomtech.ac.id/instructors">Instructors</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="https://online.palcomtech.ac.id/contact-us">Contact Us</a></li>
       </ul>
     </div>
   </div>
