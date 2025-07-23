@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MySkill Clone Bootstrap</title>
+  <title>Online Learning Palcomtech</title>
+  <link rel="icon" href="{{url("https://online.palcomtech.ac.id/public/uploads/main/files/23-07-2025/palcom.jpg")}}">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -541,8 +542,8 @@ footer a:hover {
             </div>
           </div>
           {{-- skeleton end --}}
-          <div class="swiper-pagination">
         </div>
+        <div class="swiper-pagination">
       </div>
     </div>
 
