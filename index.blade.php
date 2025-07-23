@@ -107,9 +107,75 @@
       padding-top: 10px;
       font-size: 1.5rem;
     }
+  .skeleton-card {
+    min-width: 120px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  /* Skeleton background + animation */
+  .skeleton-slide {
+    width: 1000px;
+    max-width: 100%;
+    height: 300px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f2f2f2 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 20px;
+    margin-top: 6%;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+    width: 1000px;
+  }
+
+  .swiper-pagination {
+    position: static !important;
+    margin-top: 20px;
+    text-align: center;
+    padding-left: 80%;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background-color: #34699A;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 28px;
+    background-color: #6b7280;
+  }
+
+  .placeholder {
+    background-color: #ddd;
+    border-radius: 4px;
+  }
+
+  .placeholder-glow .placeholder {
+    animation: glow 1.5s infinite ease-in-out;
+  }
+
+  @keyframes glow {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+  }
 
     .navbar-nav {
-      padding-left: 10%;
+      /* padding-left: 10%; */
     }
     .navbar-nav a {
       /* padding-top: 0.5rem; */
@@ -158,6 +224,15 @@
 
 
     /* Slider start */
+
+    .skeleton-slider{
+      background-color: #d6dadf;
+      border-bottom-left-radius: 75px;
+      border-bottom-right-radius: 75px;
+      padding: 50px;
+      padding-top: 25px;
+      height: 600px;
+    }
 
     .section-slider {
       background-color: #d6dadf;
@@ -303,6 +378,10 @@ footer a:hover {
     /* Responsif ukuran 770 */
 
     @media (max-width: 770px) {
+
+      ul .navbar-nav{
+        gap:5px;
+      }
       .swiper-slide {
         width: 100%;
         margin: auto;
@@ -412,7 +491,7 @@ footer a:hover {
 <body>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-solid" id="mainNavbar">
-  <div class="container sm:px-1 px-2 justify-content-between">
+  <div class="container sm:px-1 px-2 justify-content-between"  style="margin-top:10px;">
 
     <!-- Hamburger Toggle Button -->
       <button class="navbar-toggler me-lg-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -425,19 +504,18 @@ footer a:hover {
 
     <!-- Tombol Masuk & Daftar di Sebelah Hamburger -->
     <div class="d-flex align-items-left order-lg-2 ms-auto me-2">
-      <a class="btn btn-sm btn-masuk me-2" href="#">Masuk</a>
-      <a class="btn btn-sm btn-daftar" href="#">Daftar</a>
+      <a class="btn btn-sm btn-masuk me-2" href="https://online.palcomtech.ac.id/login">Masuk</a>
+      <a class="btn btn-sm btn-daftar" href="https://online.palcomtech.ac.id/register">Daftar</a>
     </div>
   
     <!-- Collapsible Navbar -->
     <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="gap:20px;" >
         <li class="nav-item mx-2"><a class="nav-link home" href="#">Home</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="/e-learning">E-learning</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Bootcamp & Program</a></li>
-        {{-- <li class="nav-item mx-2"><a class="nav-link" href="#">Review CV</a></li> --}}
+        <li class="nav-item mx-2"><a class="nav-link" href="#">Review CV</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Corporate Service</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Info Loker</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="#">Blog</a></li>
       </ul>
     </div>
@@ -450,7 +528,19 @@ footer a:hover {
       <div class="swiper mySwiper">
         <div class="swiper-wrapper" id="slider-container">
           <!-- Slider items will be injected here -->
+          {{-- skelton --}}
+            <div class="container skeleton">
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper" id="slider-container">
+                  <div class="swiper-slide">
+                    <div class="img"></div>
+                  </div>
+                  <div class="swiper-pagination">
+                </div>
+              </div>
+            </div>
           </div>
+          {{-- skeleton end --}}
           <div class="swiper-pagination">
         </div>
       </div>
@@ -480,6 +570,9 @@ footer a:hover {
           <div class="container container-cta2">
             <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3" style="scrollbar-color:transparent transparent;" id="testimoni-container">
               {{-- data dari API --}}
+              <div class="container-skeleton" style="width:100px; background-color:#000000; display:flex; justify-content-center; align-items:center; ">
+
+          </div>
             </div>
           </div>
 
@@ -513,6 +606,11 @@ footer a:hover {
 
    <div class="container">
   <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="instruktur-container">
+    <div class="container">
+  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" id="instruktur-container">
+    <!-- Skeleton Loading -->
+  </div>
+</div>
     {{-- data instrutur dari API --}}
   </div>
 </div>
@@ -739,8 +837,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 $(document).ready(function() {
+  const skeletonCarousel = `
+   <div class="container carousel" style="right:100%;">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="slider-container" style="gap: 10px;">
+      
+      <!-- Skeleton Start -->
+      <div class="swiper-slide">
+        <div class="skeleton-slide"></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="skeleton-slide"></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="skeleton-slide"></div>
+      </div>
+      <!-- Skeleton End -->
+      
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  </div>
+  `;
+  $('#slider-container').append(skeletonCarousel.repeat(1)); 
   $.getJSON("https://online.palcomtech.ac.id/api/custom/slider", function(response) {
     if (response.data && response.data.length > 0) {
+      $('#slider-container').empty();
       response.data.forEach(function(item, index) {
         const slide = `
           <div class="swiper-slide">
@@ -760,7 +882,27 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+  const skeletonCTA =`<div class="card shadow-sm flex-shrink-0 mx-1 placeholder-glow" style="width: 13rem; min-width: 10rem;">
+
+  <!-- Gambar Skeleton -->
+  <div class="mx-auto d-block mt-3 placeholder" style="height: 80px; width: 80%; border-radius: 8px;"></div>
+
+  <!-- Isi Card -->
+  <div class="card-body text-center px-2 py-2">
+
+    <!-- Judul Skeleton -->
+    <div class="placeholder mx-auto mb-2" style="height: 16px; width: 60%;"></div>
+
+    <!-- Deskripsi Skeleton -->
+    <div class="placeholder mx-auto mb-1" style="height: 12px; width: 80%;"></div>
+    <div class="placeholder mx-auto" style="height: 12px; width: 70%;"></div>
+
+  </div>
+  </div>`;
+  $('#cta-container').html(skeletonCTA.repeat(4)); 
   $.getJSON("https://online.palcomtech.ac.id/api/custom/cta1", function(response) {
+    // Mengosongkan kontainer CTA
+    $('#cta-container').empty();
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
         const cta = `
@@ -786,8 +928,57 @@ $(document).ready(function() {
 {{-- script untuk api program --}}
 
 <script>
-$(document).ready(function () {
+  $(document).ready(function () {
+
+  // Menampilkan skeleton loading
+  const skeletonProgram =`<div class="row justify-content-center mb-4">
+    <div class="col-12 col-lg-10">
+    <div class="card border-0 placeholder-glow">
+      <div class="row g-0">
+
+        <!-- Mobile Skeleton Image -->
+        <div class="col-12 d-md-none">
+          <div class="placeholder w-100" style="height: 200px; border-radius: 8px;"></div>
+        </div>
+
+        <!-- Desktop Skeleton Image -->
+        <div class="col-md-5 d-none d-md-flex align-items-center">
+          <div class="placeholder w-100" style="height: 300px; border-radius: 8px;"></div>
+        </div>
+
+        <!-- Content Skeleton -->
+        <div class="col-md-7">
+          <div class="card-body p-3 p-md-4">
+
+            <!-- Judul -->
+            <div class="placeholder mb-3" style="height: 24px; width: 60%;"></div>
+
+            <!-- Fitur/filler konten -->
+            <div class="mb-3">
+              <div class="placeholder mb-2" style="height: 14px; width: 90%;"></div>
+              <div class="placeholder mb-2" style="height: 14px; width: 80%;"></div>
+              <div class="placeholder mb-2" style="height: 14px; width: 70%;"></div>
+            </div>
+
+            <!-- Tombol -->
+            <div class="d-flex justify-content-start mt-4">
+              <div class="placeholder rounded-pill" style="height: 36px; width: 180px;"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>`;
+  $('#programContainer').html(skeletonProgram.repeat(3)); 
+
+  // mengambil data program dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/course", function (response) {
+
+    // Mengosongkan kontainer program
+    $('#programContainer').empty();
     if (response.data && response.data.length > 0) {
       response.data.forEach(function (item, index) {
         const isEven = index % 2 === 0;
@@ -855,8 +1046,35 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function() {
+
+  // Menampilkan skeleton loading
+  const skeletonBerita = `<div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
+  <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+    
+    <!-- Gambar Skeleton -->
+    <div class="flex-grow-0 placeholder-glow" style="height: 120px; display: flex; align-items: center; justify-content: center;">
+      <div class="placeholder w-100 h-100" style="border-radius:10px;"></div>
+    </div>
+
+    <!-- Judul Skeleton -->
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center placeholder-glow"
+         style="min-height: 80px; padding: 0 8px;">
+      <div class="w-100">
+        <div class="placeholder col-12 mb-2" style="height: 12px;"></div>
+        <div class="placeholder col-10 mb-2" style="height: 12px;"></div>
+        <div class="placeholder col-8" style="height: 12px;"></div>
+      </div>
+    </div>
+    
+  </div>
+  </div>`;
+  $('#container-berita').html(skeletonBerita.repeat(6));
+
+  // Mengambil data berita dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/berita", function(response) {
     if (response.data && response.data.length > 0) {
+      // Mengosongkan kontainer berita
+      $('#container-berita').empty();
       response.data.forEach(function(item) {
         const berita = `
           <div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
@@ -900,8 +1118,21 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+
+  // Menampilkan skeleton loading
+  const skeletonTestimoni = `<div class="card d-flex flex-column align-items-center placeholder-glow" style="min-width: 12rem; flex: 0 0 auto; border:none">
+  <div class="p-3 w-100 d-flex justify-content-center">
+    <div class="placeholder w-100" style="height: 200px; border-radius: 10px;"></div>
+  </div>
+  </div>`;
+  $('#testimoni-container').html(skeletonTestimoni.repeat(6));
+
+  // Mengambil data testimoni dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni ", function(response) {
     if (response.data && response.data.length > 0) {
+
+      // Mengosongkan kontainer testimoni
+      $('#testimoni-container').empty();
       response.data.forEach(function(item) {
         const testimoni = `
           <div class="card d-flex flex-column align-items-center" style="min-width: 12rem; flex: 0 0 auto; border:none">
@@ -921,24 +1152,45 @@ $(document).ready(function() {
 {{-- script untuk API instruktur --}}
 
 <script>
-$(document).ready(function() {
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/instruktur ", function(response) {
-    if (response.data && response.data.length > 0) {
-      response.data.forEach(function(item) {
-        const instruktur = `
-          <div class="card border-0" style="width: 200px; flex: 0 0 auto;">
-      <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
-        <!-- Gambar -->
+$(document).ready(function () {
+  // menampilkan skeleton
+  const skeletonInstruktur = `
+    <div class="skeleton-card placeholder-glow" style="margin:18px">
+      <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
         <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
-          <img src="${item.img}" 
-               class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
         </div>
       </div>
     </div>
+    
+  `;
+  $('#instruktur-container').html(skeletonInstruktur.repeat(9)); 
+
+  // api untuk ambil data instruktur
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/instruktur", function (response) {
+    if (response.data && response.data.length > 0) {
+      // untuk Kosongkan skeleton
+      $('#instruktur-container').empty();
+
+      // menambahkan data instruktur ke html
+      response.data.forEach(function (item) {
+        const instruktur = `
+          <div class="card border-0" style="width: 200px; flex: 0 0 auto;">
+            <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
+              <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+                <img src="${item.img}" 
+                  class="w-100 h-100 object-fit-cover" 
+                  style="border-radius:10px; object-fit: contain;">
+              </div>
+            </div>
+          </div>
         `;
         $('#instruktur-container').append(instruktur);
       });
+    } else {
+      $('#instruktur-container').html('<p class="text-muted">Data tidak tersedia</p>');
     }
+  }).fail(function () {
+    $('#instruktur-container').html('<p class="text-danger">Gagal memuat data instruktur.</p>');
   });
 });
 </script>
@@ -947,7 +1199,19 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+  // Menampilkan skeleton loading
+  const skeletonPrestasi = ` <div class="skeleton-card placeholder-glow" style="margin:18px">
+      <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
+        <div class="mb-3" style="height: 100px; width: 100px;  overflow: hidden; border-radius: 15px;">
+        </div>
+      </div>
+    </div>`;
+  $('#prestasi-container').html(skeletonPrestasi.repeat(6)); // Tampilkan skeleton
+
+  // Mengambil data prestasi dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/prestasi ", function(response) {
+    // Mengosongkan kontainer prestasi
+    $('#prestasi-container').empty();
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
         const prestasi = `
@@ -971,9 +1235,23 @@ $(document).ready(function() {
 {{-- script untuk API sponsor --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+
+  // Menampilkan skeleton loading
+  const skeletonSponsor =`<div class="skeleton-card placeholder-glow" style="margin:18px">
+      <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+        </div>
+      </div>
+    </div>`;
+  $('#sponsor-container').html(skeletonSponsor.repeat(6)); // Tampilkan skeleton
+
+  // mengambil data dari api
   $.getJSON("https://online.palcomtech.ac.id/api/custom/sponsor ", function(response) {
     if (response.data && response.data.length > 0) {
+
+      // Mengosongkan kontainer sponsor
+      $('#sponsor-container').empty();
       response.data.forEach(function(item) {
         const sponsor = `
           <img src="${item.img}" alt="" style="height: 5rem; object-fit: contain;">
@@ -988,9 +1266,19 @@ $(document).ready(function() {
 {{-- script untuk API partner --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+  // Menampilkan skeleton loading
+  const skeletonPartner = `<div class="skeleton-card placeholder-glow" style="margin:18px">
+      <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+        </div>
+      </div>
+    </div>`;
+  $('#partner-container').html(skeletonPartner.repeat(6)); // Tampilkan skeleton
   $.getJSON("https://online.palcomtech.ac.id/api/custom/partner ", function(response) {
     if (response.data && response.data.length > 0) {
+      // Mengosongkan kontainer partner
+      $('#partner-container').empty();
       response.data.forEach(function(item) {
         const partner = `
           <img src="${item.img}" alt="" style="height: 5rem; object-fit: contain;">
@@ -1005,8 +1293,28 @@ $(document).ready(function() {
 {{-- script untuk API FAQ --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+
+  // Menampilkan skeleton loading
+  const skeletonFAQ = `<div class="accordion-item">
+  <h2 class="accordion-header">
+    <div class="skeleton-text w-100" style="height: 20px;"></div>
+  </h2>
+  <div class="accordion-collapse collapse show">
+    <div class="accordion-body">
+      <div class="skeleton-text mb-2" style="width: 100%; height: 12px;"></div>
+      <div class="skeleton-text mb-2" style="width: 95%; height: 12px;"></div>
+      <div class="skeleton-text mb-2" style="width: 90%; height: 12px;"></div>
+    </div>
+  </div>
+  </div>`;
+  $('#faq-container').html(skeletonFAQ.repeat(1)); // Tampilkan skeleton
+
+  // Mengambil data FAQ dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/faq ", function(response) {
+  // Mengosongkan kontainer FAQ
+  $('#faq-container').empty();
+
     if (response.data && response.data.length > 0) {
   response.data.forEach(function(item, index) {
     const headingId = 'heading' + index;
