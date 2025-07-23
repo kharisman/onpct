@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Online Learning Palcomtech</title>
-  <link rel="icon" href="{{url("https://online.palcomtech.ac.id/public/uploads/main/files/23-07-2025/palcom.jpg")}}">
+  <link rel="icon" href="{{url("https://online.palcomtech.ac.id/public/uploads/main/files/13-06-2025/images (1).jpg")}}">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -176,7 +176,7 @@
   }
 
     .navbar-nav {
-      /* padding-left: 10%; */
+      margin-left: 11%;
     }
     .navbar-nav a {
       /* padding-top: 0.5rem; */
@@ -380,8 +380,8 @@ footer a:hover {
 
     @media (max-width: 770px) {
 
-      ul .navbar-nav{
-        gap:5px;
+      .navbar-nav{
+        margin-left:0;
       }
       .swiper-slide {
         width: 100%;
@@ -434,6 +434,10 @@ footer a:hover {
 
     @media (max-width: 576px) 
     {
+
+      .navbar-nav{
+        margin-left:0;
+      }
       .swiper-slide {
         padding-top: 12%;
       }
@@ -448,6 +452,7 @@ footer a:hover {
     /* Untuk tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   /* Navbar container */
+  
   .navbar {
     padding: 0.5rem 1rem;
   }
@@ -460,9 +465,9 @@ footer a:hover {
   }
   
   /* Menu items */
-  .navbar-nav {
-    padding-left: 5%;
-  }
+  .navbar-nav{
+        margin-left:0;
+      }
   
   .navbar-nav a {
     font-size: 0.8rem;
@@ -511,13 +516,13 @@ footer a:hover {
   
     <!-- Collapsible Navbar -->
     <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
-      <ul class="navbar-nav" style="gap:20px;" >
+      <ul class="navbar-nav"style="" >
         <li class="nav-item mx-2"><a class="nav-link home" href="#">Home</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="/e-learning">E-learning</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Bootcamp & Program</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Review CV</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Corporate Service</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="#">Blog</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="/e-learning">Courses</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#">Classes</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#">Quiz</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#">Instructors</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
       </ul>
     </div>
   </div>
@@ -860,7 +865,7 @@ $(document).ready(function() {
   </div>
   </div>
   `;
-  $('#slider-container').append(skeletonCarousel.repeat(1)); 
+  $('#slider-container').append(skeletonCarousel); 
   $.getJSON("https://online.palcomtech.ac.id/api/custom/slider", function(response) {
     if (response.data && response.data.length > 0) {
       $('#slider-container').empty();
