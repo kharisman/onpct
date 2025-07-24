@@ -32,6 +32,26 @@
       width: auto;
     }
 
+    .program-btn {
+    background-color: #EEEFE0;
+    border-radius: 100px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .program-btn.active-program {
+    background-color: rgb(45, 67, 100) !important;
+  }
+
+  .program-btn .card-text {
+    color: black;
+  }
+
+  
+
+  .program-btn.active-program .card-text {
+    color: white;
+  }
+
     .navbar-container {
     display: flex;
     align-items: center;
@@ -587,9 +607,86 @@ footer a:hover {
               <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Berikut Program Palcomtech</h3>
           </div>
               {{-- tampilan program dari API --}}
-          <div class="container py-2">
+          {{-- <div class="container py-2">
               <div id="programContainer"></div>
-          </div>
+          </div> --}}
+        {{-- @php
+  $programs = [
+    ['title' => 'Microsoft Office', 'subtitle' => 'Microsoft Office'],
+    ['title' => 'Autocad', 'subtitle' => 'Hari Jumat'],
+    ['title' => 'Desain Grafis', 'subtitle' => 'CorelDRAW & Photoshop'],
+    ['title' => 'AI Tools', 'subtitle' => 'AI untuk Pemula'],
+  ];
+
+  $courses = [
+    'Microsoft Office' => [
+      ['title' => 'Microsoft Office Basic', 'image' => 'ai basic.jpg'],
+      ['title' => 'Microsoft Office Basic', 'image' => 'ai basic.jpg'],
+    ],
+    'Autocad' => [
+      ['title' => 'Autocad Intermediate', 'image' => 'ai basic.jpg'],
+    ],
+    'Desain Grafis' => [
+      ['title' => 'CorelDRAW Mastery', 'image' => 'ai basic.jpg'],
+    ],
+    'AI Tools' => [
+      ['title' => 'Learn ChatGPT & AI', 'image' => 'ai basic.jpg'],
+      ['title' => 'Generative AI for Beginners', 'image' => 'ai basic.jpg'],
+    ],
+  ];
+@endphp --}}
+
+{{-- Program Selector --}}
+<div class="overflow-auto mb-3" style="scrollbar-color:transparent transparent;">
+  {{-- <div class="d-flex flex-row gap-2 p-2 flex-nowrap" id="program-container"> --}}
+    {{-- @foreach ($programs as $program)
+      <div 
+        class="card program-btn" 
+        data-program="{{ $program['title'] }}"
+        style="cursor: pointer; width: fit-content; flex: 0 0 auto;">
+        <div class="card-body px-3 py-2">
+          <h4 class="card-text mb-0" style="font-size:16px; font-weight:bold;">{{ $program['title'] }}</h4>
+          <h4 class="card-text" style="font-size:12px; padding-top:4px;">{{ $program['subtitle'] }}</h4>
+        </div>
+      </div>
+    @endforeach --}}
+  {{-- </div> --}}
+</div>
+
+
+
+
+{{-- Course Cards Container --}}
+<div id="program-container" class="d-flex flex-wrap gap-2"></div>
+<div id="desain-container" class="d-flex flex-wrap gap-2"></div>
+<div id="autocad-container" class="d-flex flex-wrap gap-2"></div>
+<div id="autocad-cards" class="d-flex flex-row overflow-auto gap-3 mt-4 px-3" style="scrollbar-width: thin; scrollbar-color:transparent transparent"></div>
+<div id="course-cards" class="d-flex flex-row overflow-auto gap-3 mt-4 px-3" style="scrollbar-width: thin; scrollbar-color:transparent transparent"></div>
+<div id="desain-cards" class="d-flex flex-row overflow-auto gap-3 mt-4 px-3" style="scrollbar-width: thin; scrollbar-color:transparent transparent"></div>
+
+{{-- card program --}}
+{{-- Template for course card (hidden) --}}
+<template id="isiprogram">
+  {{-- <div class="card" style="width: 280px; flex: 0 0 auto;" id="course-carda">
+    <img class="card-img-top" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1"></h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">Julian Melanson, Benza Maman, Leap...</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">Rp129.000</span>
+        <span class="text-muted text-decoration-line-through ms-2">Rp609.000</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div> --}}
+</template>
+
+
 
               <!-- CTA Bawah Start-->
 
@@ -619,7 +716,7 @@ footer a:hover {
 </div>
     {{-- data instrutur dari API --}}
   </div>
-</div>
+</div>  
 
     {{-- Prestasi --}}
 
@@ -933,7 +1030,7 @@ $(document).ready(function() {
 
 {{-- script untuk api program --}}
 
-<script>
+{{-- <script>
   $(document).ready(function () {
 
   // Menampilkan skeleton loading
@@ -1046,7 +1143,7 @@ $(document).ready(function() {
     }
   });
 });
-</script>
+</script> --}}
 
 {{-- script API untuk berita --}}
 
@@ -1353,7 +1450,7 @@ $(document).ready(function() {
 
 
 {{-- <script>
-$(document).ready(function() {
+  $(document).ready(function() {
   $.getJSON("https://online.palcomtech.ac.id/api/custom/logo", function(response) {
     if (response.data && response.data.length > 0) {
       // Ambil elemen pertama saja (tanpa loop)
@@ -1364,6 +1461,383 @@ $(document).ready(function() {
   });
 });
 </script> --}}
+
+{{-- JavaScript --}}
+{{-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dataCourses = @json($courses);
+    const programButtons = document.querySelectorAll('.program-btn');
+    const courseContainer = document.getElementById('course-cards');
+    const cardTemplate = document.getElementById('course-card-template').content;
+
+    programButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const selectedProgram = this.dataset.program;
+
+        // Clear previous cards
+        courseContainer.innerHTML = '';
+
+        // Get courses by program
+        const courses = dataCourses[selectedProgram] || [];
+
+        // Render each course
+        courses.forEach(course => {
+          const clone = cardTemplate.cloneNode(true);
+          clone.querySelector('img').src = `https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/${course.image}`;
+          clone.querySelector('.card-title').textContent = course.title;
+          courseContainer.appendChild(clone);
+        });
+      });
+    });
+
+    // Optional: Auto-load Microsoft Office on start
+    document.querySelector('.program-btn[data-program="Microsoft Office"]').click();
+  });
+</script> --}}
+
+{{-- javascript untuk program selector --}}
+{{-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dataCourses = $.getJSON("", function(response) {
+      return response.data;
+    });
+    const programButtons = document.querySelectorAll('.program-btn');
+    const courseContainer = document.getElementById('course-cards');
+    const cardTemplate = document.getElementById('course-card-template').content;
+
+    programButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const selectedProgram = this.dataset.program;
+
+        // Ganti background active
+        programButtons.forEach(b => b.classList.remove('active-program'));
+        this.classList.add('active-program');
+
+        // Kosongkan course lama
+        courseContainer.innerHTML = '';
+
+        const courses = dataCourses[selectedProgram] || [];
+        courses.forEach(course => {
+          const clone = cardTemplate.cloneNode(true);
+          clone.querySelector('img').src = `https://online.palcomtech.ac.id/public/uploads/main/files/17-07-2025/${course.image}`;
+          clone.querySelector('.card-title').textContent = course.title;
+          courseContainer.appendChild(clone);
+        });
+      });
+    });
+
+    // Auto-click Microsoft Office
+    document.querySelector('.program-btn[data-program="Microsoft Office"]').click();
+  });
+</script> --}}
+
+
+{{-- program microsoft --}}
+<script>
+  $(document).ready(function() {
+  // list api 
+  const PROGRAMS_API = "https://online.palcomtech.ac.id/api/custom/program";
+  const COURSES_API = "https://online.palcomtech.ac.id/api/custom/isiprogram";
+  
+  // ambil data dari api
+  $.getJSON(PROGRAMS_API, function(response) {
+    if (response.data && response.data.length > 0) {
+      // Buat tombol program
+      response.data.forEach(function(item) {
+        const programBtn = `
+          <div class="card program-btn" 
+               data-program="${item.title}"
+               style="cursor: pointer; width: fit-content; flex: 0 0 auto;">
+            <div class="card-body px-3 py-2">
+              <h4 class="card-text mb-0" style="font-size:16px; font-weight:bold;">${item.title}</h4>
+              <h4 class="card-text" style="font-size:12px; padding-top:4px;">${item.subtitle}</h4>
+            </div>
+          </div>
+        `;
+        $('#program-container').append(programBtn);
+      });
+      
+      // konfigurasi handler klik setelah tombol dibuat
+      setupProgramClickHandlers();
+      
+      // otomatis klik program pertama jika ada
+      $('.program-btn').first().click();
+    }
+  });
+  
+  function setupProgramClickHandlers() {
+    $('.program-btn').click(function() {
+      const selectedProgram = $(this).data('program');
+      
+      // Update active state
+      $('.program-btn').removeClass('active-program');
+      $(this).addClass('active-program');
+      
+      // hapus kursus sebelumnya
+      $('#course-cards').empty();
+      
+      // ambil kursus untuk program yang dipilih
+      $.getJSON(COURSES_API, {program: selectedProgram}, function(response) {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(function(course) {
+            const courseCard = `
+              <div class="card" style="width: 280px; flex: 0 0 auto;">
+    <img class="card-img-top" src="${course.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${course.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${course.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${course.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${course.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+            `;
+            $('#microsoft-container').append(courseCard);
+          });
+        }
+      });
+    });
+  }
+});
+</script>
+
+{{-- program autocad --}}
+<script>
+  $(document).ready(function() {
+  // data API untuk autocad dan data autocad
+  const PROGRAMS_API = "https://online.palcomtech.ac.id/api/custom/autocad";
+  const COURSES_API = "https://online.palcomtech.ac.id/api/custom/dataautocad";
+  
+  // Fetch programs data
+  $.getJSON(PROGRAMS_API, function(response) {
+    if (response.data && response.data.length > 0) {
+      // Create program buttons
+      response.data.forEach(function(item) {
+        const programBtn = `
+          <div class="card program-btn" 
+               data-program="${item.title}"
+               style="cursor: pointer; width: fit-content; flex: 0 0 auto;">
+            <div class="card-body px-3 py-2">
+              <h4 class="card-text mb-0" style="font-size:16px; font-weight:bold;">${item.title}</h4>
+              <h4 class="card-text" style="font-size:12px; padding-top:4px;">${item.subtitle}</h4>
+            </div>
+          </div>
+        `;
+        $('#program-container').append(programBtn);
+      });
+      
+      // Set up click handlers after buttons are created
+      setupProgramClickHandlers();
+      
+      // Auto-click first program if exists
+      $('.program-btn').first().click();
+    }
+  });
+  
+  function setupProgramClickHandlers() {
+    $('.program-btn').click(function() {
+      const selectedProgram = $(this).data('program');
+      
+      // Update active state
+      $('.program-btn').removeClass('active-program');
+      $(this).addClass('active-program');
+      
+      // Clear previous courses
+      $('#course-cards').empty();
+      
+      // Fetch courses for selected program
+      $.getJSON(COURSES_API, {program: selectedProgram}, function(response) {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(function(course) {
+            const courseCard = `
+              <div class="card" style="width: 280px; flex: 0 0 auto;">
+    <img class="card-img-top" src="${course.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${course.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${course.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${course.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${course.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+            `;
+            $('#course-cards').append(courseCard);
+          });
+        }
+      });
+    });
+  }
+});
+</script>
+
+
+{{-- program desain grafis --}}
+<script>
+  $(document).ready(function() {
+  // data API untuk desain grafis dan data desain grafis
+  const PROGRAMS_API = "https://online.palcomtech.ac.id/api/custom/desaingrafis";
+  const COURSES_API = "https://online.palcomtech.ac.id/api/custom/datadesaingrafis";
+  
+  // Fetch programs data
+  $.getJSON(PROGRAMS_API, function(response) {
+    if (response.data && response.data.length > 0) {
+      // Create program buttons
+      response.data.forEach(function(item) {
+        const programBtn = `
+          <div class="card program-btn" 
+               data-program="${item.title}"
+               style="cursor: pointer; width: fit-content; flex: 0 0 auto;">
+            <div class="card-body px-3 py-2">
+              <h4 class="card-text mb-0" style="font-size:16px; font-weight:bold;">${item.title}</h4>
+              <h4 class="card-text" style="font-size:12px; padding-top:4px;">${item.subtitle}</h4>
+            </div>
+          </div>
+        `;
+        $('#desain-container').append(programBtn);
+      });
+      
+      // Set up click handlers after buttons are created
+      setupProgramClickHandlers();
+      
+      // Auto-click first program if exists
+      $('.program-btn').first().click();
+    }
+  });
+  
+  function setupProgramClickHandlers() {
+    $('.program-btn').click(function() {
+      const selectedProgram = $(this).data('program');
+      
+      // Update active state
+      $('.program-btn').removeClass('active-program');
+      $(this).addClass('active-program');
+      
+      // Clear previous courses
+      $('#desain-cards').empty();
+      
+      // Fetch courses for selected program
+      $.getJSON(COURSES_API, {program: selectedProgram}, function(response) {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(function(course) {
+            const courseCard = `
+              <div class="card" style="width: 280px; flex: 0 0 auto;">
+    <img class="card-img-top" src="${course.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${course.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${course.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${course.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${course.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+            `;
+            $('#desain-cards').append(courseCard);
+          });
+        }
+      });
+    });
+  }
+});
+</script>
+
+
+{{-- program content creator --}}
+<script>
+  $(document).ready(function() {
+  // data API untuk content creator dan data content creator
+  const PROGRAMS_API = "https://online.palcomtech.ac.id/api/custom/contentcreator";
+  const COURSES_API = "https://online.palcomtech.ac.id/api/custom/datacontentcreator";
+  
+  // Fetch programs data
+  $.getJSON(PROGRAMS_API, function(response) {
+    if (response.data && response.data.length > 0) {
+      // Create program buttons
+      response.data.forEach(function(item) {
+        const programBtn = `
+          <div class="card program-btn" 
+               data-program="${item.title}"
+               style="cursor: pointer; width: fit-content; flex: 0 0 auto;">
+            <div class="card-body px-3 py-2">
+              <h4 class="card-text mb-0" style="font-size:16px; font-weight:bold;">${item.title}</h4>
+              <h4 class="card-text" style="font-size:12px; padding-top:4px;">${item.subtitle}</h4>
+            </div>
+          </div>
+        `;
+        $('#program-container').append(programBtn);
+      });
+      
+      // Set up click handlers after buttons are created
+      setupProgramClickHandlers();
+      
+      // Auto-click first program if exists
+      $('.program-btn').first().click();
+    }
+  });
+  
+  function setupProgramClickHandlers() {
+    $('.program-btn').click(function() {
+      const selectedProgram = $(this).data('program');
+      
+      // Update active state
+      $('.program-btn').removeClass('active-program');
+      $(this).addClass('active-program');
+      
+      // Clear previous courses
+      $('#course-cards').empty();
+      
+      // Fetch courses for selected program
+      $.getJSON(COURSES_API, {program: selectedProgram}, function(response) {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(function(course) {
+            const courseCard = `
+              <div class="card" style="width: 280px; flex: 0 0 auto;">
+    <img class="card-img-top" src="${course.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${course.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${course.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${course.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${course.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+            `;
+            $('#course-cards').append(courseCard);
+          });
+        }
+      });
+    });
+  }
+});
+</script>
+
 
 
 </body>
