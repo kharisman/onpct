@@ -20,6 +20,10 @@
   <style>
 
     /* Menu Atas start */
+
+    ::-webkit-scrollbar{
+  display:none;
+}
     
     body {
       background-color: #fdfeff;
@@ -55,10 +59,6 @@
   .program-btn.active-program {
     background-color: rgb(45, 67, 100) !important;
   }
-  
-  .kategori-tab:hover{
-    color:white;
-  }
 
   .kategori-tabs{
     background-color:grey:
@@ -77,6 +77,27 @@
 .navbar-brand {
     padding: 0;
     margin: 0;
+}
+
+.kategori-tab.active{
+  background-color: #34699A;
+   border-color: #34699A;
+   color:white; 
+}
+
+.kategori-tab{
+  /* background-color: rgb(207, 209, 209); */
+  border: 1px solid #06989A;
+  color:black;
+  color: #34699A;
+  border-radius: 10px;
+
+}
+
+.kategori-tab:hover{
+  background-color: #34699A;
+  color:#ffffff;
+
 }
 
     .logo-img {
@@ -221,6 +242,27 @@
       /* margin-top: 5px */
       /* margin-right: 20px; */
     }
+
+    .navbar-nav .nav-link {
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #34699A;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
 
     .navbar-collapse {
   margin-left: -5px;
@@ -528,9 +570,12 @@ footer a:hover {
   }
 }
 
+
   </style>
 </head>
 <body>
+
+  
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-solid" id="mainNavbar">
   <div class="container sm:px-1 px-2 justify-content-between"  style="margin-top:10px;">
@@ -628,7 +673,7 @@ footer a:hover {
 
   <!-- Kategori Tabs Scrollable -->
 <div id="kategori-tabs-wrapper" class="overflow-auto mb-4" style="white-space: nowrap; scrollbar-color: transparent transparent; background-color:">
-  <div id="kategori-tabs" class="d-inline-flex flex-row gap-2">
+  <div id="kategori-tabs" class="d-inline-flex flex-row gap-2 kategories">
     <!-- Button akan dimasukkan ke sini -->
   </div>
 </div>
@@ -730,12 +775,13 @@ footer a:hover {
      <div class="container my-5">
   <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Yang Sering Ditanyakan</h3>
 
-  <div class="accordion ms-4" id="faqAccordion">
-      <div class="accordion-item" id="faq-container">
+  <div class="accordion ms-4" id="faqAccordion" style="border: none;">
+    <div class="accordion-item" id="faq-container" style="border: none;">
         {{-- data FAQ dari API --}}
       </div>
   </div>
 </div>
+
     <div class="footerLine" style="height: 1px; background:#ccc; width:100%; margin:100px 0;"></div>
 
 
@@ -1385,20 +1431,22 @@ $(document).ready(function() {
     const headingId = 'heading' + index;
     const collapseId = 'collapse' + index;
     const faq = `
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="${headingId}">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-            ${item.question}
-          </button>
-        </h2>
-        <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}"
-          data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            ${item.answer}
-          </div>
-        </div>
-      </div>
+      <div class="accordion-item" style="border: none; border-bottom: 0.3px solid black;">
+  <h2 class="accordion-header" id="${headingId}">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}"
+      style="border: none; box-shadow: none;">
+      ${item.question}
+    </button>
+  </h2>
+  <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}"
+    data-bs-parent="#faqAccordion">
+    <div class="accordion-body" style="border: none;">
+      ${item.answer}
+    </div>
+  </div>
+</div>
+
     `;
     $('#faq-container').append(faq);
   });
@@ -1490,7 +1538,7 @@ $(document).ready(function () {
 
     kategories.forEach((kategori, index) => {
       const tab = $(`
-        <a class="btn btn-outline-primary kategori-tab ${index === 0 ? 'active' : ''}" 
+        <a class="btn kategori-tab ${index === 0 ? 'active' : ''}" 
            data-kategori-slug="${kategori.slug}">
           ${kategori.name}
         </a>
