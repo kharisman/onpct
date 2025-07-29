@@ -478,7 +478,6 @@ footer a:hover {
     /* Responsif ukuran 770 */
 
     @media (max-width: 770px) {
-
       .navbar-nav{
         margin-left:0;
       }
@@ -558,6 +557,17 @@ footer a:hover {
 
     @media (max-width: 576px) 
     {
+
+
+      img.prestasi img{
+        max-width: 2rem;
+      }
+      .partner-group img{
+        max-width: 6rem;
+      }
+      .logo-group img{
+        max-width: 6rem;
+      }
       .reload-container {
       text-align: center;
       margin-top: 60px;
@@ -881,7 +891,7 @@ footer a:hover {
     </div>
 
    <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="prestasi-container">
+  <div class="d-flex flex-row flex-nowrap overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="prestasi-container">
     {{-- data prestasi dari API --}}
   </div>
 </div>
@@ -908,7 +918,7 @@ footer a:hover {
 <div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
   <div class="partner-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
     <div class="partner-track" style="display: flex; width: max-content;">
-      <div class="partner-group" style="display: flex; gap: 4rem; padding: 2rem;" id="partner-container">
+      <div class="partner-group" style="display: flex; gap: 3rem; padding: 2rem;" id="partner-container">
         {{-- data partner dari API --}}
       </div>
     </div>
@@ -1412,7 +1422,7 @@ footer a:hover {
           <div class="card border-0" style="width: 250px; flex: 0 0 auto;">
       <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
         <!-- Gambar -->
-        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px; img.prestasi">
           <img src="${item.img}" 
                class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
         </div>
