@@ -552,13 +552,11 @@ footer a:hover {
           white-space: normal;  
         }
     }
-
-    /* Responsif untuk ukuran hp kecil */
+    
+    /* Responsif untuk ukuran hp sedang */
 
     @media (max-width: 576px) 
     {
-
-
       img.prestasi img{
         max-width: 2rem;
       }
@@ -584,33 +582,33 @@ footer a:hover {
   .img-instruktur {
     height: 160px !important;       
   }
-
+  
   #instruktur-container {
     gap: 0 !important;              
   }
-
-      .card.border-0 {
+  
+  .card.border-0 {
     transform: scale(0.88);               
     width: 210px !important;              
     margin-right: 6px !important;         
     margin-left: 0 !important;
   }
-
+  
   .card.border-0 .card-body {
     padding: 0.75rem !important;          
   }
-
+  
   .card.border-0 img {
     height: 160px !important;             
   }
-      .berita-cards {
+  .berita-cards {
     width: 13rem !important;      
     transform: scale(0.95);      
     margin-right: 0 !important;
     height:10rem;
     padding-top:0 !important;   
   }
-
+  
   .berita-cards img {
     max-height: 90px !important;  
   }
@@ -619,19 +617,21 @@ footer a:hover {
     font-size: 11px !important;   
     -webkit-line-clamp: 2;        
   }
-
+  
   .berita-cards .card-body,
   .berita-cards .p-2 {
     padding: 0.5rem !important;
   }
+  
+  .program-card {
+  min-width: 200px;
+  max-width: 240px;
+  flex: 0 0 auto;
+}
 
-      .program-card {
-        width:240px !important;
-        scale: (5);
-    }
-    
-    .program-gap {
-      gap: 0 !important; 
+  
+  .program-gap {
+    gap: 0 !important; 
     }
 
       .testimoni{
@@ -643,46 +643,46 @@ footer a:hover {
       }
 
       .cta1 {
-    width: 33.33% !important;       
-    min-width: 24% !important;
-    transform: none !important;  
-    margin: 0 2px !important;
-  }
-
+      width: 33.33% !important;       
+      min-width: 24% !important;
+      transform: none !important;  
+      margin: 0 2px !important;
+    }
+  
   .cta1-img {
     height: 55px !important;
   }
-
+  
   .cta-h6 {
     font-size: 0.75rem !important;
   }
-
+  
   .cta-font p {
     font-size: 0.65rem !important;
   }
-
-      .navbar-nav{
-        margin-left:0;
-      }
-      .swiper-slide {
-        padding-top: 12%;
-      }
-      .section-slider {
-        height: 420px;
-      }
-      .swiper-slide{
-        padding-top: 13%;
-      }
-
-      .navbar-solid {
+  
+  .navbar-nav{
+    margin-left:0;
+  }
+  .swiper-slide {
+    padding-top: 12%;
+  }
+  .section-slider {
+    height: 420px;
+  }
+  .swiper-slide{
+    padding-top: 13%;
+  }
+  
+  .navbar-solid {
     transition: transform 0.3s ease-in-out;
   }
   
   .navbar-hide {
     transform: translateY(-100%);
   }
-      
-    }
+  
+}
 
     /* Untuk tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -847,9 +847,8 @@ footer a:hover {
     </div>
 
     <!-- Tempat kartu program -->
-    <div id="program-cards" class="d-flex flex-row flex-nowrap gap-2 program-gap">
+    <div id="program-cards" class="d-flex flex-row flex-nowrap overflow-auto" style="gap: 16px; padding: 16px;">
 
-    </div>
   </div>
 </div>
 
