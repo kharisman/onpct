@@ -557,6 +557,56 @@ footer a:hover {
 
     @media (max-width: 576px) 
     {
+
+      .container-footer{
+        position: relative;
+        top:-290px;
+      }
+
+      .faq-container{
+        position: relative;
+        top:-270px;
+      }
+
+      .partner-group{
+        position: relative;
+        top:-50px;
+      }
+      .logo-group{
+        position: relative;
+        top:-30px;
+      }
+
+      .container-sp{
+        position: relative;
+        top:-100px;
+      }
+
+      .container-foto-partner {
+        position: relative;
+        top: -50px; 
+        margin-bottom: -30px;
+      }
+      .container-partner{
+        position: relative;
+        top: -50px; 
+        /* margin-bottom: -40px; */
+      }
+      /* .container-foto-sponsor{
+        position: relative;
+        top: -110px; 
+        margin-bottom: -30px;
+      } */
+      /* .container-sponsor{
+        position: relative;
+        top: -70px; 
+        margin-bottom: -30px;
+      } */
+      .container-foto-prestasi{
+        position: relative;
+        top: -110px; 
+        margin-bottom: -30px; 
+      }
       img.prestasi img{
         max-width: 2rem;
       }
@@ -567,20 +617,21 @@ footer a:hover {
         max-width: 6rem;
       }
       .reload-container {
-      text-align: center;
-      margin-top: 60px;
-      margin-left:20px; 
+        text-align: center;
+        margin-top: 60px;
+        margin-left:20px; 
   }
-       .instruktur-card {
-    transform: scale(0.88);         
-    transform-origin: top left;     
-    margin-right: -6px !important;  
-    margin-left: 0 !important;
-    padding: 0 !important;
+      .instruktur-card {
+        transform: scale(0.88);         
+        transform-origin: top left;     
+        margin-right: -6px !important;  
+        margin-left: 0 !important;
+        padding: 0 !important;
   }
 
   .img-instruktur {
-    height: 160px !important;       
+    height: 160px !important;
+    gap: 0 !important;       
   }
   
   #instruktur-container {
@@ -643,7 +694,7 @@ footer a:hover {
       }
 
       .cta1 {
-      width: 33.33% !important;       
+      width: 31.7% !important;       
       min-width: 24% !important;
       transform: none !important;  
       margin: 0 2px !important;
@@ -885,36 +936,37 @@ footer a:hover {
 
     {{-- Prestasi --}}
 
-    <div class="container text-center">
-      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Prestasi Palcomtech</h3>
-    </div>
-
-   <div class="container">
-  <div class="d-flex flex-row flex-nowrap overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="prestasi-container">
+    {{-- <div class="container text-center prestasi-container">
+    </div> --}}
+    
+    <div class="container container-foto-prestasi">
+      <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Prestasi Palcomtech</h3>
+      <div class="d-flex flex-row flex-nowrap overflow-x-auto pb-3 px-3 " style="scrollbar-color:transparent transparent;" id="prestasi-container">
     {{-- data prestasi dari API --}}
   </div>
 </div>
 
 {{-- sponsor --}}
+<div class="container-sp">
 
-    <h3 class="fw-bold text-center mb-1" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Sponsor</h3>
-
-<div style="display: flex; justify-content: center; width: 100%; padding: 0.5rem 0 0 0;">
-  <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
-    <div class="logo-track" style="display: flex;">
-      <div class="logo-group" id="sponsor-container">
-        {{-- data dari sponsor dari API --}}
+  <h3 class="fw-bold text-center mb-1 container-sponsor" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Sponsor</h3>
+  
+  <div class="container-foto-sponsor" style="display: flex; justify-content: center; width: 100%; padding: 0.5rem 0 0 0;">
+    <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
+      <div class="logo-track" style="display: flex;">
+        <div class="logo-group" id="sponsor-container">
+          {{-- data dari sponsor dari API --}}
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 {{-- partner --}}
 
-  <h3 class="w-bold text-center mb-1" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Partner</h3>
+  <h3 class="w-bold text-center mb-1 container-partner" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Partner</h3>
 
-<div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
+<div class="container-foto-partner" style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
   <div class="partner-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
     <div class="partner-track" style="display: flex; width: max-content;">
       <div class="partner-group" style="display: flex; gap: 3rem; padding: 2rem;" id="partner-container">
@@ -924,9 +976,10 @@ footer a:hover {
   </div>
 </div>
 
+</div>
     {{-- FAQ Start --}}
 
-     <div class="container my-5">
+     <div class="container my-5 faq-container">
   <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Yang Sering Ditanyakan</h3>
 
   <div class="accordion ms-4" id="faqAccordion" style="border: none;">
@@ -935,6 +988,8 @@ footer a:hover {
       </div>
   </div>
 </div>
+
+<div class="container-footer">
 
     <div class="footerLine" style="height: 1px; background:#ccc; width:100%; margin:100px 0;"></div>
 
@@ -1007,6 +1062,7 @@ footer a:hover {
     </div>
   </div>
 </footer>
+</div>
 
     {{-- Footer ENd --}}
 
@@ -1109,7 +1165,7 @@ footer a:hover {
 });
 </script>
 
-{{-- script untuk sponsor --}}
+{{-- scrip dom untuk sponsor --}}
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -1233,15 +1289,12 @@ footer a:hover {
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
         const cta = `
-          <div class="card shadow-sm cta1 flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
+        <div class="card shadow-sm cta1 flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
           <img src="${item.img}" class="mx-auto d-block cta1-img mt-3 img-fluid" style="height: 80px; object-fit: contain;">
           <div class="card-body text-center px-2 py-2 cta-font">
             <h6 class="card-title mb-1 cta-h6" style="font-size: 0.9rem; white-space: normal;">
               ${item.title}
             </h6>
-            <p class="card-text small text-muted mb-0" style="font-size: 0.75rem; white-space: normal;">
-              ${item.description}
-            </p>
           </div>
         </div>
         `;
