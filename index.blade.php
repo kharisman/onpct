@@ -559,8 +559,8 @@ footer a:hover {
     {
 
       .container-footer{
-        position: relative;
-        top:-290px;
+        margin-top: -300px !important;  
+        max-height: 100% !important;
       }
 
       .faq-container{
@@ -590,18 +590,7 @@ footer a:hover {
       .container-partner{
         position: relative;
         top: -50px; 
-        /* margin-bottom: -40px; */
       }
-      /* .container-foto-sponsor{
-        position: relative;
-        top: -110px; 
-        margin-bottom: -30px;
-      } */
-      /* .container-sponsor{
-        position: relative;
-        top: -70px; 
-        margin-bottom: -30px;
-      } */
       .container-foto-prestasi{
         position: relative;
         top: -110px; 
@@ -888,19 +877,15 @@ footer a:hover {
 
 
   <!-- Scrollable horizontal cards -->
-  <div id="program-content" 
-       class="d-flex flex-row flex-nowrap overflow-auto gap-2 mb-3" 
-       style="scrollbar-color: transparent transparent;">
+<div id="program-content" 
+     class="d-flex flex-row flex-nowrap overflow-auto gap-2 mb-3" 
+     style="scrollbar-color: transparent transparent;">
 
-    <!-- Skeleton loading -->
-    <div id="loading-indicator">
-      
-    </div>
+  <!-- Skeleton loading -->
+  <div id="loading-indicator"></div>
 
-    <!-- Tempat kartu program -->
-    <div id="program-cards" class="d-flex flex-row flex-nowrap overflow-auto" style="gap: 16px; padding: 16px;">
-
-  </div>
+  <!-- Tempat kartu program -->
+  <div id="program-cards" class="d-flex flex-row flex-nowrap overflow-auto" style="gap: 16px; padding: 16px;"></div>
 </div>
 
 
@@ -1307,77 +1292,226 @@ footer a:hover {
 
 {{-- script API untuk berita --}}
 
-<script>
+{{-- <script>
   $(document).ready(function() {
+  // Variabel kontrol
+  let scrollInterval;
+  const scrollSpeed = 2;
+  const scrollDelay = 30;
+  let isResetting = false;
+  let lastScrollY = $(window).scrollTop();
+  let scrollDirection = 'none'; // 'up' | 'down' | 'none'
+  let lastContainerScrollLeft = 0; // Menyimpan posisi scroll terakhir
+  
+  // Skeleton loading
+  $('#testimoni-container').html(
+    `<div class="card placeholder-glow" style="min-width:12rem">
+      <div class="placeholder" style="height:200px"></div>
+    </div>`.repeat(6)
+  );
 
-  // Menampilkan skeleton loading
-  const skeletonBerita = `<div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
-  <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+  // Deteksi arah scroll
+  $(window).scroll(function() {
+    const currentScrollY = $(this).scrollTop();
+    scrollDirection = currentScrollY > lastScrollY ? 'down' : 
+                     currentScrollY < lastScrollY ? 'up' : 'none';
+    lastScrollY = currentScrollY;
     
-    <!-- Gambar Skeleton -->
-    <div class="flex-grow-0 placeholder-glow" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-      <div class="placeholder w-100 h-100" style="border-radius:10px;"></div>
-    </div>
+    handleAutoScroll();
+  });
 
-    <!-- Judul Skeleton -->
-    <div class="flex-grow-1 d-flex align-items-center justify-content-center placeholder-glow"
-         style="min-height: 80px; padding: 0 8px;">
-      <div class="w-100">
-        <div class="placeholder col-12 mb-2" style="height: 12px;"></div>
-        <div class="placeholder col-10 mb-2" style="height: 12px;"></div>
-        <div class="placeholder col-8" style="height: 12px;"></div>
-      </div>
-    </div>
+  function handleAutoScroll() {
+    const container = $('#testimoni-container')[0];
+    if (!container) return;
     
-  </div>
-  </div>`;
-  $('#container-berita').html(skeletonBerita.repeat(6));
-
-  // Mengambil data berita dari API
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/berita", function(response) {
-    if (response.data && response.data.length > 0) {
-      // Mengosongkan kontainer berita
-      $('#container-berita').empty();
-      response.data.forEach(function(item) {
-        const berita = `
-          <div class="card berita-cards shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
-            <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
-              <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-                <a href="${item.url}"">
-                  <img src="${item.image}" class="img-fluid mx-auto" 
-                       style="max-width: 100%; max-height: 100%; border-radius:10px; object-fit: contain;"
-                       >
-                </a>
-              </div>
-              <div class="flex-grow-1 d-flex align-items-center justify-content-center" 
-                   style="min-height: 80px; padding: 0 8px;">
-                <p class="card-text small fw-bold mb-0 w-100" 
-                   style="font-size:13px; line-height: 1.4;
-                          display: -webkit-box;
-                          -webkit-line-clamp: 3;
-                          -webkit-box-orient: vertical;
-                          overflow: hidden;
-                          text-overflow: ellipsis;
-                          margin: 0;
-                          padding-top:10px;">
-                  ${item.title}
-                </p>
-              </div>
-            </div>
-          </div>
-        `;
-        // Append ke elemen dengan ID container-berita
-        $('#container-berita').append(berita);
-      });
+    // Hentikan scroll sebelumnya
+    stopAutoScroll();
+    
+    // Mulai scroll sesuai arah
+    if (scrollDirection === 'down') {
+      startAutoScroll('left');
+    } else if (scrollDirection === 'up') {
+      startAutoScroll('right');
     }
+  }
+
+  function startAutoScroll(direction) {
+    const container = $('#testimoni-container')[0];
+    if (scrollInterval || !container) return;
+    
+    // Gunakan posisi scroll terakhir jika ada
+    if (lastContainerScrollLeft > 0) {
+      container.scrollLeft = lastContainerScrollLeft;
+    } else {
+      // Set posisi awal hanya jika belum pernah discroll
+      if (direction === 'left') {
+        container.scrollLeft = container.scrollWidth;
+      } else {
+        container.scrollLeft = 0;
+      }
+    }
+    
+    scrollInterval = setInterval(function() {
+      if (isResetting) return;
+      
+      const atLeftEdge = container.scrollLeft <= 10;
+      const atRightEdge = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+      
+      // Simpan posisi scroll terakhir
+      lastContainerScrollLeft = container.scrollLeft;
+      
+      // Logika reset posisi
+      if ((direction === 'left' && atLeftEdge) || 
+          (direction === 'right' && atRightEdge)) {
+        isResetting = true;
+        
+        const targetPos = direction === 'left' ? container.scrollWidth : 0;
+        $(container).animate({ scrollLeft: targetPos }, 800, 'swing', function() {
+          isResetting = false;
+          lastContainerScrollLeft = container.scrollLeft;
+        });
+        
+      } else {
+        // Scroll sesuai arah
+        container.scrollLeft += direction === 'left' ? -scrollSpeed : scrollSpeed;
+        lastContainerScrollLeft = container.scrollLeft;
+      }
+    }, scrollDelay);
+  }
+
+  function stopAutoScroll() {
+    if (scrollInterval) {
+      clearInterval(scrollInterval);
+      scrollInterval = null;
+    }
+  }
+
+  // Load data testimoni
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni", function(response) {
+    $('#testimoni-container').empty();
+    
+    response.data.forEach(item => {
+      $('#testimoni-container').append(`
+        <div class="card" style="min-width:12rem">
+          <img src="${item.image}" style="height:200px; object-fit:cover">
+        </div>
+      `);
+    });
   });
 });
-</script>
+</script> --}}
 
 {{-- script untuk API testimoni --}}
 
+{{-- <script>
+  $(document).ready(function() {
+  // Variabel kontrol
+  let scrollInterval;
+  const scrollSpeed = 2;
+  const scrollDelay = 30;
+  let isResetting = false;
+  let lastScrollY = $(window).scrollTop();
+  let scrollDirection = 'none'; // 'up' | 'down' | 'none'
+  
+  // Skeleton loading
+  $('#testimoni-container').html(`
+    <div class="card placeholder-glow" style="min-width:12rem">
+      <div class="placeholder" style="height:200px"></div>
+    </div>`.repeat(6)
+  );
+
+  // Deteksi arah scroll
+  $(window).scroll(function() {
+    const currentScrollY = $(this).scrollTop();
+    scrollDirection = currentScrollY > lastScrollY ? 'down' : 
+                     currentScrollY < lastScrollY ? 'up' : 'none';
+    lastScrollY = currentScrollY;
+    
+    handleAutoScroll();
+  });
+
+  function handleAutoScroll() {
+    const container = $('#testimoni-container')[0];
+    if (!container) return;
+    
+    // Hentikan scroll sebelumnya
+    stopAutoScroll();
+    
+    // Mulai scroll sesuai arah
+    if (scrollDirection === 'down') {
+      startAutoScroll('left');
+    } else if (scrollDirection === 'up') {
+      startAutoScroll('right');
+    }
+  }
+
+  function startAutoScroll(direction) {
+    const container = $('#testimoni-container')[0];
+    if (scrollInterval || !container) return;
+    
+    // Set posisi awal
+    if (direction === 'left') {
+      container.scrollLeft = container.scrollWidth;
+    } else {
+      container.scrollLeft = 0;
+    }
+    
+    scrollInterval = setInterval(function() {
+      if (isResetting) return;
+      
+      const atLeftEdge = container.scrollLeft <= 10;
+      const atRightEdge = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+      
+      // Logika reset posisi
+      if ((direction === 'left' && atLeftEdge) || 
+          (direction === 'right' && atRightEdge)) {
+        isResetting = true;
+        
+        const targetPos = direction === 'left' ? container.scrollWidth : 0;
+        $(container).animate({ scrollLeft: targetPos }, 800, 'swing', function() {
+          isResetting = false;
+        });
+        
+      } else {
+        // Scroll sesuai arah
+        container.scrollLeft += direction === 'left' ? -scrollSpeed : scrollSpeed;
+      }
+    }, scrollDelay);
+  }
+
+  function stopAutoScroll() {
+    if (scrollInterval) {
+      clearInterval(scrollInterval);
+      scrollInterval = null;
+    }
+  }
+
+  // Load data testimoni
+  $.getJSON("", function(response) {
+    $('#testimoni-container').empty();
+    
+    response.data.forEach(item => {
+      $('#testimoni-container').append(`
+        <div class="card" style="min-width:12rem">
+          <img src="${item.image}" style="height:200px; object-fit:cover">
+        </div>
+      `);
+    });
+  });
+});
+</script> --}}
+
+{{-- script versi otomatis scroll --}}
 <script>
   $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
 
   // Menampilkan skeleton loading
   const skeletonTestimoni = `<div class="card d-flex flex-column align-items-center placeholder-glow" style="min-width: 12rem; flex: 0 0 auto; border:none">
@@ -1387,13 +1521,40 @@ footer a:hover {
   </div>`;
   $('#testimoni-container').html(skeletonTestimoni.repeat(6));
 
-  // Mengambil data testimoni dari API
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni ", function(response) {
-    if (response.data && response.data.length > 0) {
+  function startAutoScroll() {
+  const container = $('#testimoni-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+  
 
+  // Mengambil data testimoni dari API
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni", function(response) {
+    if (response.data && response.data.length > 0) {
       // Mengosongkan kontainer testimoni
       $('#testimoni-container').empty();
       response.data.forEach(function(item) {
+        startAutoScroll();
         const testimoni = `
           <div class="card d-flex flex-column align-items-center testimoni" style="min-width: 12rem; flex: 0 0 auto; border:none">
       <div class="p-3 w-100 d-flex justify-content-center testimoni-img">
@@ -1413,6 +1574,15 @@ footer a:hover {
 
 <script>
   $(document).ready(function () {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
+
   // menampilkan skeleton
   const skeletonInstruktur = `
     <div class="skeleton-card placeholder-glow" style="margin:18px">
@@ -1423,7 +1593,33 @@ footer a:hover {
     </div>
     
   `;
-  $('#instruktur-container').html(skeletonInstruktur.repeat(9)); 
+  $('#instruktur-container').html(skeletonInstruktur.repeat(9));
+  
+  function startAutoScroll() {
+  const container = $('#instruktur-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
 
   // api untuk ambil data instruktur
   $.getJSON("https://online.palcomtech.ac.id/api/custom/instruktur", function (response) {
@@ -1433,6 +1629,7 @@ footer a:hover {
 
       // menambahkan data instruktur ke html
       response.data.forEach(function (item) {
+        startAutoScroll();
         const instruktur = `
           <div class="card border-0 instruktur-card" style="width: 200px; flex: 0 0 auto;">
   <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
@@ -1455,6 +1652,15 @@ footer a:hover {
 
 <script>
   $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
+
   // Menampilkan skeleton loading
   const skeletonPrestasi = ` <div class="skeleton-card placeholder-glow" style="margin:18px">
       <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
@@ -1464,12 +1670,39 @@ footer a:hover {
     </div>`;
   $('#prestasi-container').html(skeletonPrestasi.repeat(6)); // Tampilkan skeleton
 
+  function startAutoScroll() {
+  const container = $('#prestasi-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+
   // Mengambil data prestasi dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/prestasi ", function(response) {
     // Mengosongkan kontainer prestasi
     $('#prestasi-container').empty();
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
+        startAutoScroll();
         const prestasi = `
           <div class="card border-0" style="width: 250px; flex: 0 0 auto;">
       <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
@@ -1602,7 +1835,187 @@ footer a:hover {
 
 
 {{-- script untuk api program --}}
+
 <script>
+$(document).ready(function () {
+  // variabel untuk scroll
+  let scrollInterval;
+  const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+  const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+  let isPaused = false; //variabel untuk fungsi pause
+  let isUserScrolling = false;  //variabel untuk manual scroll
+  let userScrollTimeout;
+  let isResetting = false; //variabel untuk reset
+
+  // Skeleton loading
+  const skeletonCard = `
+    <div class="card placeholder-glow" style="width: 280px; flex: 0 0 auto; margin-right: 15px;">
+      <div class="placeholder col-12 mb-2" style="height: 160px; background-color: #e0e0e0; border-radius: 4px;"></div>
+      <div class="card-body">
+        <div class="placeholder col-10 mb-2" style="height: 20px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-7 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-6 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-5" style="height: 20px; background-color: #e0e0e0;"></div>
+      </div>
+    </div>
+  `;
+
+  // mulai auto-scrolling
+  function startAutoScroll() {
+    const container = $('#program-cards')[0];
+    
+    if (scrollInterval) clearInterval(scrollInterval);
+    
+    scrollInterval = setInterval(() => {
+      if (!isResetting && container.scrollWidth > container.clientWidth) {
+        // Jika sudah mencapai ujung kanan
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+          isResetting = true; // Set flag sedang reset
+          
+          // reset ke posisi awal
+          $(container).animate({ scrollLeft: 0 }, 1000, 'swing', function() {
+            isResetting = false; // Reset flag setelah selesai
+          });
+        } else {
+          // Lanjutkan scroll otomatis
+          container.scrollLeft += scrollSpeed;
+        }
+      }
+    }, scrollDelay);
+  }
+
+  // fungsi untuk manual scroll
+  $('#program-cards').on('scroll', function() {
+    if (!isUserScrolling) {
+      isPaused = true;
+    }
+    isUserScrolling = true;
+    
+    if (userScrollTimeout) clearTimeout(userScrollTimeout);
+    
+    userScrollTimeout = setTimeout(() => {
+      isUserScrolling = false;
+      isPaused = false;
+    }, 3000);
+  });
+
+  // ambil data kategori
+  function loadKategories() {
+    showSkeleton();
+
+    $.get('https://online.palcomtech.ac.id/api/custom/kategories', function (response) {
+      if (response.success && response.data.length > 0) {
+        renderKategoriTabs(response.data);
+        loadPrograms(response.data[0].slug); 
+      }
+    }).fail(showError);
+  }
+
+  function renderKategoriTabs(kategories) {
+    const tabsContainer = $('#kategori-tabs');
+    tabsContainer.empty();
+
+    kategories.forEach((kategori, index) => {
+      const tab = $(`
+        <a class="btn kategori-tab ${index === 0 ? 'active' : ''}" 
+           data-kategori-slug="${kategori.slug}">
+          ${kategori.name}
+        </a>
+      `);
+
+      tab.click(function () {
+        $('.kategori-tab').removeClass('active');
+        $(this).addClass('active');
+        loadPrograms(kategori.slug);
+      });
+
+      tabsContainer.append(tab);
+    });
+  }
+
+  function loadPrograms(kategoriSlug) {
+    showSkeleton();
+
+    $.get(`https://online.palcomtech.ac.id/api/custom/programs/${kategoriSlug}`, function (response) {
+      if (response.success) {
+        renderProgramCards(response.data);
+        // mulai auto scroll ketika data berhasil di load
+        startAutoScroll();
+      } else {
+        showError(response.message || `<div class="reload-container" onclick="location.reload()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+  <p class="reload-text">
+    Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>`);
+      }
+    }).fail(showError);
+  }
+
+  function renderProgramCards(programs) {
+    const container = $('#program-cards');
+    container.empty();
+
+    if (programs.length === 0) {
+      container.html('<div class="col-12 text-center py-5">Tidak ada program tersedia</div>');
+      return;
+    }
+
+    programs.forEach(program => {
+      const card = $(`
+      <a href="${program.url}">
+  <div class="card program-card" style="width: 280px; flex: 0 0 auto; margin-right:15px;">
+    <img class="card-img-top img-program" src="${program.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${program.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${program.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${program.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${program.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+  </a>
+      `);
+      container.append(card);
+    });
+  }
+
+  function showSkeleton() {
+    const container = $('#program-cards');
+    container.empty();
+    container.append(skeletonCard.repeat(4)); 
+  }
+
+  function showError(message) {
+    $('#program-cards').html(`
+      <div class="reload-container" onclick="location.reload()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+        <p class="reload-text">
+          Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>
+    `);
+  }
+
+  loadKategories(); // Inisialisasi awal
+});
+</script>
+
+
+{{-- <script>
   $(document).ready(function () {
   // Skeleton card HTML
   const skeletonCard = `
@@ -1728,9 +2141,7 @@ footer a:hover {
 
   loadKategories(); // Inisialisasi awal
 });
-</script>
-
-{{-- <img src="foto/reload.png" class="reload-image" alt="Reload Icon"> --}}
+</script> --}}
 
 </body>
 </html>
