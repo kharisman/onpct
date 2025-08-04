@@ -1292,6 +1292,109 @@ footer a:hover {
 
 {{-- script API untuk berita --}}
 
+<script>
+  $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
+
+  // Menampilkan skeleton loading
+  const skeletonBerita = `<div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
+  <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+    
+    <!-- Gambar Skeleton -->
+    <div class="flex-grow-0 placeholder-glow" style="height: 120px; display: flex; align-items: center; justify-content: center;">
+      <div class="placeholder w-100 h-100" style="border-radius:10px;"></div>
+    </div>
+
+    <!-- Judul Skeleton -->
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center placeholder-glow"
+         style="min-height: 80px; padding: 0 8px;">
+      <div class="w-100">
+        <div class="placeholder col-12 mb-2" style="height: 12px;"></div>
+        <div class="placeholder col-10 mb-2" style="height: 12px;"></div>
+        <div class="placeholder col-8" style="height: 12px;"></div>
+      </div>
+    </div>
+    
+  </div>
+  </div>`;
+  $('#container-berita').html(skeletonBerita.repeat(6));
+
+  function startAutoScroll() {
+  const container = $('#container-berita')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+
+  // Mengambil data berita dari API
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/berita", function(response) {
+    if (response.data && response.data.length > 0) {
+      // Mengosongkan kontainer berita
+      $('#container-berita').empty();
+      response.data.forEach(function(item) {
+        startAutoScroll();
+        const berita = `
+          <div class="card berita-cards shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
+            <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
+              <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                <a href="${item.url}"">
+                  <img src="${item.image}" class="img-fluid mx-auto" 
+                       style="max-width: 100%; max-height: 100%; border-radius:10px; object-fit: contain;"
+                       >
+                </a>
+              </div>
+              <div class="flex-grow-1 d-flex align-items-center justify-content-center" 
+                   style="min-height: 80px; padding: 0 8px;">
+                <p class="card-text small fw-bold mb-0 w-100" 
+                   style="font-size:13px; line-height: 1.4;
+                          display: -webkit-box;
+                          -webkit-line-clamp: 3;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          margin: 0;
+                          padding-top:10px;">
+                  ${item.title}
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+        // Append ke elemen dengan ID container-berita
+        $('#container-berita').append(berita);
+      });
+    }
+  });
+});
+</script>
+
+
 {{-- <script>
   $(document).ready(function() {
   // Variabel kontrol
