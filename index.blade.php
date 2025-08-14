@@ -20,11 +20,63 @@
   <style>
 
     /* Menu Atas start */
-    
+
+    ::-webkit-scrollbar{
+  display:none;
+}
+    /* style reload */
+
+    .reload-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;         
+    cursor: pointer;
+  }
+    .reload-container {
+    text-align: center;
+    margin-top: 40px;
+    margin-left:400px;
+  }
+
+  .reload-image {
+    width: 80px;
+    animation: spin 2s linear infinite;
+  }
+
+  .reload-text {
+    margin-top: 10px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .reload-text span {
+    color: #007bff;
+    /* text-decoration: underline; */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
     body {
       background-color: #fdfeff;
       font-family: 'Public Sans', 'Montserrat', sans-serif;
     }
+
+    .active-tab {
+    background-color: rgb(45, 67, 100);
+    color: white;
+  }
+  
+  .program-tab {
+    transition: all 0.3s ease;
+    color:white;
+  }
+  
+  .program-tab:hover {
+    background-color: #000000;
+  }
 
     .navbar {
       background-color: #d6dadf;
@@ -32,15 +84,52 @@
       width: auto;
     }
 
+    .program-btn {
+    background-color: #EEEFE0;
+    border-radius: 100px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .program-btn.active-program {
+    background-color: rgb(45, 67, 100) !important;
+  }
+
+  .kategori-tabs{
+    background-color:grey:
+  }
+
+  .program-btn.active-program .card-text {
+    color: white;
+  }
+
     .navbar-container {
     display: flex;
     align-items: center;
-    /* justify-content: space-between;
-    width: auto; */
 }
 .navbar-brand {
     padding: 0;
     margin: 0;
+}
+
+.kategori-tab.active{
+  background-color: #34699A;
+   border-color: #34699A;
+   color:white; 
+}
+
+.kategori-tab{
+  /* background-color: rgb(207, 209, 209); */
+  border: 1px solid #06989A;
+  color:black;
+  color: #34699A;
+  border-radius: 10px;
+
+}
+
+.kategori-tab:hover{
+  background-color: #34699A;
+  color:#ffffff;
+
 }
 
     .logo-img {
@@ -54,7 +143,6 @@
     .navbar-solid {
       background-color: #d6dadf !important;
       transition: background-color 0.4s ease, box-shadow 0.4s ease;
-      /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
     }
 
     /* Setelah scroll: transparan dan blur */
@@ -179,12 +267,30 @@
       margin-left: 11%;
     }
     .navbar-nav a {
-      /* padding-top: 0.5rem; */
       font-size: 0.90rem;
       font-weight: bold;
-      /* margin-top: 5px */
-      /* margin-right: 20px; */
     }
+
+    .navbar-nav .nav-link {
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #34699A;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
 
     .navbar-collapse {
   margin-left: -5px;
@@ -248,8 +354,6 @@
       width: auto;
       flex-shrink: 0;
       width: 1000px;
-      /* margin-left: 4%; */
-      /* gap: 2px; */
     }
 
     .container.carousel {
@@ -295,10 +399,6 @@
       font-size: 13px;
       color: black;
     }
-
-    /* .container-cta2{
-      padding-right: 30px;
-    } */
 
     .card-text {
       font-size: 12px;
@@ -350,12 +450,11 @@ footer a:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Ubah ke -50% karena kita menggandakan item */
+    transform: translateX(-50%); 
   }
 }
 
 /* animasi partner */
-
 .partner-track {
   animation: scroll 20s linear infinite;
   width: max-content;
@@ -372,14 +471,13 @@ footer a:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Ubah ke -50% karena kita menggandakan item */
+    transform: translateX(-50%);
   }
 }
 
     /* Responsif ukuran 770 */
 
     @media (max-width: 770px) {
-
       .navbar-nav{
         margin-left:0;
       }
@@ -428,29 +526,208 @@ footer a:hover {
       .swiper-slide{
         padding-top: 10%;
       }
-    }
 
-    /* Responsif untuk ukuran hp kecil */
+      .testimoni{
+        max-width: 8rem;
+      }
+
+      .testimoni-gap {
+        gap:0;
+      }
+
+      .cta1-container{
+        max-width: 80%;
+      }
+       .cta1 {
+        width: 32% !important;
+        min-width: unset !important;
+        }
+        .cta1-img{
+          width:70px;
+          height:70px;
+        }
+  
+        .cta-h6{
+          font-size: 0.6rem !important;
+          white-space: normal;  
+        }
+    }
+    
+    /* Responsif untuk ukuran hp sedang */
 
     @media (max-width: 576px) 
     {
 
-      .navbar-nav{
-        margin-left:0;
+      .container-footer{
+        margin-top: -300px !important;  
+        max-height: 100% !important;
       }
-      .swiper-slide {
-        padding-top: 12%;
+
+      .faq-container{
+        position: relative;
+        top:-270px;
       }
-      .section-slider {
-        height: 420px;
+
+      .partner-group{
+        position: relative;
+        top:-50px;
       }
-      .swiper-slide{
-        padding-top: 13%;
+      .logo-group{
+        position: relative;
+        top:-30px;
       }
+
+      .container-sp{
+        position: relative;
+        top:-100px;
+      }
+
+      .container-foto-partner {
+        position: relative;
+        top: -50px; 
+        margin-bottom: -30px;
+      }
+      .container-partner{
+        position: relative;
+        top: -50px; 
+      }
+      .container-foto-prestasi{
+        position: relative;
+        top: -110px; 
+        margin-bottom: -30px; 
+      }
+      img.prestasi img{
+        max-width: 2rem;
+      }
+      .partner-group img{
+        max-width: 6rem;
+      }
+      .logo-group img{
+        max-width: 6rem;
+      }
+      .reload-container {
+        text-align: center;
+        margin-top: 60px;
+        margin-left:20px; 
+  }
+      .instruktur-card {
+        transform: scale(0.88);         
+        transform-origin: top left;     
+        margin-right: -6px !important;  
+        margin-left: 0 !important;
+        padding: 0 !important;
+  }
+
+  .img-instruktur {
+    height: 160px !important;
+    gap: 0 !important;       
+  }
+  
+  #instruktur-container {
+    gap: 0 !important;              
+  }
+  
+  .card.border-0 {
+    transform: scale(0.88);               
+    width: 210px !important;              
+    margin-right: 6px !important;         
+    margin-left: 0 !important;
+  }
+  
+  .card.border-0 .card-body {
+    padding: 0.75rem !important;          
+  }
+  
+  .card.border-0 img {
+    height: 160px !important;             
+  }
+  .berita-cards {
+    width: 13rem !important;      
+    transform: scale(0.95);      
+    margin-right: 0 !important;
+    height:10rem;
+    padding-top:0 !important;   
+  }
+  
+  .berita-cards img {
+    max-height: 90px !important;  
+  }
+
+  .berita-cards .card-text {
+    font-size: 11px !important;   
+    -webkit-line-clamp: 2;        
+  }
+  
+  .berita-cards .card-body,
+  .berita-cards .p-2 {
+    padding: 0.5rem !important;
+  }
+  
+  .program-card {
+  min-width: 200px;
+  max-width: 240px;
+  flex: 0 0 auto;
+}
+
+  
+  .program-gap {
+    gap: 0 !important; 
     }
+
+      .testimoni{
+        max-width: 8rem;
+      }
+
+      .testimoni-gap {
+        gap:0;
+      }
+
+      .cta1 {
+      width: 31.7% !important;       
+      min-width: 24% !important;
+      transform: none !important;  
+      margin: 0 2px !important;
+    }
+  
+  .cta1-img {
+    height: 55px !important;
+  }
+  
+  .cta-h6 {
+    font-size: 0.75rem !important;
+  }
+  
+  .cta-font p {
+    font-size: 0.65rem !important;
+  }
+  
+  .navbar-nav{
+    margin-left:0;
+  }
+  .swiper-slide {
+    padding-top: 12%;
+  }
+  .section-slider {
+    height: 420px;
+  }
+  .swiper-slide{
+    padding-top: 13%;
+  }
+  
+  .navbar-solid {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .navbar-hide {
+    transform: translateY(-100%);
+  }
+  
+}
 
     /* Untuk tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
+
+  
   /* Navbar container */
   
   .navbar {
@@ -492,11 +769,13 @@ footer a:hover {
   }
 }
 
+
   </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-solid" id="mainNavbar">
+
   <div class="container sm:px-1 px-2 justify-content-between"  style="margin-top:10px;">
 
     <!-- Hamburger Toggle Button -->
@@ -561,7 +840,7 @@ footer a:hover {
 
         <div class="container px-0">
           <div class="cards-wrapper d-flex justify-content-center">
-            <div class="cards-scroller d-flex flex-row flex-nowrap overflow-x-auto py-3" style="gap: 1rem; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-color:transparent transparent;" id="cta-container">
+            <div class="cards-scroller cta1-container d-flex flex-row flex-nowrap overflow-x-auto py-3" style="gap:3px; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-color:transparent transparent;" id="cta-container">
               {{-- data cta dari API --}}
             </div>
           </div>
@@ -574,10 +853,9 @@ footer a:hover {
           </div>
 
           <div class="container container-cta2">
-            <div class="d-flex flex-row flex-nowrap gap-3 overflow-auto pb-3" style="scrollbar-color:transparent transparent;" id="testimoni-container">
+            <div class="d-flex testimoni-gap flex-row flex-nowrap overflow-auto pb-3" style="scrollbar-color:transparent transparent;" id="testimoni-container">
               {{-- data dari API --}}
               <div class="container-skeleton" style="width:100px; background-color:#000000; display:flex; justify-content-center; align-items:center; ">
-
           </div>
             </div>
           </div>
@@ -586,10 +864,30 @@ footer a:hover {
           <div class="container text-center">
               <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Berikut Program Palcomtech</h3>
           </div>
-              {{-- tampilan program dari API --}}
-          <div class="container py-2">
-              <div id="programContainer"></div>
-          </div>
+
+{{-- kategori--}}
+<div class="container mb-3">
+
+  <!-- Kategori Tabs Scrollable -->
+<div id="kategori-tabs-wrapper" class="overflow-auto mb-4" style="white-space: nowrap; scrollbar-color: transparent transparent; background-color:">
+  <div id="kategori-tabs" class="d-inline-flex flex-row gap-2 kategories">
+    <!-- Button akan dimasukkan ke sini -->
+  </div>
+</div>
+
+
+  <!-- Scrollable horizontal cards -->
+<div id="program-content" 
+     class="d-flex flex-row flex-nowrap overflow-auto gap-2 mb-3" 
+     style="scrollbar-color: transparent transparent;">
+
+  <!-- Skeleton loading -->
+  <div id="loading-indicator"></div>
+
+  <!-- Tempat kartu program -->
+  <div id="program-cards" class="d-flex flex-row flex-nowrap overflow-auto" style="gap: 16px; padding: 16px;"></div>
+</div>
+
 
               <!-- CTA Bawah Start-->
 
@@ -599,7 +897,7 @@ footer a:hover {
 
     {{-- berita --}}
     <div class="container" >
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 align-items-stretch px-3" style="scrollbar-color:transparent transparent;" id="container-berita">
+  <div class="d-flex flex-row flex-nowrap gap-2 overflow-x-auto pb-3 align-items-stretch px-3" style="scrollbar-color:transparent transparent;" id="container-berita">
     
   </div>
 </div>
@@ -619,64 +917,65 @@ footer a:hover {
 </div>
     {{-- data instrutur dari API --}}
   </div>
-</div>
+</div>  
 
     {{-- Prestasi --}}
 
-    <div class="container text-center">
-      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Prestasi Palcomtech</h3>
-    </div>
-
-   <div class="container">
-  <div class="d-flex flex-row flex-nowrap gap-3 overflow-x-auto pb-3 px-3" style="scrollbar-color:transparent transparent;" id="prestasi-container">
+    {{-- <div class="container text-center prestasi-container">
+    </div> --}}
+    
+    <div class="container container-foto-prestasi">
+      <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Prestasi Palcomtech</h3>
+      <div class="d-flex flex-row flex-nowrap overflow-x-auto pb-3 px-3 " style="scrollbar-color:transparent transparent;" id="prestasi-container">
     {{-- data prestasi dari API --}}
   </div>
 </div>
 
 {{-- sponsor --}}
+<div class="container-sp">
 
-    <div class="container text-center">
-      <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Sponsor</h3>
-    </div>
-
-  <div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0;">
-  <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
-    <div class="logo-track" style="display: flex;">
-      <div class="logo-group" id="sponsor-container">
-        {{-- data dari sponsor dari API --}}
+  <h3 class="fw-bold text-center mb-1 container-sponsor" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Sponsor</h3>
+  
+  <div class="container-foto-sponsor" style="display: flex; justify-content: center; width: 100%; padding: 0.5rem 0 0 0;">
+    <div class="logo-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
+      <div class="logo-track" style="display: flex;">
+        <div class="logo-group" id="sponsor-container">
+          {{-- data dari sponsor dari API --}}
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 {{-- partner --}}
 
-  <div class="container text-center">
-  <h3 class="fw-bold mb-4 mt-3 pt-5" style="font-size:24px;">Partner</h3>
-</div>
+  <h3 class="w-bold text-center mb-1 container-partner" style="font-size:22px; margin-top: 0; margin-bottom: 0.5rem;">Partner</h3>
 
-<div style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
+<div class="container-foto-partner" style="display: flex; justify-content: center; width: 100%; padding: 2rem 0; border-radius: 15px;">
   <div class="partner-container" style="overflow: hidden; max-width: 1200px; width: 100%; margin: 0 auto; position: relative;">
     <div class="partner-track" style="display: flex; width: max-content;">
-      <div class="partner-group" style="display: flex; gap: 4rem; padding: 2rem;" id="partner-container">
+      <div class="partner-group" style="display: flex; gap: 3rem; padding: 2rem;" id="partner-container">
         {{-- data partner dari API --}}
       </div>
     </div>
   </div>
 </div>
 
+</div>
     {{-- FAQ Start --}}
 
-     <div class="container my-5">
+     <div class="container my-5 faq-container">
   <h3 class="fw-bold mt-3 pt-5 text-center" style="font-size:24px;">Yang Sering Ditanyakan</h3>
 
-  <div class="accordion ms-4" id="faqAccordion">
-      <div class="accordion-item" id="faq-container">
+  <div class="accordion ms-4" id="faqAccordion" style="border: none;">
+    <div class="accordion-item" id="faq-container" style="border: none;">
         {{-- data FAQ dari API --}}
       </div>
   </div>
 </div>
+
+<div class="container-footer">
+
     <div class="footerLine" style="height: 1px; background:#ccc; width:100%; margin:100px 0;"></div>
 
 
@@ -748,6 +1047,7 @@ footer a:hover {
     </div>
   </div>
 </footer>
+</div>
 
     {{-- Footer ENd --}}
 
@@ -763,6 +1063,39 @@ footer a:hover {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   
+
+  {{-- logika navbar hilang di mobile --}}
+
+{{-- <script>
+  let lastScroll = 0;
+  const navbar = document.getElementById('mainNavbar');
+  const mobileBreakpoint = 992; // Sesuaikan dengan breakpoint mobile Anda
+  
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const isMobile = window.innerWidth < mobileBreakpoint;
+    
+    if (isMobile) {
+      if (currentScroll <= 0) {
+        // Di bagian paling atas - tampilkan navbar
+        navbar.classList.remove('navbar-hide');
+        return;
+      }
+      
+      if (currentScroll > lastScroll && !navbar.classList.contains('navbar-hide')) {
+        // Scroll ke bawah - sembunyikan navbar
+        navbar.classList.add('navbar-hide');
+      } else if (currentScroll < lastScroll && navbar.classList.contains('navbar-hide')) {
+        // Scroll ke atas - tampilkan navbar
+        navbar.classList.remove('navbar-hide');
+      }
+    }
+    
+    lastScroll = currentScroll;
+  });
+</script> --}}
+
+{{-- configurasi swiper js --}}
   <script>
     const swiper = new Swiper(".mySwiper", {
       slidesPerView: "auto",
@@ -781,7 +1114,7 @@ footer a:hover {
   </script>
   
   {{-- script untuk transparant navbar --}}
-  <script>
+<script>
   window.addEventListener("scroll", function () {
     const navbar = document.getElementById("mainNavbar");
 
@@ -817,9 +1150,10 @@ footer a:hover {
 });
 </script>
 
-{{-- script untuk sponsor --}}
+{{-- scrip dom untuk sponsor --}}
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
   const partnerGroup = document.querySelector('.logo-group');
   const partnerTrack = document.querySelector('.logo-track');
   
@@ -842,52 +1176,80 @@ document.addEventListener('DOMContentLoaded', function() {
 {{-- script untuk api slidder --}}
 
 <script>
-$(document).ready(function() {
-  const skeletonCarousel = `
-   <div class="container carousel" style="right:100%;">
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper" id="slider-container" style="gap: 10px;">
-      
-      <!-- Skeleton Start -->
-      <div class="swiper-slide">
-        <div class="skeleton-slide"></div>
-      </div>
-      <div class="swiper-slide">
-        <div class="skeleton-slide"></div>
-      </div>
-      <div class="swiper-slide">
-        <div class="skeleton-slide"></div>
-      </div>
-      <!-- Skeleton End -->
-      
-    </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  </div>
-  `;
-  $('#slider-container').append(skeletonCarousel); 
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/slider", function(response) {
-    if (response.data && response.data.length > 0) {
-      $('#slider-container').empty();
-      response.data.forEach(function(item, index) {
-        const slide = `
-          <div class="swiper-slide">
-            <a href="${item.url}">
-              <img src="${item.image}" class="foto-swiper" alt="slide ${index + 1}">
-            </a>
+  $(document).ready(function() {
+    const skeletonCarousel = `
+      <div class="container carousel" style="right:100%;">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper" id="slider-container" style="gap: 10px;">
+            
+            <!-- Skeleton Start -->
+            <div class="swiper-slide">
+              <div class="skeleton-slide"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="skeleton-slide"></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="skeleton-slide"></div>
+            </div>
+            <!-- Skeleton End -->
+            
           </div>
-        `;
-        $('#slider-container').append(slide);
-      });
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    `;
+    
+    $('#slider-container').append(skeletonCarousel); 
+    
+    $.ajax({
+      url: 'https://online.palcomtech.ac.id/api/custom/slider',
+      method: 'GET',
+      success: function(response) {
+        if (response.data && response.data.length > 0) {
+          $('#slider-container').empty();
+
+          response.data.forEach(function(item, index) {
+            const slide = `
+              <div class="swiper-slide">
+                <a href="${item.url}">
+                  <img src="${item.image}" class="foto-swiper" alt="slide ${index + 1}">
+                </a>
+              </div>
+            `;
+            $('#slider-container').append(slide);
+          });
+        } else {
+          // Data kosong
+          showReloadAnimation();
+        }
+      },
+      error: function() {
+        // Gagal ambil data
+        showReloadAnimation();
+      }
+    });
+
+    function showReloadAnimation() {
+      $('#slider-container').html(`
+        <div class="reload-container" onclick="location.reload()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+          <p class="reload-text">
+            Gagal memuat data. <span>Klik untuk coba lagi</span>
+          </p>
+        </div>
+      `);
     }
   });
-});
 </script>
 
 {{-- script untuk API CTA atas --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
   const skeletonCTA =`<div class="card shadow-sm flex-shrink-0 mx-1 placeholder-glow" style="width: 13rem; min-width: 10rem;">
 
   <!-- Gambar Skeleton -->
@@ -912,138 +1274,18 @@ $(document).ready(function() {
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
         const cta = `
-          <div class="card shadow-sm flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
-          <img src="${item.img}" class="mx-auto d-block mt-3 img-fluid" style="height: 80px; object-fit: contain;">
-          <div class="card-body text-center px-2 py-2">
-            <h6 class="card-title mb-1" style="font-size: 0.9rem; white-space: normal;">
+        <div class="card shadow-sm cta1 flex-shrink-0 mx-1" style="width: 13rem; min-width: 10rem;">
+          <img src="${item.img}" class="mx-auto d-block cta1-img mt-3 img-fluid" style="height: 80px; object-fit: contain;">
+          <div class="card-body text-center px-2 py-2 cta-font">
+            <h6 class="card-title mb-1 cta-h6" style="font-size: 0.9rem; white-space: normal;">
               ${item.title}
             </h6>
-            <p class="card-text small text-muted mb-0" style="font-size: 0.75rem; white-space: normal;">
-              ${item.description}
-            </p>
           </div>
         </div>
         `;
         $('#cta-container').append(cta);
       });
-    }
-  });
-});
-</script>
-
-{{-- script untuk api program --}}
-
-<script>
-  $(document).ready(function () {
-
-  // Menampilkan skeleton loading
-  const skeletonProgram =`<div class="row justify-content-center mb-4">
-    <div class="col-12 col-lg-10">
-    <div class="card border-0 placeholder-glow">
-      <div class="row g-0">
-
-        <!-- Mobile Skeleton Image -->
-        <div class="col-12 d-md-none">
-          <div class="placeholder w-100" style="height: 200px; border-radius: 8px;"></div>
-        </div>
-
-        <!-- Desktop Skeleton Image -->
-        <div class="col-md-5 d-none d-md-flex align-items-center">
-          <div class="placeholder w-100" style="height: 300px; border-radius: 8px;"></div>
-        </div>
-
-        <!-- Content Skeleton -->
-        <div class="col-md-7">
-          <div class="card-body p-3 p-md-4">
-
-            <!-- Judul -->
-            <div class="placeholder mb-3" style="height: 24px; width: 60%;"></div>
-
-            <!-- Fitur/filler konten -->
-            <div class="mb-3">
-              <div class="placeholder mb-2" style="height: 14px; width: 90%;"></div>
-              <div class="placeholder mb-2" style="height: 14px; width: 80%;"></div>
-              <div class="placeholder mb-2" style="height: 14px; width: 70%;"></div>
-            </div>
-
-            <!-- Tombol -->
-            <div class="d-flex justify-content-start mt-4">
-              <div class="placeholder rounded-pill" style="height: 36px; width: 180px;"></div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div>`;
-  $('#programContainer').html(skeletonProgram.repeat(3)); 
-
-  // mengambil data program dari API
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/course", function (response) {
-
-    // Mengosongkan kontainer program
-    $('#programContainer').empty();
-    if (response.data && response.data.length > 0) {
-      response.data.forEach(function (item, index) {
-        const isEven = index % 2 === 0;
-
-        // Tangani jika 'features' adalah string dipisahkan koma
-        let feature = [];
-        if (Array.isArray(item.feature)) {
-          feature = item.feature;
-        } else if (typeof item.feature === "string") {
-          feature = item.feature.split(',').map(f => f.trim());
-        }
-
-        const featuresHTML = feature.map(feature => `
-          <div class="d-flex align-items-start mb-2 fitur">
-            <span class="me-2">✅</span>
-            <p class="mb-0" style="font-size: clamp(0.9rem, 1.5vw, 1rem);">${feature}</p>
-          </div>
-        `).join('');
-
-        const programHTML = `
-          <div class="row justify-content-center mb-4">
-            <div class="col-12 col-lg-10">
-              <div class="card border-0">
-                <div class="row g-0">
-
-                  <!-- Mobile Image -->
-                  <div class="col-12 d-md-none">
-                    <img src="${item.image}" class="img-fluid w-100" alt="${item.alt || ''}" style="max-height: 200px; object-fit: contain;">
-                  </div>
-
-                  <!-- Desktop Image -->
-                  <div class="col-md-5 ${isEven ? '' : 'order-md-2'} d-none d-md-flex align-items-center">
-                    <img src="${item.image}" class="img-fluid w-100" alt="${item.alt || ''}" style="max-height: 300px; object-fit: contain;">
-                  </div>
-
-                  <!-- Content -->
-                  <div class="col-md-7 ${isEven ? '' : 'order-md-1'}">
-                    <div class="card-body p-3 p-md-4">
-                      <h3 class="card-title fw-bold mb-3" style="font-size: clamp(1.2rem, 2vw, 1.5rem);">${item.title}</h3>
-                      <div class="mb-3">
-                        ${featuresHTML}
-                      </div>
-                      <div class="d-flex justify-content-start mt-4">
-                        <a class="btn btn-daftar btn-program" href="${item.url}" style="min-width: 180px; font-size:13px">
-                          ${item.buttonText}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-
-        $('#programContainer').append(programHTML);
-      });
-    }
+    } 
   });
 });
 </script>
@@ -1051,7 +1293,15 @@ $(document).ready(function() {
 {{-- script API untuk berita --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
 
   // Menampilkan skeleton loading
   const skeletonBerita = `<div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;">
@@ -1076,14 +1326,41 @@ $(document).ready(function() {
   </div>`;
   $('#container-berita').html(skeletonBerita.repeat(6));
 
+  function startAutoScroll() {
+  const container = $('#container-berita')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+
   // Mengambil data berita dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/berita", function(response) {
     if (response.data && response.data.length > 0) {
       // Mengosongkan kontainer berita
       $('#container-berita').empty();
       response.data.forEach(function(item) {
+        startAutoScroll();
         const berita = `
-          <div class="card shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
+          <div class="card berita-cards shadow-sm p-0 pt-4" style="width: 17rem; flex: 0 0 auto; height: 100%;" >
             <div class="p-2 text-center d-flex flex-column" style="height: 100%;">
               <div class="flex-grow-0" style="height: 120px; display: flex; align-items: center; justify-content: center;">
                 <a href="${item.url}"">
@@ -1101,7 +1378,8 @@ $(document).ready(function() {
                           -webkit-box-orient: vertical;
                           overflow: hidden;
                           text-overflow: ellipsis;
-                          margin: 0;">
+                          margin: 0;
+                          padding-top:10px;">
                   ${item.title}
                 </p>
               </div>
@@ -1111,19 +1389,232 @@ $(document).ready(function() {
         // Append ke elemen dengan ID container-berita
         $('#container-berita').append(berita);
       });
-    } else {
-      $('#container-berita').html('<p class="text-muted">Tidak ada berita tersedia.</p>');
     }
-  }).fail(function() {
-    $('#container-berita').html('<p class="text-danger">Gagal memuat berita.</p>');
   });
 });
 </script>
 
+
+{{-- <script>
+  $(document).ready(function() {
+  // Variabel kontrol
+  let scrollInterval;
+  const scrollSpeed = 2;
+  const scrollDelay = 30;
+  let isResetting = false;
+  let lastScrollY = $(window).scrollTop();
+  let scrollDirection = 'none'; // 'up' | 'down' | 'none'
+  let lastContainerScrollLeft = 0; // Menyimpan posisi scroll terakhir
+  
+  // Skeleton loading
+  $('#testimoni-container').html(
+    `<div class="card placeholder-glow" style="min-width:12rem">
+      <div class="placeholder" style="height:200px"></div>
+    </div>`.repeat(6)
+  );
+
+  // Deteksi arah scroll
+  $(window).scroll(function() {
+    const currentScrollY = $(this).scrollTop();
+    scrollDirection = currentScrollY > lastScrollY ? 'down' : 
+                     currentScrollY < lastScrollY ? 'up' : 'none';
+    lastScrollY = currentScrollY;
+    
+    handleAutoScroll();
+  });
+
+  function handleAutoScroll() {
+    const container = $('#testimoni-container')[0];
+    if (!container) return;
+    
+    // Hentikan scroll sebelumnya
+    stopAutoScroll();
+    
+    // Mulai scroll sesuai arah
+    if (scrollDirection === 'down') {
+      startAutoScroll('left');
+    } else if (scrollDirection === 'up') {
+      startAutoScroll('right');
+    }
+  }
+
+  function startAutoScroll(direction) {
+    const container = $('#testimoni-container')[0];
+    if (scrollInterval || !container) return;
+    
+    // Gunakan posisi scroll terakhir jika ada
+    if (lastContainerScrollLeft > 0) {
+      container.scrollLeft = lastContainerScrollLeft;
+    } else {
+      // Set posisi awal hanya jika belum pernah discroll
+      if (direction === 'left') {
+        container.scrollLeft = container.scrollWidth;
+      } else {
+        container.scrollLeft = 0;
+      }
+    }
+    
+    scrollInterval = setInterval(function() {
+      if (isResetting) return;
+      
+      const atLeftEdge = container.scrollLeft <= 10;
+      const atRightEdge = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+      
+      // Simpan posisi scroll terakhir
+      lastContainerScrollLeft = container.scrollLeft;
+      
+      // Logika reset posisi
+      if ((direction === 'left' && atLeftEdge) || 
+          (direction === 'right' && atRightEdge)) {
+        isResetting = true;
+        
+        const targetPos = direction === 'left' ? container.scrollWidth : 0;
+        $(container).animate({ scrollLeft: targetPos }, 800, 'swing', function() {
+          isResetting = false;
+          lastContainerScrollLeft = container.scrollLeft;
+        });
+        
+      } else {
+        // Scroll sesuai arah
+        container.scrollLeft += direction === 'left' ? -scrollSpeed : scrollSpeed;
+        lastContainerScrollLeft = container.scrollLeft;
+      }
+    }, scrollDelay);
+  }
+
+  function stopAutoScroll() {
+    if (scrollInterval) {
+      clearInterval(scrollInterval);
+      scrollInterval = null;
+    }
+  }
+
+  // Load data testimoni
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni", function(response) {
+    $('#testimoni-container').empty();
+    
+    response.data.forEach(item => {
+      $('#testimoni-container').append(`
+        <div class="card" style="min-width:12rem">
+          <img src="${item.image}" style="height:200px; object-fit:cover">
+        </div>
+      `);
+    });
+  });
+});
+</script> --}}
+
 {{-- script untuk API testimoni --}}
 
+{{-- <script>
+  $(document).ready(function() {
+  // Variabel kontrol
+  let scrollInterval;
+  const scrollSpeed = 2;
+  const scrollDelay = 30;
+  let isResetting = false;
+  let lastScrollY = $(window).scrollTop();
+  let scrollDirection = 'none'; // 'up' | 'down' | 'none'
+  
+  // Skeleton loading
+  $('#testimoni-container').html(`
+    <div class="card placeholder-glow" style="min-width:12rem">
+      <div class="placeholder" style="height:200px"></div>
+    </div>`.repeat(6)
+  );
+
+  // Deteksi arah scroll
+  $(window).scroll(function() {
+    const currentScrollY = $(this).scrollTop();
+    scrollDirection = currentScrollY > lastScrollY ? 'down' : 
+                     currentScrollY < lastScrollY ? 'up' : 'none';
+    lastScrollY = currentScrollY;
+    
+    handleAutoScroll();
+  });
+
+  function handleAutoScroll() {
+    const container = $('#testimoni-container')[0];
+    if (!container) return;
+    
+    // Hentikan scroll sebelumnya
+    stopAutoScroll();
+    
+    // Mulai scroll sesuai arah
+    if (scrollDirection === 'down') {
+      startAutoScroll('left');
+    } else if (scrollDirection === 'up') {
+      startAutoScroll('right');
+    }
+  }
+
+  function startAutoScroll(direction) {
+    const container = $('#testimoni-container')[0];
+    if (scrollInterval || !container) return;
+    
+    // Set posisi awal
+    if (direction === 'left') {
+      container.scrollLeft = container.scrollWidth;
+    } else {
+      container.scrollLeft = 0;
+    }
+    
+    scrollInterval = setInterval(function() {
+      if (isResetting) return;
+      
+      const atLeftEdge = container.scrollLeft <= 10;
+      const atRightEdge = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+      
+      // Logika reset posisi
+      if ((direction === 'left' && atLeftEdge) || 
+          (direction === 'right' && atRightEdge)) {
+        isResetting = true;
+        
+        const targetPos = direction === 'left' ? container.scrollWidth : 0;
+        $(container).animate({ scrollLeft: targetPos }, 800, 'swing', function() {
+          isResetting = false;
+        });
+        
+      } else {
+        // Scroll sesuai arah
+        container.scrollLeft += direction === 'left' ? -scrollSpeed : scrollSpeed;
+      }
+    }, scrollDelay);
+  }
+
+  function stopAutoScroll() {
+    if (scrollInterval) {
+      clearInterval(scrollInterval);
+      scrollInterval = null;
+    }
+  }
+
+  // Load data testimoni
+  $.getJSON("", function(response) {
+    $('#testimoni-container').empty();
+    
+    response.data.forEach(item => {
+      $('#testimoni-container').append(`
+        <div class="card" style="min-width:12rem">
+          <img src="${item.image}" style="height:200px; object-fit:cover">
+        </div>
+      `);
+    });
+  });
+});
+</script> --}}
+
+{{-- script versi otomatis scroll --}}
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
 
   // Menampilkan skeleton loading
   const skeletonTestimoni = `<div class="card d-flex flex-column align-items-center placeholder-glow" style="min-width: 12rem; flex: 0 0 auto; border:none">
@@ -1133,16 +1624,43 @@ $(document).ready(function() {
   </div>`;
   $('#testimoni-container').html(skeletonTestimoni.repeat(6));
 
-  // Mengambil data testimoni dari API
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni ", function(response) {
-    if (response.data && response.data.length > 0) {
+  function startAutoScroll() {
+  const container = $('#testimoni-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+  
 
+  // Mengambil data testimoni dari API
+  $.getJSON("https://online.palcomtech.ac.id/api/custom/testimoni", function(response) {
+    if (response.data && response.data.length > 0) {
       // Mengosongkan kontainer testimoni
       $('#testimoni-container').empty();
       response.data.forEach(function(item) {
+        startAutoScroll();
         const testimoni = `
-          <div class="card d-flex flex-column align-items-center" style="min-width: 12rem; flex: 0 0 auto; border:none">
-      <div class="p-3 w-100 d-flex justify-content-center">
+          <div class="card d-flex flex-column align-items-center testimoni" style="min-width: 12rem; flex: 0 0 auto; border:none">
+      <div class="p-3 w-100 d-flex justify-content-center testimoni-img">
         <img src="${item.image}" class="img-fluid" style="max-height: 300px; object-fit: contain;">
       </div>
     </div>
@@ -1158,7 +1676,16 @@ $(document).ready(function() {
 {{-- script untuk API instruktur --}}
 
 <script>
-$(document).ready(function () {
+  $(document).ready(function () {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
+
   // menampilkan skeleton
   const skeletonInstruktur = `
     <div class="skeleton-card placeholder-glow" style="margin:18px">
@@ -1169,7 +1696,33 @@ $(document).ready(function () {
     </div>
     
   `;
-  $('#instruktur-container').html(skeletonInstruktur.repeat(9)); 
+  $('#instruktur-container').html(skeletonInstruktur.repeat(9));
+  
+  function startAutoScroll() {
+  const container = $('#instruktur-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
 
   // api untuk ambil data instruktur
   $.getJSON("https://online.palcomtech.ac.id/api/custom/instruktur", function (response) {
@@ -1179,32 +1732,38 @@ $(document).ready(function () {
 
       // menambahkan data instruktur ke html
       response.data.forEach(function (item) {
+        startAutoScroll();
         const instruktur = `
-          <div class="card border-0" style="width: 200px; flex: 0 0 auto;">
-            <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
-              <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
-                <img src="${item.img}" 
-                  class="w-100 h-100 object-fit-cover" 
-                  style="border-radius:10px; object-fit: contain;">
-              </div>
-            </div>
-          </div>
+          <div class="card border-0 instruktur-card" style="width: 200px; flex: 0 0 auto;">
+  <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
+    <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+      <img src="${item.img}" 
+        class="w-100 h-100 object-fit-cover img-instruktur" 
+        style="border-radius:10px; object-fit: contain;">
+    </div>
+  </div>
+  </div>
         `;
         $('#instruktur-container').append(instruktur);
       });
-    } else {
-      $('#instruktur-container').html('<p class="text-muted">Data tidak tersedia</p>');
-    }
-  }).fail(function () {
-    $('#instruktur-container').html('<p class="text-danger">Gagal memuat data instruktur.</p>');
+      } 
+    });
   });
-});
 </script>
 
 {{-- script untuk API prestasi --}}
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+    // variabel untuk scroll
+    let scrollInterval;
+    const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+    const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+    let isPaused = false; //variabel untuk fungsi pause
+    let isUserScrolling = false;  //variabel untuk manual scroll
+    let userScrollTimeout;
+    let isResetting = false; //variabel untuk reset
+
   // Menampilkan skeleton loading
   const skeletonPrestasi = ` <div class="skeleton-card placeholder-glow" style="margin:18px">
       <div class="placeholder col-12 mb-2" style="height: 100px; width: 100px; border-radius: 15px;">
@@ -1214,17 +1773,44 @@ $(document).ready(function() {
     </div>`;
   $('#prestasi-container').html(skeletonPrestasi.repeat(6)); // Tampilkan skeleton
 
+  function startAutoScroll() {
+  const container = $('#prestasi-container')[0];
+  
+  if (scrollInterval) clearInterval(scrollInterval);
+  
+  // Set scroll ke posisi paling kanan terlebih dahulu
+  container.scrollLeft = container.scrollWidth;
+  
+  scrollInterval = setInterval(() => {
+    if (!isResetting && container.scrollWidth > container.clientWidth) {
+      // Jika sudah mencapai ujung kiri
+      if (container.scrollLeft <= 10) {
+        isResetting = true; // Set flag sedang reset
+        
+        // reset ke posisi paling kanan
+        $(container).animate({ scrollLeft: container.scrollWidth }, 1000, 'swing', function() {
+          isResetting = false; // Reset flag setelah selesai
+        });
+      } else {
+        // Lanjutkan scroll otomatis ke kiri
+        container.scrollLeft -= scrollSpeed;
+      }
+      }
+    }, scrollDelay);
+  }
+
   // Mengambil data prestasi dari API
   $.getJSON("https://online.palcomtech.ac.id/api/custom/prestasi ", function(response) {
     // Mengosongkan kontainer prestasi
     $('#prestasi-container').empty();
     if (response.data && response.data.length > 0) {
       response.data.forEach(function(item) {
+        startAutoScroll();
         const prestasi = `
           <div class="card border-0" style="width: 250px; flex: 0 0 auto;">
       <div class="card-body p-3 d-flex flex-column" style="height: 100%;">
         <!-- Gambar -->
-        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px;">
+        <div class="mb-3" style="height: 200px; overflow: hidden; border-radius: 15px; img.prestasi">
           <img src="${item.img}" 
                class="w-100 h-100 object-fit-cover" style="max-width: 100%; max-height: auto; border-radius:10px; object-fit: contain;">
         </div>
@@ -1326,20 +1912,22 @@ $(document).ready(function() {
     const headingId = 'heading' + index;
     const collapseId = 'collapse' + index;
     const faq = `
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="${headingId}">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-            ${item.question}
-          </button>
-        </h2>
-        <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}"
-          data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            ${item.answer}
-          </div>
-        </div>
-      </div>
+      <div class="accordion-item" style="border: none; border-bottom: 0.3px solid black;">
+  <h2 class="accordion-header" id="${headingId}">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}"
+      style="border: none; box-shadow: none;">
+      ${item.question}
+    </button>
+  </h2>
+  <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}"
+    data-bs-parent="#faqAccordion">
+    <div class="accordion-body" style="border: none;">
+      ${item.answer}
+    </div>
+  </div>
+  </div>
+
     `;
     $('#faq-container').append(faq);
   });
@@ -1349,22 +1937,314 @@ $(document).ready(function() {
 </script>
 
 
-{{-- <script> --}}
+{{-- script untuk api program --}}
+
+<script>
+$(document).ready(function () {
+  // variabel untuk scroll
+  let scrollInterval;
+  const scrollSpeed = 1; // variabel untuk atur kecepatan scroll
+  const scrollDelay = 30; // variabel untuk delay ketika scroll/bergerak
+  let isPaused = false; //variabel untuk fungsi pause
+  let isUserScrolling = false;  //variabel untuk manual scroll
+  let userScrollTimeout;
+  let isResetting = false; //variabel untuk reset
+
+  // Skeleton loading
+  const skeletonCard = `
+    <div class="card placeholder-glow" style="width: 280px; flex: 0 0 auto; margin-right: 15px;">
+      <div class="placeholder col-12 mb-2" style="height: 160px; background-color: #e0e0e0; border-radius: 4px;"></div>
+      <div class="card-body">
+        <div class="placeholder col-10 mb-2" style="height: 20px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-7 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-6 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-5" style="height: 20px; background-color: #e0e0e0;"></div>
+      </div>
+    </div>
+  `;
+
+  // mulai auto-scrolling
+  function startAutoScroll() {
+    const container = $('#program-cards')[0];
+    
+    if (scrollInterval) clearInterval(scrollInterval);
+    
+    scrollInterval = setInterval(() => {
+      if (!isResetting && container.scrollWidth > container.clientWidth) {
+        // Jika sudah mencapai ujung kanan
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+          isResetting = true; // Set flag sedang reset
+          
+          // reset ke posisi awal
+          $(container).animate({ scrollLeft: 0 }, 1000, 'swing', function() {
+            isResetting = false; // Reset flag setelah selesai
+          });
+        } else {
+          // Lanjutkan scroll otomatis
+          container.scrollLeft += scrollSpeed;
+        }
+      }
+    }, scrollDelay);
+  }
+
+  // fungsi untuk manual scroll
+  $('#program-cards').on('scroll', function() {
+    if (!isUserScrolling) {
+      isPaused = true;
+    }
+    isUserScrolling = true;
+    
+    if (userScrollTimeout) clearTimeout(userScrollTimeout);
+    
+    userScrollTimeout = setTimeout(() => {
+      isUserScrolling = false;
+      isPaused = false;
+    }, 3000);
+  });
+
+  // ambil data kategori
+  function loadKategories() {
+    showSkeleton();
+
+    $.get('https://online.palcomtech.ac.id/api/custom/kategories', function (response) {
+      if (response.success && response.data.length > 0) {
+        renderKategoriTabs(response.data);
+        loadPrograms(response.data[0].slug); 
+      }
+    }).fail(showError);
+  }
+
+  function renderKategoriTabs(kategories) {
+    const tabsContainer = $('#kategori-tabs');
+    tabsContainer.empty();
+
+    kategories.forEach((kategori, index) => {
+      const tab = $(`
+        <a class="btn kategori-tab ${index === 0 ? 'active' : ''}" 
+           data-kategori-slug="${kategori.slug}">
+          ${kategori.name}
+        </a>
+      `);
+
+      tab.click(function () {
+        $('.kategori-tab').removeClass('active');
+        $(this).addClass('active');
+        loadPrograms(kategori.slug);
+      });
+
+      tabsContainer.append(tab);
+    });
+  }
+
+  function loadPrograms(kategoriSlug) {
+    showSkeleton();
+
+    $.get(`https://online.palcomtech.ac.id/api/custom/programs/${kategoriSlug}`, function (response) {
+      if (response.success) {
+        renderProgramCards(response.data);
+        // mulai auto scroll ketika data berhasil di load
+        startAutoScroll();
+      } else {
+        showError(response.message || `<div class="reload-container" onclick="location.reload()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+  <p class="reload-text">
+    Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>`);
+      }
+    }).fail(showError);
+  }
+
+  function renderProgramCards(programs) {
+    const container = $('#program-cards');
+    container.empty();
+
+    if (programs.length === 0) {
+      container.html('<div class="col-12 text-center py-5">Tidak ada program tersedia</div>');
+      return;
+    }
+
+    programs.forEach(program => {
+      const card = $(`
+      <a href="${program.url}">
+  <div class="card program-card" style="width: 280px; flex: 0 0 auto; margin-right:15px;">
+    <img class="card-img-top img-program" src="${program.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${program.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${program.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${program.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${program.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+  </a>
+      `);
+      container.append(card);
+    });
+  }
+
+  function showSkeleton() {
+    const container = $('#program-cards');
+    container.empty();
+    container.append(skeletonCard.repeat(4)); 
+  }
+
+  function showError(message) {
+    $('#program-cards').html(`
+      <div class="reload-container" onclick="location.reload()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+        <p class="reload-text">
+          Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>
+    `);
+  }
+
+  loadKategories(); // Inisialisasi awal
+});
+</script>
 
 
 {{-- <script>
-$(document).ready(function() {
-  $.getJSON("https://online.palcomtech.ac.id/api/custom/logo", function(response) {
-    if (response.data && response.data.length > 0) {
-      // Ambil elemen pertama saja (tanpa loop)
-      const item = response.data[0];
-      const logo = `<h5 class="fw-bold mb-2"><img src="${item.image}" alt="" srcset="" style="width:100px;"></h5>`;
-      $('#footer-info').html(logo); // Gunakan .html() bukan .append() untuk mengganti isi
+  $(document).ready(function () {
+  // Skeleton card HTML
+  const skeletonCard = `
+    <div class="card placeholder-glow" style="width: 280px; flex: 0 0 auto; margin-right: 15px;">
+      <div class="placeholder col-12 mb-2" style="height: 160px; background-color: #e0e0e0; border-radius: 4px;"></div>
+      <div class="card-body">
+        <div class="placeholder col-10 mb-2" style="height: 20px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-7 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-6 mb-2" style="height: 16px; background-color: #e0e0e0;"></div>
+        <div class="placeholder col-5" style="height: 20px; background-color: #e0e0e0;"></div>
+      </div>
+    </div>
+  `;
+
+  // Load Kategori dan default tab
+  function loadKategories() {
+    showSkeleton();
+
+    $.get('https://online.palcomtech.ac.id/api/custom/kategories', function (response) {
+      if (response.success && response.data.length > 0) {
+        renderKategoriTabs(response.data);
+        loadPrograms(response.data[0].slug); // Load default kategori
+      }
+    }).fail(showError);
+  }
+
+  function renderKategoriTabs(kategories) {
+    const tabsContainer = $('#kategori-tabs');
+    tabsContainer.empty();
+
+    kategories.forEach((kategori, index) => {
+      const tab = $(`
+        <a class="btn kategori-tab ${index === 0 ? 'active' : ''}" 
+           data-kategori-slug="${kategori.slug}">
+          ${kategori.name}
+        </a>
+      `);
+
+      tab.click(function () {
+        $('.kategori-tab').removeClass('active');
+        $(this).addClass('active');
+        loadPrograms(kategori.slug);
+      });
+
+      tabsContainer.append(tab);
+    });
+  }
+
+  function loadPrograms(kategoriSlug) {
+    showSkeleton();
+
+    $.get(`https://online.palcomtech.ac.id/api/custom/programs/${kategoriSlug}`, function (response) {
+      if (response.success) {
+        renderProgramCards(response.data);
+      } else {
+        showError(response.message || `<div class="reload-container" onclick="location.reload()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+  <p class="reload-text">
+    Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>`);
+      }
+    }).fail(showError);
+  }
+
+  function renderProgramCards(programs) {
+    const container = $('#program-cards');
+    container.empty();
+
+    if (programs.length === 0) {
+      container.html('<div class="col-12 text-center py-5">Tidak ada program tersedia</div>');
+      return;
     }
-  });
+
+    programs.forEach(program => {
+      const card = $(`
+      <a href="${program.url}">
+  <div class="card program-card" style="width: 280px; flex: 0 0 auto; margin-right:15px;">
+    <img class="card-img-top img-program" src="${program.image}" alt="Course Image" height="160" style="object-fit: cover;">
+    <div class="card-body">
+      <h6 class="card-title fw-bold mb-1">${program.title}</h6>
+      <p class="card-text text-muted mb-1" style="font-size: 14px;">${program.instruktur}</p>
+      <div class="d-flex align-items-center mb-1" style="font-size: 14px;">
+        <span class="fw-bold me-1 text-warning">4.5</span>
+        <span class="text-warning me-1">★ ★ ★ ★ ☆</span>
+        <span class="text-muted" style="font-size: 13px;">(50,404)</span>
+      </div>
+      <div class="mb-2">
+        <span class="fw-bold" style="font-size: 16px;">${program.hargaDiskon}</span>
+        <span class="text-muted text-decoration-line-through ms-2">${program.hargaNormal}</span>
+      </div>
+      <span class="badge bg-success">Bestseller</span>
+    </div>
+  </div>
+  </a>
+      `);
+      container.append(card);
+    });
+  }
+
+  function showSkeleton() {
+    const container = $('#program-cards');
+    container.empty();
+    container.append(skeletonCard.repeat(4)); 
+  }
+
+  function showError(message) {
+    $('#program-cards').html(`
+      <div class="reload-container" onclick="location.reload()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21.5 2v6h-6"/>
+  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38"/>
+  </svg>
+        <p class="reload-text">
+          Gagal memuat data. <span>Klik untuk coba lagi</span>
+  </p>
+  </div>
+    `);
+  }
+
+  loadKategories(); // Inisialisasi awal
 });
 </script> --}}
-
 
 </body>
 </html>
